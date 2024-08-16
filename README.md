@@ -8,5 +8,8 @@ The project primilarly utilises ride-level data made freely available by Bixi fo
 
 ## Outline of Code
 Code for the project is written entirely in Pyhon. The code is separated into 8 sections and ran primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory.
+
+### 1. Importing Data
+In this section, I prepare and append ride-level data made available by Bixi on its [open data portal](https://bixi.com/en/open-data/).
  
 Here is the resulting static map. ![](https://github.com/robertialenti/Bixi/raw/main/static_map.png)
