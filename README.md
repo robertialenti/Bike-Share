@@ -108,11 +108,11 @@ We begin by estimating a standard difference-in-difference model estimation, wit
 $\sqrt{3x-1}+(1+x)^2$
 
 $$
-Y_{it} = \alpha + \delta \cdot \text{Post}_t + \epsilon_{it}
+\Y_{it} = \alpha + \delta \cdot \text{Post}_t + \epsilon_{it}
 $$
 
 Where:
-- $\( Y_{it} \)$ is the outcome variable for Bixi station \( i \) in week \( t \).
+- $\( Y_{it} \)$ is the outcome variable for Bixi station \i in week \t.
 - \( \alpha \) is the intercept.
 - \( \text{Post}_t \) is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - \( \text{Treated}_i \) is a binary variable indicating the treatment group (1 if treated, 0 if control).
