@@ -113,7 +113,7 @@ I begin by estimating a standard difference-in-difference model estimation, with
 $Y_{it} = \alpha + \beta_{1}\text{Treated} + \beta_{2}\text{Post} + \beta_{3}(\text{Treated} \times \text{Post}) + \sum_{n=4}^{6}\beta_{n}X_t + \epsilon_{it}$
 
 Where:
-- $( \Y_{it}\ )$ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
+- $( Y_{it} )$ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
 - $( \alpha \ )$ is the intercept.
 - $\( \text{Treated}_i \)$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t \)$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
@@ -128,6 +128,6 @@ The coefficient of interest, \( \beta \), is found to be positive, statistically
 
 I also use a two-way fixed effects approach, which is better suited _______. I do not include the previous weather-related covariates, as they would be absorbed by the model's date fixed effects.
 
-$Y_{it} = \alpha + \Mu_i + \Tau_t + \beta D_{it} + \epsilon_{it}$
+$Y_{it} = \alpha + \mu_i + \tau_t + \beta D_{it} + \epsilon_{it}$
 
 What the regression results show is that the number, average distance, and average duration of rides taken at Bixi stations near the REV experienced a much greater increase following the path's construction than stations located further. If the identification strategy is convincing, than these parameter estimates are causal, and not simply correlative. That is, ____
