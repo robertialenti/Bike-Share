@@ -54,7 +54,7 @@ I calculate the distance between the Bixi station and each line segment bounding
 
 Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on their distance from the path.
 
-![](https://github.com/robertialenti/Bixi/raw/figures/axis1_map.png)
+![](https://github.com/robertialenti/Bixi/raw/main/axis1_map.png)
 
 ### 6. Preparing Data for Econometric Analysis
 
