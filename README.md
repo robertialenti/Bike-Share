@@ -53,7 +53,7 @@ At this point, we have all of the variables we'll need to generate descriptive s
 | Varaible Name | Type | Description |
 | start_id | int | Unique ID for station where ride begins |
 | start_name  | str  | Name of station where ride begins |
-| start_lat  | float | Latitude of station where ride begins |
+| start_lat | float | Latitude of station where ride begins |
 | start_long  | float | Longitude of station where ride begins |
 
 I first plot average daily ridership by month, for every month over the April 2014 - December 2024 period. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
