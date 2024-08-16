@@ -29,4 +29,4 @@ Here, I create three outcome variables of interest, which we'll explore in great
 
 ## 4. Descriptive Statistics
  
-Here is the resulting static map. ![](https://github.com/robertialenti/Bixi/raw/main/static_map.png)
+Here is a static map showing Bixi usage in July 2024. Each bubble represents a Bixi station. The bubble's color scales in accordance with the number of bikeshare trips undertaken that month, while its size scales with the total distance travelled by bikeshare users that month. ![](https://github.com/robertialenti/Bixi/raw/main/static_map.png)
