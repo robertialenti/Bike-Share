@@ -32,10 +32,6 @@ Rather than rely on Bixi's ___, I group Bixi stations by ID through manual valid
 
 For each station ID, I select the modal station name.
 
-\variable
-\variable\
-$variable$
-
 ### 3. Creating Outcome Variables
 Here, I create three outcome variables of interest, which we'll explore in greater depth below, and use in our econometric analysis.
 
@@ -53,6 +49,13 @@ Here is a plot showing the location of the REV's Axis 1. Bixi stations are class
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/axis1_map.png" width="900" height="500">
 
 ### 5. Descriptive Statistics
+At this point, we have all of the variables we'll need to generate descriptive statistics and perform econometric analysis. Here is a description of the variables.
+| Varaible Name | Type | Description |
+| start_id | int | Unique ID for station where ride begins |
+| start_name  | str  | Name of station where ride begins |
+| start_lat  | float | Latitude of station where ride begins |
+| start_long  | float | Longitude of station where ride begins |
+
 I first plot average daily ridership by month, for every month over the April 2014 - December 2024 period. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/average_daily_ridership.png" width="425" height="250">
