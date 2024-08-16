@@ -105,7 +105,7 @@ To ensure that outcomes evolved similarly prior to treatment, and to verify that
 ### 8. Model Estimation
 We begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms, as well as controls. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
 
- $Y_{it} = \alpha + \delta \cdot \text{Post}_t + \gamma \cdot \text{Treated}_i + \beta \cdot (\text{Post}_t \times \text{Treated}_i) + \epsilon_{it}$
+\$Y_{it} = \alpha + \delta \cdot \text{Post}_t + \gamma \cdot \text{Treated}_i + \beta \cdot (\text{Post}_t \times \text{Treated}_i) + \epsilon_{it}\$
 
 Where:
 - \( Y_{it} \) is the outcome variable for Bixi station \( i \) in week \( t \).
