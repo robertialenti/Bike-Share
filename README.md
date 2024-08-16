@@ -34,14 +34,14 @@ I remove Bixi trips with implausible distances or journey times. This removes ve
 
 ### 4. Descriptive Statistics
 In Figure 1, I plot average daily ridership by month, for every month over the Aprill 2014 - December 2024 period. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months.
-![](https://github.com/robertialenti/Bixi/raw/figures/average_daily_ridership.png)
+![](https://github.com/robertialenti/Bixi/raw/main/average_daily_ridership.png)
 
 In Figure 2, I plot average daily ridership by day of the week in 2024. In line with expectations, Friday and Saturday are the most popular days for bikesharing.
 
 In Figure 3, I plot the number of active Bixi stations over time, only in months in which the service is operating. Note that, in the winter of 2023, Bixi piloted a project whereby it operated around 150 stations in the city's core.
 
 In Figure 4, I present a static map showing Bixi usage during the week ending 07-31-2024, the last week with available data. Each bubble represents a Bixi station. The bubble's color scales in accordance with the number of bikeshare trips originating from that station while the bubble's size scales with the total distance travelled by bikeshare users on trips originating from that station.
-![](https://github.com/robertialenti/Bixi/raw/figures/static_map.png)
+![](https://github.com/robertialenti/Bixi/raw/main/static_map.png)
 
 It's also informative to see a GIF, mapping data for each week since April 2014. In doing so, it's clear to see the gradual expansion of the network as well as the ___, both at the extensive and intensive margins.
 
