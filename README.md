@@ -96,11 +96,17 @@ Before I can perform regressions, I make the following ___. I create an event ti
 
 To ensure that outcomes evolved similarly prior to treatment, and to verify that rideshare users did not somehow frontrun the treatment, I plot outcomes in event time separately for treated and control groups.
 
+<img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_count.png" width="425" height="250">
+
+<img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_distance.png" width="425" height="250">
+
+<img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_duration.png" width="425" height="250">
+
 ### 8. Model Estimation
 We begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms, as well as controls. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
 
 The coefficients of interest are found to be positive, statistically significant, and economically meaingful. 
 
-We also use a two-way fixed effects 
+We also use a two-way fixed effects approach.
 
 What the regression results show is that the number, average distance, and average duration of rides taken at Bixi stations near the REV experienced a much greater increase following the path's construction than stations located further. If the identification strategy is convincing, than these parameter estimates are causal, and not simply correlative. That is, ____
