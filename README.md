@@ -32,6 +32,10 @@ Rather than rely on Bixi's ___, I group Bixi stations by ID through manual valid
 
 For each station ID, I select the modal station name.
 
+\variable
+\variable\
+$variable$
+
 ### 3. Creating Outcome Variables
 Here, I create three outcome variables of interest, which we'll explore in greater depth below, and use in our econometric analysis.
 
