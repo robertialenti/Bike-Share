@@ -107,7 +107,9 @@ We begin by estimating a standard difference-in-difference model estimation, wit
 
 $\sqrt{3x-1}+(1+x)^2$
 
-$Y_{it} = \alpha + \delta \cdot \text{Post}_t + \gamma \cdot \text{Treated}_i + \beta \cdot (\text{Post}_t \times \text{Treated}_i) + \epsilon_{it}$
+$$
+Y_{it} = \alpha + \delta \cdot \text{Post}_t + \gamma \cdot \text{Treated}_i + \beta \cdot (\text{Post}_t \times \text{Treated}_i) + \epsilon_{it}
+$$
 
 Where:
 - \( Y_{it} \) is the outcome variable for Bixi station \( i \) in week \( t \).
