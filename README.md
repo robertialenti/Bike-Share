@@ -86,6 +86,8 @@ In Figure 4, I present a static map showing Bixi usage during the week ending 07
 
 It's also informative to animate the previous static image. In doing so, it's clear to see the gradual expansion of the network as well as the increased usage, both at the extensive and intensive margins.
 
+<img src="https://github.com/robertialenti/Bixi/raw/main/figures/gif_map.gif" width="900" height="500">
+
 ### 6. Preparing Data for Econometric Analysis
 
 Before I can perform regressions, I make the following ___. I create an event time variable, measuring number of days since the opening of Axis 1 on 11/07/2020. Next, I seasonally adjust the outcome variables by employing ___. Finally, I introduce additional covariates including daily mean temperature, precipitation, and amount of snow on ground in Montreal.
