@@ -112,8 +112,8 @@ $$
 $$
 
 Where:
-- $\( Y_{it} \)$ is the outcome variable for Bixi station \i in week \t.
-- \( \alpha \) is the intercept.
+- $\ Y_{it} \$ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
+- $\alpha \$ is the intercept.
 - \( \text{Post}_t \) is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - \( \text{Treated}_i \) is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - \( \text{Post}_t \times \text{Treated}_i \) is the interaction of the post-treatment period and the treatment group.
