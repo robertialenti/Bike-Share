@@ -56,6 +56,15 @@ At this point, we have all of the variables we'll need to generate descriptive s
 | start_name  | str  | Name of station where ride begins |
 | start_lat | float | Latitude of station where ride begins |
 | start_long  | float | Longitude of station where ride begins |
+| end_id  | float | Longitude of station where ride ends |
+| end_name  | float | Longitude of station where ride ends |
+| end_lat  | float | Longitude of station where ride ends |
+| end_long  | float | Longitude of station where ride ends |
+| count  | int | 1 |
+| distance  | float | Haversine distance between start station and end station, in meters |
+| duration  | float | Duration between start station and end station, in minutes |
+| treated  | float | 1 = Treated, 0 = Control |
+| post | float | 1 = Post, 0 = Pre |
 
 I first plot average daily ridership by month, for every month over the April 2014 - December 2024 period. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
 
