@@ -26,9 +26,11 @@ Code for the project is written entirely in Pyhon. The code is separated into 8 
 In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics.
 
 ### 2. Importing and Cleaning Data
-In this section, I read and append ride-level data made available by Bixi on its [open data portal](https://bixi.com/en/open-data/). For some years, Bixi provides ride-level data by month, while in other years only a single dataset is provided. Variable names change somewhat through time. 
+In this section, I read and append ride-level data made available on Bixi's [open data portal](https://bixi.com/en/open-data/). In some years, Bixi provides ride-level data by month, while in other years only a single dataset is provided. Variable names change somewhat through time. The code handles this inconsistencies.
 
-Rather than rely on Bixi's ___, I group Bixi stations by ID through manual validation.
+Rather than rely on Bixi's ___, I group Bixi stations by ID through manual validation. I then merge the ride-level data to this file, assigning an ID and coordinates to every station.
+
+For each station ID, I select the modal station name.
 
 ### 3. Creating Outcome Variables
 Here, I create three outcome variables of interest, which we'll explore in greater depth below, and use in our econometric analysis.
