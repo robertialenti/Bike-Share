@@ -28,12 +28,14 @@ In this section, I simply import modules that I'll need to conduct the work. I t
 ### 2. Importing and Cleaning Data
 In this section, I read and append ride-level data made available on Bixi's [open data portal](https://bixi.com/en/open-data/). In some years, Bixi provides ride-level data by month, while in other years only a single dataset is provided. Variable names change somewhat through time. The code handles this inconsistencies.
 
-Rather than rely on Bixi's ___, I group Bixi stations by ID through manual validation. I then merge the ride-level data to this file, assigning an ID and coordinates to every station.
+Rather than rely on Bixi's ___, I group Bixi stations by ID through manual validation. That is, I group stations - with potentially dissimillar names and varying coordinates - to the same ID. I then merge the ride-level data to this file, assigning an ID and coordinates to every station.
 
-For each station ID, I select the modal station name.
+For each station ID, I select the modal station name. For each station ID-Date, I select the modal coordinates.
 
 ### 3. Creating Outcome Variables
-Here, I create three outcome variables of interest, which we'll explore in greater depth below, and use in our econometric analysis.
+Here, I create three outcome variables of interest, which I'll use in the subsequent econometric analysis. 
+
+Unfortunately, Bixi does not provide trip-level GPS data, which would be needed to track the precise journey undertaken by a user. Instead, I measure trip distance as the Haversine distance between the starting and ending station, recognizing that this is a lower bar for the actual distance traversed on any given trip. Note that, as a result, when modelling trip distance, I omit trips with the same starting and ending stations.
 
 I remove Bixi trips with implausible distances or journey times.
 
@@ -114,11 +116,11 @@ $$
 Where:
 - $\ Y_{it} \$ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
 - $\alpha \$ is the intercept.
-- \( \text{Post}_t \) is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
-- \( \text{Treated}_i \) is a binary variable indicating the treatment group (1 if treated, 0 if control).
-- \( \text{Post}_t \times \text{Treated}_i \) is the interaction of the post-treatment period and the treatment group.
-- \( \beta \) is the DiD estimator, which captures the treatment effect.
-- \( \epsilon_{it} \) is the error term.
+- \( \text{Post}_t \)$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
+- $\( \text{Treated}_i \)$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
+- $\( \text{Post}_t \times \text{Treated}_i \)$ is the interaction of the post-treatment period and the treatment group.
+- $\( \beta \)$ is the DiD estimator, which captures the treatment effect.
+- $\( \epsilon_{it} \)$ is the error term.
 
 
 The coefficient of interest, \( \beta \), is found to be positive, statistically significant, and economically meaingful for all three outcomes. 
