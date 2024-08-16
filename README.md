@@ -44,7 +44,7 @@ I calculate the distance between the Bixi station and each line segment bounding
 
 Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on their distance from the path.
 
-![](https://github.com/robertialenti/Bixi/raw/main/axis1_map.png)
+<img src="https://github.com/robertialenti/Bixi/raw/main/axis1_map" width="900" height="500">
 
 ### 5. Descriptive Statistics
 I first plot average daily ridership by month, for every month over the April 2014 - December 2024 period. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that 
