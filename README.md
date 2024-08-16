@@ -51,6 +51,7 @@ Here is a plot showing the location of the REV's Axis 1. Bixi stations are class
 ### 5. Descriptive Statistics
 At this point, we have all of the variables we'll need to generate descriptive statistics and perform econometric analysis. Here is a description of the variables.
 | Varaible Name | Type | Description |
+| --------------- | --------------- | --------------- |
 | start_id | int | Unique ID for station where ride begins |
 | start_name  | str  | Name of station where ride begins |
 | start_lat | float | Latitude of station where ride begins |
