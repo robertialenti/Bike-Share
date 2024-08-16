@@ -113,7 +113,7 @@ I begin by estimating a standard difference-in-difference model estimation, with
 $Y_{it} = \alpha + \beta_{1}\text{Treated} + \beta_{2}\text{Post} + \beta_{3}(\text{Treated} \cdot \text{Post}) + \sum_{n=4}^{6}\beta_{n}X_t + \epsilon_{it}$
 
 Where:
-- $ Y_{it} $ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
+- $ \Y_{it}\ $ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
 - $( \alpha \ )$ is the intercept.
 - $\( \text{Post}_t \)$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Treated}_i \)$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
