@@ -111,6 +111,8 @@ I begin by estimating a standard difference-in-difference model estimation, with
 
 $\sqrt{3x-1}+(1+x)^2$
 
+$\Y_{it}$
+
 $$
 Y_{it} = \alpha + \delta \cdot \text{Post}_t + \epsilon_{it}
 $$
