@@ -94,7 +94,7 @@ Before I can perform regressions, I make the following ___. I create an event ti
 
 ### 7. Assessing Parallel Trends
 
-To ensure that outcomes evolved similarly prior to treatment, and to verify that rideshare users did not somehow frontrun the treatment, I plot outcomes in event time separately for treated and control groups.
+To ensure that outcomes evolved similarly prior to treatment, and to verify that user activity did not somehow frontrun the treatment, I plot outcomes in event time separately for treated and control groups. We see that outcomes evolved quite similarly prior to the construction of the REV's Axis 1. 
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_count.png" width="425" height="250">
 
@@ -105,7 +105,21 @@ To ensure that outcomes evolved similarly prior to treatment, and to verify that
 ### 8. Model Estimation
 We begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms, as well as controls. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
 
-The coefficients of interest are found to be positive, statistically significant, and economically meaingful. 
+$$
+Y_{it} = \alpha + \delta \cdot \text{Post}_t + \gamma \cdot \text{Treated}_i + \beta \cdot (\text{Post}_t \times \text{Treated}_i) + \epsilon_{it}
+$$
+
+Where:
+- \( Y_{it} \) is the outcome variable for Bixi station \( i \) in week \( t \).
+- \( \alpha \) is the intercept.
+- \( \text{Post}_t \) is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
+- \( \text{Treated}_i \) is a binary variable indicating the treatment group (1 if treated, 0 if control).
+- \( \text{Post}_t \times \text{Treated}_i \) is the interaction of the post-treatment period and the treatment group.
+- \( \beta \) is the DiD estimator, which captures the treatment effect.
+- \( \epsilon_{it} \) is the error term.
+
+
+The coefficient of interest, \( \beta \), is found to be positive, statistically significant, and economically meaingful for all three outcomes. 
 
 We also use a two-way fixed effects approach.
 
