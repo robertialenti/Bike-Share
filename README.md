@@ -118,16 +118,23 @@ Where:
 - $\( \text{Treated}_i \)$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t \)$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Post}_t \times \text{Treated}_i \)$ is the interaction of the post-treatment period and the treatment group.
-- $\( \beta_{3} \)$ is the DiD estimator, which captures the treatment effect.
 - $\( X_t \)$ is a vector of time-specific covariates, including mean temperature, precipitation, and snow on ground.
 - $\( \epsilon_{it} \)$ is the error term.
 
 RESULTS
 
-The coefficient of interest, \( \beta \), is found to be positive, statistically significant, and economically meaingful for all three outcomes. 
+The difference-in-difference estimator, $\( \beta_{3} \)$ captures the treatmetn effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that proximity to the REV results in xx more trips, yy farther trips, and zz longer trips.
 
-I also use a two-way fixed effects approach, which is better suited _______. I do not include the previous weather-related covariates, as they would be absorbed by the model's date fixed effects.
+I also use a two-way fixed effects approach. This specification is better suited to handle cases with multiple time periods and is more widely used in panel data settings. It can also more flexibly consider heterogenous treatment effects. I do not include the previous weather-related covariates, as they would be absorbed by this model's date fixed effects.
 
-$Y_{it} = \alpha + \mu_i + \tau_t + \beta D_{it} + \epsilon_{it}$
+$Y_{it} = \alpha + \mu_i + \tau_t + \beta(\text{Treated} \times \text{Distance_i}) + \epsilon_{it}$
 
-What the regression results show is that the number, average distance, and average duration of rides taken at Bixi stations near the REV experienced a much greater increase following the path's construction than stations located further. If the identification strategy is convincing, than these parameter estimates are causal, and not simply correlative. That is, ____
+Where:
+- $( Y_{it} )$ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
+- $( \alpha \ )$ is the intercept.
+- $( \mu \ )$ is a full set of group fixed effects, for every Bixi station.
+- $( \tau \ )$ is a full set of date fixed effects, for every week.
+- $( D_{it}) $ is the treatment effect. It is constructed by interacting the treatment dummy and the distance between a Bixi station and the nearest segment of the REV path.
+- $\( \epsilon_{it} \)$ is the error term, clustered by Bixi station and week.
+
+Again, results show that the number, average distance, and average duration of rides taken at Bixi stations near the REV experienced a much greater increase following the path's construction than stations located further. In particular, _________.
