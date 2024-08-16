@@ -109,7 +109,7 @@ We see that outcomes evolved quite similarly prior to the construction of the RE
 ### 8. Model Estimation
 I begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms, as well as controls. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
 
-$Y_{it} = \alpha + \beta_{1}\text{Treated} + \beta_{2}\text{Post} + \beta_{3}(\text{Treated} \cdot \text{Post}) + \sum_{n=4}^{6} X_i + \epsilon_{it}$
+$Y_{it} = \alpha + \beta_{1}\text{Treated} + \beta_{2}\text{Post} + \beta_{3}(\text{Treated} \cdot \text{Post}) + \sum_{n=4}^{6}\beta_{n}X_t + \epsilon_{it}$
 
 
 Where:
@@ -118,7 +118,8 @@ Where:
 - $\( \text{Post}_t \)$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Treated}_i \)$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t \times \text{Treated}_i \)$ is the interaction of the post-treatment period and the treatment group.
-- $\( \beta \)$ is the DiD estimator, which captures the treatment effect.
+- $\( \beta_{3} \)$ is the DiD estimator, which captures the treatment effect.
+- - $\( X_t \)$ is a vector of time-specific covariates, including mean temperature, precipitation, and snow on ground.
 - $\( \epsilon_{it} \)$ is the error term.
 
 
