@@ -1,8 +1,8 @@
 # Impact of the REV on Bike Share in Montreal
 
-This project aims to assess how the development of the Reseau Express Velo (REV) - a network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I employ a difference-in-differences research design, comparing outcomes for treated Bixi stations - those located nearby to the REV paths - to those located further away. Outcomes include average weekly ridership, average trip duration, average trip distance, as well as new member uptake.
+This project aims to assess how the development of the Reseau Express Velo (REV) - a network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I seek to estimate a causal effect by employing a difference-in-differences research design, comparing outcomes for treated Bixi stations - those located nearby to the REV paths - to those located further away. Outcomes include average weekly ridership, average trip duration, and average trip distance.
 
-The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - December 2024. I also use geodata from the City of Montreal and weather data from Statistics Canada.
+The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - December 2024. I also use geodata from the City of Montreal and weather data from Environment Canada.
 
 ## Context
 In 2019, Valerie Plante, Mayor of Montreal and leader of Projet Montreal, announced that the city would be undertaking a project to build more, higher-quality bike infrastructure across the city, beginning in its central neighborhoods. This would include the construction of new, wider, protected bike lanes with synchronized street lights to help Montrealers more comfortably and safely traverse large distances. These paths would also be prioritized for snow clearing in winter, making them usable year-round.
@@ -15,12 +15,12 @@ Projet Montreal put forward plans to build 5 such axes:
 - Axis 4: Peel: This axis serves a short North-South corridor on Peel, a major commercial shopping street in the city's downtown core.
 - Axis 5: Bellechasse: An East-West Corridor running on Bellechase between de Gaspe and Chatelain, predominantly in the Rosemont-La Petite-Patrie borough, and intersecting with Axis 1 of the REV at Saint-Denis/Bellechasse.
 
-In 2023, the city put forward plans to expand the network by 2027 with the eventual aim of increasing bike share to 15% in Montreal.
+In 2023, the city put forward plans to expand the network by 2027 with the aim of helping to increase the bike modal share to 15% in Montreal.
 
 You can read more about the REV [here](https://montreal.ca/articles/le-rev-un-reseau-express-velo-4666).
 
 ## Outline of Code
-Code for the project is written entirely in Pyhon. The code is separated into 8 sections and ran primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory.
+Code for the project is written entirely in Python. The code is separated into 8 sections and ran primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory.
 
 ### 1. Preliminaries
 In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics.
@@ -53,10 +53,12 @@ At this point, we have all of the variables we'll need to generate descriptive s
 | Varaible Name | Type | Description |
 | ------------- | ---- | ----------- |
 | start_id | int | Unique ID for station where ride begins |
+| start_date | datetime | Date and time that ride begins |
 | start_name | str  | Name of station where ride begins |
 | start_lat | float | Latitude of station where ride begins |
 | start_long | float | Longitude of station where ride begins |
 | end_id | float | Longitude of station where ride ends |
+| end_date | datetime | Date and time that ride ends |
 | end_name | float | Longitude of station where ride ends |
 | end_lat | float | Longitude of station where ride ends |
 | end_long  | float | Longitude of station where ride ends |
