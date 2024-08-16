@@ -53,7 +53,7 @@ I first plot average daily ridership by month, for every month over the April 20
 
 Next, I plot average daily ridership by day of the week in 2024. In line with _a priori_ expectations, Saturday and Friday are the most popular days for bikesharing.
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/average_daily_ridership_dayofweek.png" width="425" height="250">
+<img src="https://github.com/robertialenti/Bixi/raw/main/average_daily_ridership_dayofweek.png">
 
 Finally, I plot the number of active Bixi stations over time, only in months in which the service is operating. Note that, in the winter of 2023, Bixi piloted a project whereby it operated around 150 stations in the city's core. In 2024, the rideshare service claimed to be operating around 900 stations.
 
