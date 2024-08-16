@@ -52,18 +52,19 @@ Here is a plot showing the location of the REV's Axis 1. Bixi stations are class
 
 ### 5. Descriptive Statistics
 At this point, we have all of the variables we'll need to generate descriptive statistics and perform econometric analysis. Here is a description of the variables.
+
 | Varaible Name | Type | Description |
 | ------------- | ---- | ----------- |
 | start_id | int | Unique ID for station where ride begins |
 | start_date | datetime | Date and time that ride begins |
-| start_name | str  | Name of station where ride begins |
+| start_name | str | Name of station where ride begins |
 | start_lat | float | Latitude of station where ride begins |
 | start_long | float | Longitude of station where ride begins |
 | end_id | float | Longitude of station where ride ends |
 | end_date | datetime | Date and time that ride ends |
 | end_name | float | Longitude of station where ride ends |
 | end_lat | float | Longitude of station where ride ends |
-| end_long  | float | Longitude of station where ride ends |
+| end_long | float | Longitude of station where ride ends |
 | count | int | 1 |
 | distance | float | Haversine distance between start station and end station, in meters |
 | duration | float | Duration between start station and end station, in minutes |
@@ -92,7 +93,7 @@ It's also informative to animate the previous static image. In doing so, it's cl
 
 ### 6. Preparing Data for Econometric Analysis
 
-Before I can perform regressions, I make the following ___. I create an event time variable, measuring number of days since the opening of Axis 1 on 11/07/2020. Next, I seasonally adjust the outcome variables by employing ___. Finally, I introduce additional covariates including daily mean temperature, precipitation, and amount of snow on ground in Montreal.
+Before I can perform regressions, I make the following adjustments. I create an event time variable, measuring number of days since the opening of Axis 1 on 11/07/2020. Next, I seasonally adjust the outcome variables by employing ___. Finally, I introduce additional covariates including daily mean temperature, precipitation, and amount of snow on ground in Montreal.
 
 ### 7. Assessing Parallel Trends
 
@@ -111,7 +112,6 @@ I begin by estimating a standard difference-in-difference model estimation, with
 
 $Y_{it} = \alpha + \beta_{1}\text{Treated} + \beta_{2}\text{Post} + \beta_{3}(\text{Treated} \cdot \text{Post}) + \sum_{n=4}^{6}\beta_{n}X_t + \epsilon_{it}$
 
-
 Where:
 - $( \ Y_{it} \ )$ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
 - $( \alpha \ )$ is the intercept.
@@ -119,12 +119,13 @@ Where:
 - $\( \text{Treated}_i \)$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t \times \text{Treated}_i \)$ is the interaction of the post-treatment period and the treatment group.
 - $\( \beta_{3} \)$ is the DiD estimator, which captures the treatment effect.
-- - $\( X_t \)$ is a vector of time-specific covariates, including mean temperature, precipitation, and snow on ground.
+- $\( X_t \)$ is a vector of time-specific covariates, including mean temperature, precipitation, and snow on ground.
 - $\( \epsilon_{it} \)$ is the error term.
 
+RESULTS
 
 The coefficient of interest, \( \beta \), is found to be positive, statistically significant, and economically meaingful for all three outcomes. 
 
-We also use a two-way fixed effects approach.
+I also use a two-way fixed effects approach.
 
 What the regression results show is that the number, average distance, and average duration of rides taken at Bixi stations near the REV experienced a much greater increase following the path's construction than stations located further. If the identification strategy is convincing, than these parameter estimates are causal, and not simply correlative. That is, ____
