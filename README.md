@@ -96,7 +96,9 @@ Before I can perform regressions, I make the following ___. I create an event ti
 
 ### 7. Assessing Parallel Trends
 
-To ensure that outcomes evolved similarly prior to treatment, and to verify that user activity did not somehow frontrun the treatment, I plot outcomes in event time separately for treated and control groups. We see that outcomes evolved quite similarly prior to the construction of the REV's Axis 1. 
+To ensure that outcomes evolved similarly prior to treatment, and to verify that user activity did not somehow frontrun the treatment, I plot outcomes in event time separately for treated and control groups. In an effort to better assess trends, I plot only a single month, November, per year.
+
+We see that outcomes evolved quite similarly prior to the construction of the REV's Axis 1. This gives me confidence that _______.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_count.png" width="425" height="250">
 
@@ -105,12 +107,12 @@ To ensure that outcomes evolved similarly prior to treatment, and to verify that
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_duration.png" width="425" height="250">
 
 ### 8. Model Estimation
-We begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms, as well as controls. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
+I begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms, as well as controls. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
 
 $\sqrt{3x-1}+(1+x)^2$
 
 $$
-\Y_{it} = \alpha + \delta \cdot \text{Post}_t + \epsilon_{it}
+\(Y_{it}) = \alpha + \delta \cdot \text{Post}_t + \epsilon_{it}
 $$
 
 Where:
