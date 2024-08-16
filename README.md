@@ -35,7 +35,7 @@ For each station ID, I select the modal station name.
 ### 3. Creating Outcome Variables
 Here, I create three outcome variables of interest, which we'll explore in greater depth below, and use in our econometric analysis.
 
-I remove Bixi trips with implausible distances or journey times. This removes very few trips.
+I remove Bixi trips with implausible distances or journey times.
 
 ### 4. Identifying Treated Bixi Stations
 I define "treated" Bixi stations as those located within 100 meters of the REV's path and "control" stations as those located between 100 and 250 meters from the REV. These thresholds are informed both by the existing litearture. When performing regressions, I present an alternative specification where I use a continuous variable measuring distance between each Bixi station and the REV path. The use of a continuous treatment variable is sensible in instances where the effect of the treatment is not binary, but rather likely to vary in strength.
@@ -72,11 +72,11 @@ I first plot average daily ridership by month, for every month over the April 20
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/average_daily_ridership.png" width="425" height="250">
 
-Next, I plot average daily ridership by day of the week in 2024. In line with _a priori_ expectations, Saturday and Friday are the most popular days for bikesharing.
+Next, I plot average daily ridership by day of the week in 2024. In line with a priori expectations, Saturday and Friday are the most popular days for bikesharing.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/average_daily_ridership_dayofweek.png" width="425" height="250">
 
-Finally, I plot the number of active Bixi stations over time, only in months in which the service is operating. Note that, in the winter of 2023, Bixi piloted a project whereby it operated around 150 stations in the city's core. In 2024, the rideshare service claimed to be operating around 900 stations.
+Finally, I plot the number of active Bixi stations over time, only in months in which the service is operating. Note that, in the winter of 2023, Bixi piloted a project whereby it operated around 150 stations in the city's core. In 2024, the rideshare service operated around 900 stations.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/number_stations.png" width="425" height="250">
 
@@ -84,17 +84,21 @@ In Figure 4, I present a static map showing Bixi usage during the week ending 07
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/static_map.png" width="900" height="500">
 
-It's also informative to animate the previous static image, showing data for each week since April 2014. In doing so, it's clear to see the gradual expansion of the network as well as the increased usage, both at the extensive and intensive margins.
+It's also informative to animate the previous static image. In doing so, it's clear to see the gradual expansion of the network as well as the increased usage, both at the extensive and intensive margins.
 
 ### 6. Preparing Data for Econometric Analysis
 
+Before I can perform regressions, I make the following ___. I create an event time variable, measuring number of days since the opening of Axis 1 on 11/07/2020. Next, I seasonally adjust the outcome variables by employing ___. Finally, I introduce additional covariates including daily mean temperature, precipitation, and amount of snow on ground in Montreal.
+
 ### 7. Assessing Parallel Trends
 
+To ensure that outcomes evolved similarly prior to treatment, and to verify that rideshare users did not somehow frontrun the treatment, I plot outcomes in event time separately for treated and control groups.
+
 ### 8. Model Estimation
-We begin by estimatign a standard difference-in-difference model estimation, with typical post, treatment, and interaction terms.
+We begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms, as well as controls. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
 
 The coefficients of interest are found to be positive, statistically significant, and economically meaingful. 
 
-We also use a two-way fixed effects.
+We also use a two-way fixed effects 
 
 What the regression results show is that the number, average distance, and average duration of rides taken at Bixi stations near the REV experienced a much greater increase following the path's construction than stations located further. If the identification strategy is convincing, than these parameter estimates are causal, and not simply correlative. That is, ____
