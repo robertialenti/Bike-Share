@@ -109,7 +109,7 @@ We see that outcomes evolved quite similarly prior to the construction of the RE
 ### 8. Model Estimation
 I begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms, as well as controls. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
 
-$Y_{it} = \alpha + \beta_{1}\text{Treated} + \beta_{2}\text{Post} + \beta_{3}(\text{Treated} \cdot \text{Post}) + \epsilon_{it}$
+$Y_{i,t} = \alpha + \beta_{1}\text{Treated_{i}} + \beta_{2}\text{Post_{t}} + \beta_{3}(\text{Treated_{i} \cdot \text{Post_{t}}) + \epsilon_{i,t}$
 
 Where:
 - $( \ Y_{it} \ )$ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
