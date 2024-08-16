@@ -47,7 +47,7 @@ Here is a plot showing the location of the REV's Axis 1. Bixi stations are class
 <img src="https://github.com/robertialenti/Bixi/raw/main/axis1_map.png" width="900" height="500">
 
 ### 5. Descriptive Statistics
-I first plot average daily ridership by month, for every month over the April 2014 - December 2024 period. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that 
+I first plot average daily ridership by month, for every month over the April 2014 - December 2024 period. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/average_daily_ridership.png" width="425" height="250">
 
