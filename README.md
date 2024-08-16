@@ -1,4 +1,4 @@
-# Analysis of the REV on Bike Usage in Montreal
+# Impact of the REV on Bike Share in Montreal
 
 This project aims to assess how the development of the Reseau Express Velo (REV) - a network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I employ a difference-in-differences research design, comparing outcomes for treated Bixi stations - those located nearby to the REV paths - to those located further away. Outcomes include average weekly ridership, average trip duration, average trip distance, as well as new member uptake.
 
