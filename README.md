@@ -131,7 +131,7 @@ The difference-in-difference estimator captures the treatment effect. It is foun
 
 I also use a two-way fixed effects approach. This specification is better suited to handle settings with multiple time periods and is more widely used when working with panel data. It can also more flexibly consider heterogenous treatment effects. Note, I do not specify the previous weather-related covariates, as they would be absorbed by this model's date fixed effects.
 
-$Y_{it} = \alpha + \mu_i + \tau_t + \beta(\text{Treated} \times \text{Distance_i}) + \epsilon_{it}$
+$Y_{it} = \alpha + \mu_{i} + \tau_{t} + \beta(\text{Treated} \times \text{Distance}) + \epsilon_{it}$
 
 Where:
 - $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $\ i \$ in week $\ t \$.
