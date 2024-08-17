@@ -2,17 +2,17 @@
 
 This project aims to assess how the development of the Reseau Express Velo (REV) - a network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I seek to estimate a causal effect by employing a difference-in-differences research design, comparing outcomes for treated Bixi stations - those located nearby to the REV paths - to those located further away. Outcomes include average weekly ridership, average trip duration, and average trip distance.
 
-The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - December 2024. I also use geodata from the City of Montreal and weather data from Environment Canada.
+The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - December 2024. I also use data from the City of Montreal, who has geocoded all of the city's bike paths, as well as weather data from Environment Canada.
 
 ## Context
-In 2019, Valerie Plante, Mayor of Montreal and leader of Projet Montreal, announced that the city would be undertaking a project to build more, higher-quality bike infrastructure across the city, beginning in its central neighborhoods. This would include the construction of new, wider, protected bike lanes with synchronized street lights to help Montrealers more comfortably and safely traverse large distances. These paths would also be prioritized for snow clearing in winter, making them usable year-round.
+In 2019, Valerie Plante, Mayor of Montreal and leader of Projet Montreal, announced that the city would be undertaking a project to build more, higher-quality bike infrastructure across the city, beginning in its central neighborhoods. This would include the construction of new, wide, and protected bike lanes with synchronized street lights to help Montrealers more comfortably and safely traverse larger distances. These paths would also be prioritized for snow clearing in winter, making them usable year-round.
 
 Projet Montreal put forward plans to build 5 such axes:
 
 - Axis 1: Berri-Lajeunesse-Saint-Denis: This axis is the longest in the REV network and provides North-South coverage in the center of the city. It links the boulevard Gouin with the rue Roy. The axis was inauguarateed on 11/07/2020.
-- Axis 2: Viger-Saint-Antonine-Saint-Jacques: This axis serves a short East-West segment, predomianntly in the city's Ville-Marie borough. The axis was inauguarated on 03/31/2021.
+- Axis 2: Viger-Saint-Antonine-Saint-Jacques: This axis serves a short East-West segment, predominantly in the city's Ville-Marie borough.
 - Axis 3: Souligny: This axis, running East-West between the rue Honore-Beaugrand and avenue Hector, is furthest from the city center.
-- Axis 4: Peel: This axis serves a short North-South corridor on Peel, a major commercial shopping street in the city's downtown core.
+- Axis 4: Peel: This axis serves a short North-South corridor on Peel, a major commercial shopping street in the city's downtown core, between avenue des Pins and rue Smith.
 - Axis 5: Bellechasse: An East-West Corridor running on Bellechase between de Gaspe and Chatelain, predominantly in the Rosemont-La Petite-Patrie borough, and intersecting with Axis 1 of the REV at Saint-Denis/Bellechasse.
 
 In 2023, the city put forward plans to expand the network by 2027 with the aim of helping to increase the bike modal share to 15% in Montreal.
@@ -26,32 +26,36 @@ Code for the project is written entirely in Python. The code is separated into 8
 In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics.
 
 ### 2. Importing and Cleaning Data
-In this section, I read and append ride-level data made available on Bixi's [open data portal](https://bixi.com/en/open-data/). In some years, Bixi provides ride-level data by month, while in other years only a single dataset is provided. Variable names change somewhat through time. The code handles this inconsistencies.
+In this section, I read and append ride-level data made available on Bixi's [open data portal](https://bixi.com/en/open-data/). In some years, Bixi provides ride-level data by month, while in other years all of the ridership data is included in a single dataset. Variable names change somewhat through time. The code handles these inconsistencies.
 
-Rather than rely on Bixi's ___, I group Bixi stations by ID through manual validation. That is, I group stations - with potentially dissimillar names and varying coordinates - to the same ID. I then merge the ride-level data to this file, assigning an ID and coordinates to every station.
-
-For each station ID, I select the modal station name. For each station ID-Date, I select the modal coordinates.
+Rather than rely on ____. Station names and IDs are somewhat unreliable as they ___ and can change through time. As a result, I group Bixi stations with a user-generated ID and manual validation. That is, I group stations - with similar names and ____ - to the same ID. I then merge the ride-level data to this file, assigning an ID and coordinates to every station. For each station ID, I select the modal station name. For each station ID-Date, I select the modal coordinates. Here is an example:
 
 ### 3. Creating Outcome Variables
-Here, I create three outcome variables of interest, which I'll use in the subsequent econometric analysis. 
+Here, I create three outcome variables of interest: trip count, trip distance, and trip duration.
 
 Unfortunately, Bixi does not provide trip-level GPS data, which would be needed to track the precise journey undertaken by a user. Instead, I measure trip distance as the Haversine distance between the starting and ending station, recognizing that this is a lower bar for the actual distance traversed on any given trip. Note that, as a result, when modelling trip distance, I omit trips with the same starting and ending stations.
 
 I remove Bixi trips with implausible distances or journey times.
 
 ### 4. Identifying Treated Bixi Stations
-I define "treated" Bixi stations as those located within 100 meters of the REV's path and "control" stations as those located between 100 and 250 meters from the REV. These thresholds are informed both by the existing litearture. When performing regressions, I present an alternative specification where I use a continuous variable measuring distance between each Bixi station and the REV path. The use of a continuous treatment variable is sensible in instances where the effect of the treatment is not binary, but rather likely to vary in strength.
+I define "treated" Bixi stations as those located within 100 meters of the REV path and "control" stations as those located between 100 and 250 meters from the REV. These thresholds are informed by the existing litearture, which finds that _____. When performing regressions, I present an alternative specification where I use a continuous treatment variable measuring distance between the Bixi station and the REV path.
 
-The City of Montreal provides information on the location of all bike paths in the city. Crucially, each segment of each bike path is geocoded. I calculate the distance between the Bixi station and each line segment bounding the REV.
+I focus exclusively on Axis 1 of the REV because it provides the best case study for assessing the REV's impact. Other axes were rolled out in a more staggered fashion, and were subject to delays and additional works. Axis 1, on the other hand, was entirely inaugurated on the same day.
+The City of Montreal provides information on the location of all bike paths in the city, with each segment of each bike path geocoded. I assign stations to treatment by employing the following procedure:
 
-I focus exclusively on Axis 1 of the REV because it provides the cleanest case study. Other axes were rolled out in a more staggered fashion, were subject to some delays and additional works.
+1. Select a Bixi station.
+2. For each station, iterate through every segment of the REV Axis 1.
+3. For each segment, create a polygon using the coordinates bounding the segment.
+4. Calculate the distance between the Bixi station and each line constituting the polygon.
+5. If the distance is less than 100 meters, assign the Bixi station to treatment.
+6. If the distance is beteween 100 meters and 250 meters ____.
 
 Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on their distance from the path.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/axis1_map.png" width="900" height="500">
 
 ### 5. Descriptive Statistics
-At this point, we have all of the variables we'll need to generate descriptive statistics and perform econometric analysis. Here is a description of the variables.
+At this point, I have all of the variables needed to generate descriptive statistics and perform the econometric analysis. Here is a description of the variables.
 
 | Varaible Name | Type | Description |
 | ------------- | ---- | ----------- |
@@ -83,7 +87,7 @@ Finally, I plot the number of active Bixi stations over time, only in months in 
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/number_stations.png" width="425" height="250">
 
-In Figure 4, I present a static map showing Bixi usage during the week ending 07-31-2024, the last week with available data. Each bubble represents a Bixi station. The bubble's color scales in accordance with the number of bikeshare trips originating from that station while the bubble's size scales with the total distance travelled by bikeshare users on trips originating from that station.
+Given that the data is spatial in nature, I generate some maps as well. First, I present a static map showing Bixi usage during the week ending 07-31-2024, the last week with available data. Each bubble represents a Bixi station. The bubble's color scales in accordance with the number of bikeshare trips originating from that station while the bubble's size scales with the total distance travelled by bikeshare users on trips originating from that station.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/static_map.png" width="900" height="500">
 
@@ -93,13 +97,13 @@ It's also informative to animate the previous static image. In doing so, it's cl
 
 ### 6. Preparing Data for Econometric Analysis
 
-Before I can perform regressions, I make the following adjustments. I create an event time variable, measuring number of days since the opening of Axis 1 on 11/07/2020. Next, I seasonally adjust the outcome variables by employing ___. Finally, I introduce additional covariates including daily mean temperature, precipitation, and amount of snow on ground in Montreal.
+Before I can perform regressions, I make the following adjustments. I create an event time variable, measuring number of days since the opening of Axis 1 on 11/07/2020. Then, I seasonally adjust the outcome variables. Finally, I merge in additional covariates measuring daily mean temperature, precipitation, and amount of snow on ground in Montreal.
 
 ### 7. Assessing Parallel Trends
 
-To ensure that outcomes evolved similarly prior to treatment, and to verify that user activity did not somehow frontrun the treatment, I plot outcomes in event time separately for treated and control groups. In an effort to better assess trends, I plot only a single month, November, per year.
+To ensure that outcomes evolved similarly prior to treatment, and to verify that user activity did not somehow frontrun the completion of the REV, I plot outcomes in event time separately for treated and control groups. In an effort to better assess trends, I plot only a single month, November, for every year.
 
-We see that outcomes evolved quite similarly prior to the construction of the REV's Axis 1. This gives me confidence that _______.
+We see that outcomes evolved quite similarly prior to the construction of the REV's Axis 1. This gives me confidence that treated and control stations are similar, ___________.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_count.png" width="425" height="250">
 
