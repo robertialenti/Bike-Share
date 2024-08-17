@@ -97,11 +97,11 @@ It's also informative to animate the previous static image. In doing so, it's cl
 
 ### 6. Preparing Data for Econometric Analysis
 
-Before I can perform regressions, I make the following adjustments. I create an event time variable, measuring number of days since the opening of Axis 1 on 11/07/2020. Then, I seasonally adjust the outcome variables. Finally, I merge in additional covariates measuring daily mean temperature, precipitation, and amount of snow on ground in Montreal.
+Before I can perform regressions, I make the following adjustments. Then, I seasonally adjust the outcome variables. Finally, I merge in additional covariates measuring daily mean temperature, precipitation, and amount of snow on ground in Montreal.
 
 ### 7. Assessing Parallel Trends
 
-To ensure that outcomes evolved similarly prior to treatment, and to verify that user activity did not somehow frontrun the completion of the REV, I plot outcomes in event time separately for treated and control groups. In an effort to better assess trends, I plot only a single month, November, for every year.
+To ensure that outcomes evolved similarly prior to treatment, and to verify that user activity did not somehow frontrun the completion of the REV, I plot outcomes in event time separately for treated and control groups. The event time variable measures months elapsed since the inauguration of the REV's Axis 1 on 11/07/2020. In an effort to better assess trends, I plot only a single month, November, for every year.
 
 We see that outcomes evolved quite similarly prior to the construction of the REV's Axis 1. This gives me confidence that treated and control stations are similar, ___________.
 
@@ -117,7 +117,7 @@ I begin by estimating a standard difference-in-difference model estimation, with
 $Y_{it} = \alpha + \beta_{1}\text{Treated} + \beta_{2}\text{Post} + \beta_{3}(\text{Treated} \times \text{Post}) + \sum_{n=4}^{6}\beta_{n}X_t + \epsilon_{it}$
 
 Where:
-- $( Y_{it} )$ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
+- $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $\ i \$ in week $\ t \$.
 - $( \alpha \ )$ is the intercept.
 - $\( \text{Treated}_i \)$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t \)$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
@@ -134,7 +134,7 @@ I also use a two-way fixed effects approach. This specification is better suited
 $Y_{it} = \alpha + \mu_i + \tau_t + \beta(\text{Treated} \times \text{Distance_i}) + \epsilon_{it}$
 
 Where:
-- $( Y_{it} )$ is the outcome variable for Bixi station $\ i \$ in week $\ t \$.
+- $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $\ i \$ in week $\ t \$.
 - $( \alpha \ )$ is the intercept.
 - $( \mu \ )$ is a full set of group fixed effects, for every Bixi station.
 - $( \tau \ )$ is a full set of date fixed effects, for every week.
