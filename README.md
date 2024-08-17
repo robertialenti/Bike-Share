@@ -26,7 +26,7 @@ Code for the project is written entirely in Python. The code is separated into 8
 In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics.
 
 ### 2. Importing and Cleaning Data
-In this section, I read and append ride-level data made available on Bixi's [open data portal](https://bixi.com/en/open-data/). In some years, Bixi provides ride-level data by month, while in other years all of the ridership data is included in a single dataset. Variable names change somewhat through time. The code handles these inconsistencies.
+In this section, I read and append ride-level data made available on Bixi's [open data portal](https://bixi.com/en/open-data/). In some years, Bixi provides ride-level data by month, while in other years all of the ridership data is included in a single dataset. Variable names change somewhat through time. The code handles these inconsistencies. The dataset includes all of the approximately 62 million rides completed on Bixi bikes between April 2014 and July 2024.
 
 Rather than rely on ____. Station names and IDs are somewhat unreliable as they ___ and can change through time. As a result, I group Bixi stations with a user-generated ID and manual validation. That is, I group stations - with similar names and ____ - to the same ID. I then merge the ride-level data to this file, assigning an ID and coordinates to every station. For each station ID, I select the modal station name. For each station ID-Date, I select the modal coordinates. Here is an example:
 
@@ -79,7 +79,7 @@ I first plot average daily ridership by month, for every month over the April 20
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/average_daily_ridership.png" width="425" height="250">
 
-Next, I plot average daily ridership by day of the week in 2024. In line with a priori expectations, Saturday and Friday are the most popular days for bikesharing.
+Next, I plot average daily ridership by day of the week in July 2024. In line with expectations, Saturday and Friday are the most popular days for bikesharing.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/average_daily_ridership_dayofweek.png" width="425" height="250">
 
