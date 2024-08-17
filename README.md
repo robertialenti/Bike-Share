@@ -125,7 +125,7 @@ Where:
 - $\( X_t \)$ is a vector of time-specific covariates, including mean temperature, precipitation, and snow on ground.
 - $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/figures/regression_did_trip_count.png" width="900" height="500">
+<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_did_trip_count.png" width="900" height="500">
 
 The difference-in-difference estimator, $\( \beta_{3} \)$ captures the treatmetn effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that proximity to the REV results in xx more trips, yy farther trips, and zz longer trips.
 
