@@ -125,8 +125,6 @@ Where:
 - $\( X_t \)$ is a vector of time-specific covariates, including mean temperature, precipitation, and snow on ground.
 - $\( \epsilon_{it} \)$ is the error term.
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_did_trip_count.tex" >
-
 The difference-in-difference estimator, $\( \beta_{3} \)$ captures the treatmetn effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that proximity to the REV results in xx more trips, yy farther trips, and zz longer trips.
 
 I also use a two-way fixed effects approach. This specification is better suited to handle cases with multiple time periods and is more widely used in panel data settings. It can also more flexibly consider heterogenous treatment effects. I do not include the previous weather-related covariates, as they would be absorbed by this model's date fixed effects.
