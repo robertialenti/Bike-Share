@@ -1,0 +1,38 @@
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}    &   trip\_count    & \textbf{  R-squared:         } &      0.047   \\
+\textbf{Model:}            &       OLS        & \textbf{  Adj. R-squared:    } &      0.046   \\
+\textbf{Method:}           &  Least Squares   & \textbf{  F-statistic:       } &      251.0   \\
+\textbf{Date:}             & Sat, 17 Aug 2024 & \textbf{  Prob (F-statistic):} &  3.32e-317   \\
+\textbf{Time:}             &     16:41:46     & \textbf{  Log-Likelihood:    } & -3.2295e+05  \\
+\textbf{No. Observations:} &       47094      & \textbf{  AIC:               } &  6.459e+05   \\
+\textbf{Df Residuals:}     &       47087      & \textbf{  BIC:               } &  6.460e+05   \\
+\textbf{Df Model:}         &           6      & \textbf{                     } &              \\
+\textbf{Covariance Type:}  &       HC3        & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                      & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$> |$z$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{const}        &     104.0597  &        2.093     &    49.720  &         0.000        &       99.958    &      108.162     \\
+\textbf{post}         &      67.1014  &        2.959     &    22.674  &         0.000        &       61.301    &       72.902     \\
+\textbf{treated}      &       7.0029  &        2.123     &     3.298  &         0.001        &        2.842    &       11.164     \\
+\textbf{interaction}  &      69.3345  &        5.520     &    12.561  &         0.000        &       58.516    &       80.153     \\
+\textbf{temp}         &       0.0663  &        0.110     &     0.601  &         0.548        &       -0.150    &        0.283     \\
+\textbf{precip}       &      -0.1824  &        0.449     &    -0.406  &         0.684        &       -1.062    &        0.697     \\
+\textbf{snow\_ground} &      -0.7194  &        0.148     &    -4.850  &         0.000        &       -1.010    &       -0.429     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 30773.846 & \textbf{  Durbin-Watson:     } &     0.055   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 674972.192  \\
+\textbf{Skew:}          &    2.813  & \textbf{  Prob(JB):          } &      0.00   \\
+\textbf{Kurtosis:}      &   20.673  & \textbf{  Cond. No.          } &      71.3   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors are heteroscedasticity robust (HC3)
