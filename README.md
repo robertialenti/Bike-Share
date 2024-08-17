@@ -123,7 +123,7 @@ Where:
 - $\( \text{Post}_t \)$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Post}_t \times \text{Treated}_i \)$ is the interaction of the post-treatment period and the treatment group.
 - $\( X_t \)$ is a vector of time-specific covariates, including mean temperature, precipitation, and snow on ground.
-- $\( \epsilon_{it} \)$ is the error term.
+- $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
 
 The difference-in-difference estimator, $\( \beta_{3} \)$ captures the treatmetn effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that proximity to the REV results in xx more trips, yy farther trips, and zz longer trips.
 
@@ -137,6 +137,6 @@ Where:
 - $( \mu \ )$ is a full set of group fixed effects, for every Bixi station.
 - $( \tau \ )$ is a full set of date fixed effects, for every week.
 - $( D_{it}) $ is the treatment effect. It is constructed by interacting the treatment dummy and the distance between a Bixi station and the nearest segment of the REV path.
-- $\( \epsilon_{it} \)$ is the error term, clustered by Bixi station and week.
+- $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
 
 Again, results show that the number, average distance, and average duration of rides taken at Bixi stations near the REV experienced a much greater increase following the path's construction than stations located further. In particular, _________.
