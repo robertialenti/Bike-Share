@@ -46,9 +46,10 @@ The City of Montreal provides information on the location of all bike paths in t
 1. Select a Bixi station.
 2. For each station, iterate through every segment of the REV Axis 1.
 3. For each segment, create a polygon using the coordinates bounding the segment.
-4. Calculate the distance between the Bixi station and each line constituting the polygon.
+4. Calculate the distance between the Bixi station and each line constituting the polygon for the segment.
 5. If the distance is less than 100 meters, assign the Bixi station to treatment.
-6. If the distance is beteween 100 meters and 250 meters ____.
+6. If the distance is beteween 100 meters and 250 meters, continue iterating through REV segments.
+7. Return the treatment status and minumum distance between Bixi station and all REV path segment.
 
 Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on their distance from the path.
 
