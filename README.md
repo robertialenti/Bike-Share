@@ -91,7 +91,7 @@ Given that the data is spatial in nature, I generate some maps as well. First, I
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/static_map.png" width="900" height="500">
 
-It's also informative to animate the previous static image. In doing so, it's clear to see the gradual expansion of the network as well as the increased usage, both at the extensive and intensive margins.
+It's also informative to animate the previous static image. In doing so, it's clear to see the gradual expansion of the network into neighborhoods further from the city center, as well as increased rideshare usage, both at the extensive and intensive margins.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/gif_map.gif" width="900" height="500">
 
