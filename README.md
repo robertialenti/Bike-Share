@@ -44,12 +44,13 @@ I focus exclusively on Axis 1 of the REV because it provides the best case study
 The City of Montreal provides information on the location of all bike paths in the city, with each segment of each bike path geocoded. I assign stations to treatment by employing the following procedure:
 
 1. Select a Bixi station.
-2. For each station, iterate through every segment of the REV Axis 1.
-3. For each segment, create a polygon using the coordinates bounding the segment.
+2. For each Bixi station, iterate through every segment of the REV.
+3. For each REV segment, create a polygon using the coordinates bounding the segment.
 4. Calculate the distance between the Bixi station and each line constituting the polygon for the segment.
 5. If the distance is less than 100 meters, assign the Bixi station to treatment.
-6. If the distance is beteween 100 meters and 250 meters, continue iterating through REV segments.
-7. Return the treatment status and minumum distance between Bixi station and all REV path segment.
+6. If the distance is beteween 100 meters and 250 meters, continue iterating through REV segments. If no other segment is less than 100 meters from the Bixi station, assign the Bixi station to control.
+7. If the distance is never less than 250 meters, assign the station to neither treatment nor control.
+8. Return the treatment status and distance between Bixi station and REV path.
 
 Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on their distance from the path.
 
