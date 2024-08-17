@@ -42,9 +42,9 @@ I remove Bixi trips with implausible distances or journey times.
 ### 4. Identifying Treated Bixi Stations
 I define "treated" Bixi stations as those located within 100 meters of the REV's path and "control" stations as those located between 100 and 250 meters from the REV. These thresholds are informed both by the existing litearture. When performing regressions, I present an alternative specification where I use a continuous variable measuring distance between each Bixi station and the REV path. The use of a continuous treatment variable is sensible in instances where the effect of the treatment is not binary, but rather likely to vary in strength.
 
-The City of Montreal provides information on all bike paths in the city. Crucially, each segment of each bike path is geocoded.
+The City of Montreal provides information on the location of all bike paths in the city. Crucially, each segment of each bike path is geocoded. I calculate the distance between the Bixi station and each line segment bounding the REV.
 
-I calculate the distance between the Bixi station and each line segment bounding the REV.
+I focus exclusively on Axis 1 of the REV because it provides the cleanest case study. Other axes were rolled out in a more staggered fashion, were subject to some delays and additional works.
 
 Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on their distance from the path.
 
