@@ -123,7 +123,7 @@ Where:
 - $( \alpha \ )$ is the intercept.
 - $\( \text{Treated}_i \)$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t \)$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
-- $\( \text{Post}_t \times \text{Treated}_i \)$ is the interaction of the post-treatment period and the treatment group.
+- $\( \text{Post}_t \times \text{Treated}_i \)$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
 - $\( X_t \)$ is a vector of time-specific covariates, including mean temperature, precipitation, and snow on ground.
 - $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
 
@@ -140,7 +140,7 @@ Where:
 - $( \alpha \ )$ is the intercept.
 - $( \mu \ )$ is a full set of group fixed effects, for every Bixi station.
 - $( \tau \ )$ is a full set of date fixed effects, for every week.
-- $( D_{it} )$ is the treatment effect. It is constructed by interacting the treatment dummy and the distance between a Bixi station and the nearest segment of the REV path.
+- $(\text{Treated} \times \text{Distance})\_{i}$ is the constructed by interacting the treatment dummy and the distance between a Bixi station and the nearest segment of the REV path.
 - $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
 
 Again, results show that the number, average distance, and average duration of rides taken at Bixi stations near the REV experienced a much greater increase following the path's construction than stations located further. In particular, _________.
