@@ -90,7 +90,7 @@ Next, I plot average daily ridership by day of the week in July 2024. In line wi
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/average_daily_ridership_dayofweek.png" width="425" height="250">
 
-Finally, I plot the number of active Bixi stations over time, only in months in which the service is operating. Note that, in the winter of 2023, Bixi piloted a project whereby it operated around 150 stations in the city's core for the first. In 2024, the rideshare service operated around 900 stations.
+Finally, I plot the number of active Bixi stations over time, only in months in which the service is operating. Note that, in the winter of 2023, Bixi piloted a project whereby it operated around 150 stations in the city's core for the first. This explains the sharp and temporary decline in the number of active Bixi stations. In 2024, the rideshare service operated around 900 stations.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/number_stations.png" width="425" height="250">
 
@@ -129,10 +129,12 @@ Where:
 - $\( \text{Treated}_i \ )$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t \ )$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Post}_t \times \text{Treated}_i \ )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
-- $\( X_t \ )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), mean squared temperature (degrees celcius) precipitation (mm), and snow on ground (mm).
 - $\( D_{i} )$ is the distance, in meters, between Bixi station $\ i \$ and the nearest segment of the REV path.
+- $\( X_t \ )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), mean squared temperature (degrees celcius) precipitation (mm), and snow on ground (mm).
 - $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_did_trip_count.png">
 
-The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that proximity to the REV results in xx more trips, yy farther trips, and zz longer trips.
+The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that stations located in close proximity to the REV see xx more monthly trips than those located further away. Trips originating from ___ are yy meters farther and zz minutes longer, on average. For comparison, the the mean number of monthly trips taken from a treated station in the pre-treatment period was ___, while the mean distance and mean duration of trips taken from these stations was yy meters and zz minutes.
+
+Without ride-level user IDs, however, it is impossible for me to infer whether this increased usage is the result of new Bixi users being induced by the REV, or simply a spatial reallocation of existing users. That is, it is possible the treatment effect is being driven by existing Bixi users choosing to rent their bikes from a Bixi station closer to the REV path after its completion, rather than new users choosing to use the bikeshare program.
