@@ -119,9 +119,9 @@ We see that outcomes evolved quite similarly prior to the construction of the RE
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_duration.png" width="425" height="250">
 
 ### 8. Model Estimation
-I begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms, as well as controls. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
+I begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms. In addition to the key difference-in-difference regressors, I also include a control for the distance between ___, given that I expect the treatment effect to decline as the distance between ___ and the REV grows. I also include weather-related covariates that I think may impact outcomes, including temperature, precipitation, and snow on ground. I include mean temperature, as well as mean squared temperature. This is done to account for the fact that bikesharing, as a function of temperature is inverse U-shaped. That is, bikesharing is lower at very low and very high temperatures. Robust standard errors are used. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
 
-$Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}\D_{i} + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
+$Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}D_{i} + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
 
 Where:
 - $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $\ i \$ in week $\ t \$.
@@ -129,24 +129,10 @@ Where:
 - $\( \text{Treated}_i \ )$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t \ )$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Post}_t \times \text{Treated}_i \ )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
-- $\( X_t \ )$ is a vector of time-specific covariates, including mean temperature, precipitation, and snow on ground.
+- $\( X_t \ )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), mean squared temperature (degrees celcius) precipitation (mm), and snow on ground (mm).
 - $\( D_{i} )$ is the distance, in meters, between Bixi station $\ i \$ and the nearest segment of the REV path.
 - $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_did_trip_count.png">
 
 The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that proximity to the REV results in xx more trips, yy farther trips, and zz longer trips.
-
-I also use a two-way fixed effects approach. This specification is better suited to handle settings with multiple time periods and is more widely used when working with panel data. It can also more flexibly consider heterogenous treatment effects. Note, I do not specify the previous weather-related covariates, as they would be absorbed by this model's date fixed effects.
-
-$Y_{it} = \alpha + \mu_{i} + \tau_{t} + \beta(\text{Treated} \times \text{Distance})\_{i} + \epsilon_{it}$
-
-Where:
-- $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $\ i \$ in week $\ t \$.
-- $( \alpha \ )$ is the intercept.
-- $( \mu \ )$ is a full set of group fixed effects, for every Bixi station.
-- $( \tau \ )$ is a full set of date fixed effects, for every week.
-- $(\text{Treated} \times \text{Distance})\_{i}$ is the constructed by interacting the treatment dummy and the distance between a Bixi station and the nearest segment of the REV path.
-- $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
-
-Again, results show that the number, average distance, and average duration of rides taken at Bixi stations near the REV experienced a much greater increase following the path's construction than stations located further. In particular, _________.
