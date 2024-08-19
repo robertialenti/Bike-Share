@@ -33,14 +33,19 @@ Rather than rely on ____. Station names and IDs are somewhat unreliable as they 
 ### 3. Creating Outcome Variables
 Here, I create three outcome variables of interest: trip count, trip distance, and trip duration.
 
-Unfortunately, Bixi does not provide trip-level GPS data, which would be needed to track the precise journey undertaken by a user. Instead, I measure trip distance as the Haversine distance between the starting and ending station, recognizing that this is a lower bar for the actual distance traversed on any given trip. Note that, as a result, when modelling trip distance, I omit trips with the same starting and ending stations.
+Trip count measures the number of trips by Bixi station and date.
 
-I remove Bixi trips with implausible distances or journey times.
+As Bixi does not provide trip-level GPS data, which would be needed to track the precise journey undertaken by a user, I instead measure trip distance as the Haversine distance between the starting and ending station. I recognize that this is a lower bar for the actual distance traversed on any given trip. Note that, as a result, when modelling trip distance, I omit trips with the same starting and ending stations.
+
+Trip duration is calculated as the difference between a journey's start time and end time.
+
+I remove Bixi trips with implausible distances or journey times to reduce the impact of outliers on parameter estimates.
 
 ### 4. Identifying Treated Bixi Stations
-I define "treated" Bixi stations as those located within 100 meters of the REV path and "control" stations as those located between 100 and 250 meters from the REV. These thresholds are informed by the existing litearture, which finds that _____. When performing regressions, I present an alternative specification where I use a continuous treatment variable measuring distance between the Bixi station and the REV path.
+I define "treated" Bixi stations as those located within 200 meters of the REV path and "control" stations as those located between 200 and 500 meters from the REV. These thresholds are informed by the existing litearture, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. 
 
-I focus exclusively on Axis 1 of the REV because it provides the best case study for assessing the REV's impact. Other axes were rolled out in a more staggered fashion, and were subject to delays and additional works. Axis 1, on the other hand, was entirely inaugurated on the same day.
+I focus exclusively on Axis 1 of the REV because it provides the best case study for assessing the REV's impact. Other axes were rolled out in a more staggered fashion, and were subject to delays and additional works. Axis 1, on the other hand, was inaugurated in its entirety on the same day.
+
 The City of Montreal provides information on the location of all bike paths in the city, with each segment of each bike path geocoded. I assign stations to treatment by employing the following procedure:
 
 1. Select a Bixi station.
@@ -52,7 +57,7 @@ The City of Montreal provides information on the location of all bike paths in t
 7. If the distance is never less than 250 meters, assign the station to neither treatment nor control.
 8. Return the treatment status and distance between Bixi station and REV path.
 
-Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on their distance from the path.
+Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on how far they are located from the REV path.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/axis1_map.png" width="900" height="500">
 
@@ -74,7 +79,7 @@ At this point, I have all of the variables needed to generate descriptive statis
 | count | int | 1 |
 | distance | float | Haversine distance between start station and end station, in meters |
 | duration | float | Duration between start station and end station, in minutes |
-| treated | float | Treated = 1, Control = 0|
+| treated | float | Treated = 1, Control = 0 |
 | post | float | Post-Treatment = 1, Pre-Treatment = 0 |
 
 I first plot average daily ridership by month, for every month over the April 2014 - December 2024 period. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
