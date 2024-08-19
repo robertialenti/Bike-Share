@@ -42,7 +42,7 @@ Trip duration is calculated as the difference between a journey's start time and
 I remove Bixi trips with implausible distances or journey times to reduce the impact of outliers on parameter estimates.
 
 ### 4. Identifying Treated Bixi Stations
-I define "treated" Bixi stations as those located within 200 meters of the REV path and "control" stations as those located between 200 and 500 meters from the REV. These thresholds are informed by the existing litearture, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. 
+I define "treated" Bixi stations as those located within 200 meters of the REV path and "control" stations as those located between 200 and 500 meters from the REV. These thresholds are informed by the existing litearture, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. For robustness, I try a number of alternative thresholds.
 
 I focus exclusively on Axis 1 of the REV because it provides the best case study for assessing the REV's impact. Other axes were rolled out in a more staggered fashion, and were subject to delays and additional works. Axis 1, on the other hand, was inaugurated in its entirety on the same day.
 
@@ -52,9 +52,9 @@ The City of Montreal provides information on the location of all bike paths in t
 2. For each Bixi station, iterate through every segment of the REV.
 3. For each REV segment, create a polygon using the coordinates bounding the segment.
 4. Calculate the distance between the Bixi station and each line constituting the polygon for the segment.
-5. If the distance is less than 100 meters, assign the Bixi station to treatment.
-6. If the distance is beteween 100 meters and 250 meters, continue iterating through REV segments. If no other segment is less than 100 meters from the Bixi station, assign the Bixi station to control.
-7. If the distance is never less than 250 meters, assign the station to neither treatment nor control.
+5. If the distance is less than 200 meters, assign the Bixi station to treatment.
+6. If the distance is beteween 200 meters and 500 meters, continue iterating through REV segments. If no other REV segment is found to be less than 200 meters from the Bixi station, assign the Bixi station to control.
+7. If the distance between the Bixi station and the REV is never found to be less than 500 meters, assign the station to neither treatment nor control.
 8. Return the treatment status and distance between Bixi station and REV path.
 
 Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on how far they are located from the REV path.
@@ -129,7 +129,7 @@ Where:
 - $\( \text{Treated}_i \ )$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t \ )$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Post}_t \times \text{Treated}_i \ )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
-- $\( D_{i} )$ is the distance, in meters, between Bixi station $\ i \$ and the nearest segment of the REV path.
+- $\( D_{i} )$ is the distance, in hundreds of meters, between Bixi station $\ i \$ and the nearest segment of the REV path.
 - $\( X_t \ )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), mean squared temperature (degrees celcius) precipitation (mm), and snow on ground (mm).
 - $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
 
@@ -137,4 +137,6 @@ Where:
 
 The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that stations located in close proximity to the REV see xx more monthly trips than those located further away. Trips originating from ___ are yy meters farther and zz minutes longer, on average. For comparison, the the mean number of monthly trips taken from a treated station in the pre-treatment period was ___, while the mean distance and mean duration of trips taken from these stations was yy meters and zz minutes.
 
-Without ride-level user IDs, however, it is impossible for me to infer whether this increased usage is the result of new Bixi users being induced by the REV, or simply a spatial reallocation of existing users. That is, it is possible the treatment effect is being driven by existing Bixi users choosing to rent their bikes from a Bixi station closer to the REV path after its completion, rather than new users choosing to use the bikeshare program.
+Distance is negatively related with all three ridership outcomes. A coefficient estimate of __ implies that, ceteris paribus, for a one hundred meter increase in the distance between a Bixi station and the REV path, _____. Other control variables have the expected sign, with temperature being positiely associated with ridesharing outcomes while precipitation and snow on ground discourage rideshare usage.
+
+Without ride-level user IDs it is impossible for me to infer whether this increased usage is the result of new Bixi users being induced by the REV, or simply a spatial reallocation of existing users. That is, it is possible the treatment effect is being driven by existing Bixi users choosing to rent their bikes from a Bixi station closer to the REV path after its completion, rather than new users choosing to use the bikeshare program.
