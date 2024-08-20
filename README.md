@@ -35,7 +35,7 @@ Here, I create three outcome variables of interest: trip count, trip distance, a
 
 Trip count measures the number of trips by Bixi station and date.
 
-As Bixi does not provide trip-level GPS data, which would be needed to track the precise journey undertaken by a user, I instead measure trip distance as the Haversine distance between the starting and ending station. I recognize that this is a flawed measure and a lower bar for the actual distance traversed on any given trip. Note that, as a result, when modelling trip distance, I omit trips with the same starting and ending stations.
+As Bixi does not provide trip-level GPS data, which would be needed to track the precise journey undertaken by a user, I instead measure trip distance as the Haversine distance between the starting and ending station. I recognize that this is a flawed measure and a lower bar for the actual distance traversed on any given trip. In addition, to avoid measurement error, for all trips with a distance of 0 - that is, trips beginning and ending at the same docking station - I replace trip distance with a missing value.
 
 Trip duration is calculated as the difference between a journey's start time and end time.
 
