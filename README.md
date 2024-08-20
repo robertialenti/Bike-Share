@@ -121,7 +121,7 @@ We see that outcomes evolved quite similarly prior to the construction of the RE
 ### 8. Model Estimation
 I begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms. In addition to the key difference-in-difference regressors, I also include a control for the distance between ___, given that I expect the treatment effect to decline as the distance between ___ and the REV grows. I also include weather-related covariates that I think may impact outcomes, including temperature, precipitation, and snow on ground. I include mean temperature, as well as mean squared temperature. This is done to account for the fact that bikesharing, as a function of temperature is inverse U-shaped. That is, bikesharing is lower at very low and very high temperatures. Robust standard errors are used. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
 
-$Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}D_{i} + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
+$Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}\text{Distance}\_{i} + \beta_{4}D_{i}(\text{Treated}\_{i} \times \text{Post}\_{t} \ times \text{Distance}\_{i}) + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
 
 Where:
 - $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $\ i \$ in week $\ t \$.
@@ -129,7 +129,8 @@ Where:
 - $\( \text{Treated}_i \ )$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t \ )$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Post}_t \times \text{Treated}_i \ )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
-- $\( D_{i} )$ is the distance, in hundreds of meters, between Bixi station $\ i \$ and the nearest segment of the REV path.
+- $\( \text{Distance}\_{i} \ )$ is the distance, in hundreds of meters, between Bixi station $\ i \$ and the nearest segment of the REV path.
+- $\( \text{Post}_t \times \text{Treated}_i \times \text{Distance}\_{i} \ )$ is the interaction of distance, in hundreds of meters, and the difference-in-difference estimator.
 - $\( X_t \ )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), mean squared temperature (degrees celcius) precipitation (mm), and snow on ground (mm).
 - $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
 
