@@ -133,11 +133,11 @@ Where:
 - $\( X_t \ )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), mean squared temperature (degrees celcius) precipitation (mm), and snow on ground (mm).
 - $\( \epsilon_{it} \)$ is the error term. Robust standard errors are used.
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_count.png">
+<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_count_sa.png">
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_distance.png">
+<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_distance_sa.png">
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_duration.png">
+<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_duration_sa.png">
 
 The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that stations located in close proximity to the REV see xx more monthly trips than those located further away. Trips originating from ___ are yy meters farther and zz minutes longer, on average. For comparison, the the mean number of monthly trips taken from a treated station in the pre-treatment period was ___, while the mean distance and mean duration of trips taken from these stations was yy meters and zz minutes.
 
