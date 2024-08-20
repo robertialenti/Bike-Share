@@ -57,7 +57,7 @@ The City of Montreal provides information on the location of all bike paths in t
 7. If the distance between the Bixi station and the REV is never found to be less than 500 meters, assign the station to neither treatment nor control.
 8. Return the treatment status and distance between Bixi station and REV path.
 
-Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on how far they are located from the REV path.
+Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on how far they are located from the path of the REV's Axis 1.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/treated_stations.png" width="900" height="500">
 
