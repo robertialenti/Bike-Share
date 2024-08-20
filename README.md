@@ -42,7 +42,7 @@ Trip duration is calculated as the difference between a journey's start time and
 I remove Bixi trips with implausible distances or journey times to reduce the impact of outliers on parameter estimates.
 
 ### 4. Identifying Treated Bixi Stations
-I define "treated" Bixi stations as those located within 200 meters of the REV path and "control" stations as those located between 200 and 500 meters from the REV. These thresholds are informed by the existing litearture, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. For robustness, I try a number of alternative thresholds.
+I define "treated" Bixi stations as those located within 100 meters of the REV path and "control" stations as those located between 100 and 300 meters from the REV. These thresholds are informed by the existing literature, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. I select a lower threshold, in part, because of the station density in the neighborhood served by the REV's Axis 1. For robustness, I try a number of alternative thresholds in my econometric analysis.
 
 I focus exclusively on Axis 1 of the REV because it provides the best case study for assessing the REV's impact. Other axes were rolled out in a more staggered fashion, and were subject to delays and additional works. Axis 1, on the other hand, was inaugurated in its entirety on the same day.
 
