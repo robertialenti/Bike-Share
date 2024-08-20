@@ -112,11 +112,11 @@ To ensure that outcomes evolved similarly prior to treatment, and to verify that
 
 We see that outcomes evolved quite similarly prior to the construction of the REV's Axis 1. This gives me confidence that treated and control stations are similar, ___________. At the time of treatment, usage of both treated and control Bixi docking stations increases and begins to grow more quickly. Outcomes improve more for treated stations than for control stations, and remain more elevated through the post-treatment period.
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_count.png" width="425" height="250">
+<img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_count_sa.png" width="425" height="250">
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_distance.png" width="425" height="250">
+<img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_distance_sa.png" width="425" height="250">
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_duration.png" width="425" height="250">
+<img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_duration_sa.png" width="425" height="250">
 
 ### 8. Model Estimation
 I begin by estimating a standard difference-in-difference model estimation, with post, treatment, and interaction terms. In addition to the key difference-in-difference regressors, I also include a control for the distance between ___, given that I expect the treatment effect to decline as the distance between ___ and the REV grows. I also include weather-related covariates that I think may impact outcomes, including temperature, precipitation, and snow on ground. I include mean temperature, as well as mean squared temperature. This is done to account for the fact that bikesharing, as a function of temperature is inverse U-shaped. That is, bikesharing is lower at very low and very high temperatures. Robust standard errors are used. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
