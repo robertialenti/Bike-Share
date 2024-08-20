@@ -46,15 +46,15 @@ I define "treated" Bixi stations as those located within 100 meters of the REV p
 
 I focus exclusively on Axis 1 of the REV because it provides the best case study for assessing the REV's impact. Other axes were rolled out in a more staggered fashion, and were subject to delays and additional works. Axis 1, on the other hand, was inaugurated in its entirety on the same day.
 
-The City of Montreal provides information on the location of all bike paths in the city, with each segment of each bike path geocoded. I assign stations to treatment by employing the following procedure:
+The City of Montreal provides information on the location of all bike paths in the city, with each segment of each bike path geocoded. As such, there is no need to create geometries for all of the bike path segments myself. Instead, I can simply assign stations to treatment by employing the following procedure:
 
 1. Select a Bixi station.
 2. For each Bixi station, iterate through every segment of the REV.
 3. For each REV segment, create a polygon using the coordinates bounding the segment.
-4. Calculate the distance between the Bixi station and each line constituting the polygon for the segment.
-5. If the distance is less than 200 meters, assign the Bixi station to treatment.
-6. If the distance is beteween 200 meters and 500 meters, continue iterating through REV segments. If no other REV segment is found to be less than 200 meters from the Bixi station, assign the Bixi station to control.
-7. If the distance between the Bixi station and the REV is never found to be less than 500 meters, assign the station to neither treatment nor control.
+4. Calculate the distance between the Bixi station and each pair of vertices forming the polygon for the segment.
+5. If the distance is less than 100 meters, assign the Bixi station to treatment.
+6. If the distance is beteween 100 meters and 300 meters, continue iterating through REV segments. If no other REV segment is found to be less than 100 meters from the Bixi station, assign the Bixi station to the control group.
+7. If the distance between the Bixi station and the REV is never found to be less than 300 meters, assign the station to neither the treatment nor the control group.
 8. Return the treatment status and distance between Bixi station and REV path.
 
 Here is a plot showing the location of the REV's Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on how far they are located from the path of the REV's Axis 1.
