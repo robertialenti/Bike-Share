@@ -17,8 +17,8 @@ Projet Montreal put forward plans to build 5 such axes:
 
 In 2023, the city put forward plans to expand the network by 2027 with the ultimate aim of helping to increase Montreal's bike modal share to 15%. You can read more about the REV [here](https://montreal.ca/articles/le-rev-un-reseau-express-velo-4666).
 
-## Outline of Code
-Code for the project is written entirely in Python. The code is separated into 8 sections and ran primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory.
+## Code
+Code for the project is written entirely in Python. The code is separated into 8 sections and ran primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. The code can be ran without modification if it is placed in a folder called `code` and empty folders titled `figures` and `output` exist to collect results.
 
 ### 1. Preliminaries
 In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics.
