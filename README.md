@@ -137,7 +137,7 @@ I estimate a standard difference-in-difference model with $\text{Post}$, $\text{
 $Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}\text{Distance}\_{i} + \beta_{5}(\text{Treated}\_{i} \times \text{Post}\_{t} \times \text{Distance}\_{i}) + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
 
 Where:
-- $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $\ i$ in week $\ t$.
+- $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $\i$ in week $\t$.
 - $( \alpha )$ is the intercept.
 - $\( \text{Treated}_i )$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t )$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
