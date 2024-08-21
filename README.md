@@ -128,8 +128,8 @@ Where:
 - $\( \text{Treated}_i )$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t )$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Post}_t \times \text{Treated}_i )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
-- $\( \text{Distance}\_{i} )$ is the distance, in kilometers, between Bixi station $\ i \$ and the nearest segment of the REV path.
-- $\( \text{Post}_t \times \text{Treated}_i \times \text{Distance}\_{i} )$ is the interaction of distance, in kilometers, and the difference-in-difference estimator.
+- $\( \text{Distance}\_{i} )$ is the distance, in hundreds of meters, between Bixi station $\ i \$ and the nearest segment of the REV path.
+- $\( \text{Post}_t \times \text{Treated}_i \times \text{Distance}\_{i} )$ is the interaction of distance, in hundreds of meters, and the difference-in-difference estimator.
 - $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), precipitation (mm), and snow on ground (cm), as well as monthly dummies for months 1 through 11.
 - $\( \epsilon_{it} )$ is the error term. Robust standard errors are used.
 
@@ -140,11 +140,11 @@ Here are the regression results. For each outcome, I estimate three models. Each
 
 ![image](https://github.com/user-attachments/assets/c3be360a-e56c-4241-94b6-c616ad8d73ae)
 
-The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, results indicate that, holding all else equal, stations located in close proximity to the REV see around 54 more weekly trips than those located further away. Trips originating from treated stations end 43 meters farther and last around 32 seconds longer, on average. 
+The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meainngful for all three outcomes. In particular, results indicate that, holding all else equal, stations located in close proximity to the REV see around 54 more weekly trips than those located further away. Trips originating from treated stations end 43 meters farther and last around 32 seconds longer, on average. If the rsearch design used is convincing, then these effects are causal, and a direct result of the REV's completion rather than some confounding factor.
 
-Distance is negatively and significantly related with number of trips taken. Trips originating from stations that are one kilometer further from the REV see 116 fewer weekly trips, on average, than stations located ___. Distance to the REV has a comparatively smaller effect on trip distance and trip duration. This may be explained ___.
+Distance is negatively and significantly related with number of trips taken. Parameter estimates suggest that, for every 100 meters further a Bixi station is from the REV, the number of weekly trips taken falls by nearly 12, on average. Distance to the REV has a comparatively smaller effect on trip distance and trip duration. This may be explained by the fact that proximity to the REV impacts an individual's decision whether to use ridesharing, but does not necessarily affect how long they choose to rent a ___. This is an especially compelling explanation when considering that the neighborhoods through which the REV's Axis 1 are already well suited for biking ____
 
-A coefficient estimate of -10.95 implies that, holding all else equal, for a one hundred meter increase in the distance between a Bixi station and the REV path, the number of average weekly trips falls by nearly 11. 
+The interaction of the distance variable and the difference-in-difference term measures to what extent distance from the REV moderates the treatment effect. The estimated coefficient has a statistically insignificant effect on number of weekly trips taken.
 
 Other control variables have the expected sign, with temperature being positiely associated with ridesharing while precipitation and snow on ground are found to be negatively related with ridesharing. The addition of these controls, as well as monthly dummies, is not found to significantly impact parameter estimates.
 
