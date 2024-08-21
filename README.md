@@ -1,6 +1,6 @@
 # Impact of the REV on Montreal's Bike Share Program
 
-This project aims to assess how the development of the Reseau Express Velo (REV) - a recently built network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I employ a difference-in-differences research design, comparing outcomes for Bixi stations located by the REV to those located farther away, to causally assess the REV's impact on bikesharing. Outcomes include average weekly ridership, average trip duration, and average trip distance.
+This project aims to assess how the development of the Reseau Express Velo (REV) - a recently built network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I employ a difference-in-differences research design, comparing outcomes for Bixi stations located by the REV to those located farther away, to causally assess the REV's impact on bikesharing. Outcomes include average weekly ridership, average trip duration, and average trip distance. You can read more about the REV [here](https://montreal.ca/articles/le-rev-un-reseau-express-velo-4666).
 
 ## Context
 In 2019, Valerie Plante, Mayor of Montreal and leader of Projet Montreal, announced that the city would be undertaking a project to build more, higher-quality bike infrastructure across the city, beginning in its central neighborhoods. This would include the construction of new, wide, well sign-posted, and protected bike lanes with synchronized street lights to help Montrealers more comfortably and safely traverse large distances. These paths would also be prioritized for snow clearing in winter, making them usable year-round.
@@ -13,12 +13,12 @@ Projet Montreal put forward plans to build 5 such axes:
 - Axis 4: Peel: This axis serves a short North-South corridor on Peel, a major commercial shopping street in the city's downtown core, between avenue des Pins and rue Smith.
 - Axis 5: Bellechasse: An East-West axis running on Bellechase between de Gaspe and Chatelain, predominantly in the Rosemont-La Petite-Patrie borough, and intersecting with Axis 1 of the REV at Saint-Denis/Bellechasse.
 
-In 2023, the city put forward plans to expand the network by 2027 with the ultimate aim of helping to increase Montreal's bike modal share to 15%. You can read more about the REV [here](https://montreal.ca/articles/le-rev-un-reseau-express-velo-4666).
+While the REV has been touted as a success by bike enthusiasts, this is the first attempt - as far as I know - to causally assess the REV's impact on bikeshare usage.
 
 ## Data
-The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - July 2024. I also use data from the City of Montreal, who has geocoded all of the city's existing bike network, as well as weather data from Environment Canada.
+The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - July 2024. I also use data from the City of Montreal, which has geocoded all of the city's existing bike network, as well as daily weather data from Environment Canada.
 
-The ride-level data should be stored in `data/ridership`, the City of Montreal's geojson should be stored in `data/rev`, while weather data from Environment Canada should be stored in `data/weather`.
+The ride-level data should be stored in `data/ridership`, the City of Montreal's ____ should be stored in `data/rev`, while weather data from Environment Canada should be stored in `data/weather`.
 
 ## Code
 Code for the project is written entirely in Python. The code is separated into 8 sections and ran primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. The code can be ran without modification if it is placed in a folder called `code`, in the same directory with data stored in `data` and alongside empty folders titled `figures` and `output`, which are used to collect results.
