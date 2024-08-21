@@ -129,8 +129,10 @@ Where:
 - $\( \text{Post}_t \times \text{Treated}_i )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
 - $\( \text{Distance}\_{i} )$ is the distance, in hundreds of meters, between Bixi station $\ i \$ and the nearest segment of the REV path.
 - $\( \text{Post}_t \times \text{Treated}_i \times \text{Distance}\_{i} )$ is the interaction of distance, in hundreds of meters, and the difference-in-difference estimator.
-- $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), mean squared temperature (degrees celcius) precipitation (mm), and snow on ground (mm).
+- $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), precipitation (mm), and snow on ground (cm).
 - $\( \epsilon_{it} )$ is the error term. Robust standard errors are used.
+
+Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
 
 ## Discussion of Results
 
