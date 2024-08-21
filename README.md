@@ -135,8 +135,9 @@ Where:
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
 
 ## Discussion of Results																											
-![image](https://github.com/user-attachments/assets/c3be360a-e56c-4241-94b6-c616ad8d73ae)
+Here are the regression results. For each outcome, I estimate three models - with each successive specification including additional covariates.
 
+![image](https://github.com/user-attachments/assets/c3be360a-e56c-4241-94b6-c616ad8d73ae)
 
 The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, results indicate that, holding all else equal, stations located in close proximity to the REV see around 54 more weekly trips than those located further away. Trips originating from treated stations end 43 meters farther and last around 32 seconds longer, on average. 
 
