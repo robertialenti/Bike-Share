@@ -39,7 +39,7 @@ Here is an example with just 6 observations, which are sufficient for illustrati
 
 | Year | Date | Station Name | Latitude | Longitude | Station Code |
 | ---- | ---- | ------------ | -------- | --------- | ------------ | 
-| 2018 | 2018-04-23 17:47 | Marlowe / de Maisonneuve | 45.4739 | -73.6047 | 6080 |
+| 2018 | 2018-04-23 17:42 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 6080 |
 | 2018 | 2018-04-23 18:00 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 6418 |
 | 2018 | 2018-04-23 18:03 | Marlowe / de Maisonneuve | 45.4739 | -73.6047 | 6080 |
 | 2019 | 2019-06-10 17:45 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 6080 |
@@ -50,9 +50,9 @@ After merging with the crosswalk, these observations are given the same $\text{S
 
 | Year | Date | Station Name | Latitude | Longitude | Station ID |
 | ---- | ---- | ------------ | -------- | --------- | ---------- |
-| 2018 | 2018-04-23 17:47 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
-| 2018 | 2018-04-23 18:00 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
-| 2018 | 2018-04-23 18:03 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
+| 2018 | 2018-04-23 17:47 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4744 | -73.604 | 174 |
+| 2018 | 2018-04-23 18:00 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4744 | -73.604 | 174 |
+| 2018 | 2018-04-23 18:03 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4744 | -73.604 | 174 |
 | 2019 | 2019-06-10 17:45 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
 | 2019 | 2019-06-10 17:49 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4744 | -73.6047 | 174 |
 | 2019 | 2019-06-10 17:50 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
