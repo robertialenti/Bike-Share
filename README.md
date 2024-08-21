@@ -59,7 +59,7 @@ Here is a plot showing the location of the REV Axis 1. Bixi stations are classif
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/treated_stations.png" width="900" height="500">
 
-### 5. Descriptive Statistics
+### 5. Exploring Data
 At this point, I have all of the variables needed to generate descriptive statistics and perform the econometric analysis. Here is a description of the variables.
 
 | Varaible Name | Type | Description |
@@ -117,7 +117,7 @@ We see that outcomes evolved quite similarly prior to the construction of the RE
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_duration_sa.png" width="425" height="250">
 
 ### 8. Model Estimation
-I estimate a standard difference-in-difference model with \text{Post}, \text{Treatment}, and \text{Post \times Treatment} terms. In addition to the key difference-in-difference regressors, I also include a control for the distance between the Bixi station and the REV path as well as the interaction of the difference-in-difference regressor and the distance term, given that I expect the treatment effect to decline as the distance between ___ and the REV grows. I also include observable weather-related covariates that I think may impact outcomes, including temperature, precipitation, and the amount of snow on the ground. Robust standard errors are used. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level.
+I estimate a standard difference-in-difference model with \text{Post}, \text{Treatment}, and \text{Post \times Treatment} terms. In addition to the key difference-in-difference regressors, I also include a control for the distance between the Bixi station and the REV path as well as the interaction of the difference-in-difference regressor and the distance term, given that I expect the treatment effect to decline as the distance between ___ and the REV grows. I also include observable weather-related covariates that I think may impact outcomes, including temperature, precipitation, and the amount of snow on the ground, as well as a full set of monthly dummies. Robust standard errors are used. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level. The most comprehensive specification is shown below:
 
 $Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}\text{Distance}\_{i} + \beta_{5}(\text{Treated}\_{i} \times \text{Post}\_{t} \times \text{Distance}\_{i}) + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
 
@@ -129,7 +129,7 @@ Where:
 - $\( \text{Post}_t \times \text{Treated}_i )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
 - $\( \text{Distance}\_{i} )$ is the distance, in hundreds of meters, between Bixi station $\ i \$ and the nearest segment of the REV path.
 - $\( \text{Post}_t \times \text{Treated}_i \times \text{Distance}\_{i} )$ is the interaction of distance, in hundreds of meters, and the difference-in-difference estimator.
-- $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), precipitation (mm), and snow on ground (cm).
+- $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), precipitation (mm), and snow on ground (cm), as well as monthly dummies for months 1 through 11.
 - $\( \epsilon_{it} )$ is the error term. Robust standard errors are used.
 
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
@@ -141,6 +141,34 @@ Estimation results are exported as a LaTeX file, which is then interpreted in Ov
 <img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_distance_sa.png">
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_duration_sa.png">
+
+	(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)	(9)
+	Number of Trips			Trip Distance (km)			Trip Duration (min)		
+Constant	92.266***	116.048***	122.115***	0.544***	0.568***	0.589***	3.714***	3.792***	3.983***
+	(1.011)	(3.544)	(4.432)	(0.005)	(0.014)	(0.016)	(0.031)	(0.094)	(0.113)
+Post	75.336***	75.336***	77.420***	0.124***	0.124***	0.123***	1.013***	1.013***	1.003***
+	(2.409)	(2.406)	(2.498)	(0.008)	(0.008)	(0.008)	(0.056)	(0.056)	(0.057)
+Treated	16.935***	-0.373	-0.373	0.141***	0.123***	0.1223***	0.864***	0.808***	0.808***
+	(2.003)	(3.451)	(3.451)	(0.008)	(0.012)	(0.012)	(0.053)	(0.084)	(0.084)
+Post x Treated	59.988***	54.244***	54.244***	0.043***	0.109***	0.109***	0.209**	0.53***	0.530***
+	(5.271)	(7.654)	7.633	(0.014)	(0.021)	(0.021)	(0.096)	(0.142)	(0.142)
+Distance		-11.621***	-11.621***		-0.012*	-0.012*		-0.038	-0.038
+		(1.594)	(1.594)		(0.006)	(0.006)		(0.044)	(0.044)
+Post x Treated x Distance		0.103	0.103		-0.001***	-0.001***		-0.006***	-0.006***
+		(0.120)	(0.120)		(0.000)	(0.000)		(0.002)	(0.002)
+Temperature			0.181			0.003***			0.029***
+			(0.250)			(0.001)			(0.006)
+Precipitation			-0.286			-0.001			-0.014
+			(0.401)			(0.001)			(0.009)
+Snow on Ground			-1.444***			-0.002***			-0.014***
+			(0.156)			(0.000)			(0.003)
+Monthly Dummies	No	No	Yes	No	No	Yes	No	No	Yes
+Observations	55607	55611	55611	55611	55611	55611	55611	55611	55611
+Adjusted R-Squared	0.052	0.020	0.054	0.019	0.020	0.020	0.019	0.019	0.020
+Heteroscedasticity robust standard errors are shown in parantheses.									
+***, **, and * denote statistical significance at 1%, 5%, and 10% levels, respectively.									
+![image](https://github.com/user-attachments/assets/5107d4d1-6b9d-4fb0-a4c6-3e5b7398e13c)
+
 
 The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that stations located in close proximity to the REV see xx more monthly trips than those located further away. Trips originating from ___ are yy meters farther and zz minutes longer, on average. For comparison, the the mean number of monthly trips taken from a treated station in the pre-treatment period was ___, while the mean distance and mean duration of trips taken from these stations was yy meters and zz minutes.
 
