@@ -107,9 +107,9 @@ Before I can perform regressions, I make the following adjustments. First, I con
 
 ### 7. Assessing Parallel Trends
 
-To ensure that outcomes evolved similarly prior to treatment for both treatment and control groups, and to verify that bikeshare activity at treated stations did not somehow frontrun the completion of the REV, I plot outcomes in event time. The event time variable measures time elapsed since the inauguration of the REV's Axis 1 on 11/07/2020. In an effort to better assess trends, I plot only a single month, November, for every year.
+To ensure that outcomes evolved similarly prior to treatment for both treatment and control groups, and to verify that bikeshare activity at treated stations did not somehow frontrun the completion of the REV, I plot seasonally adjusted outcomes in event time. The event time variable measures time elapsed since the inauguration of the REV's Axis 1 on 11/07/2020. In an effort to better assess trends, I plot only a single month, November, for every year.
 
-We see that outcomes evolved quite similarly prior to the construction of the REV's Axis 1. This gives me confidence that treated and control stations are similar, ___________. At the time of treatment, usage of Bixi stations in both treated and control groups increases and begins to grow more quickly. Outcomes improve more for treated stations than for control stations, and remain more elevated through the post-treatment period.
+We see that outcomes evolved quite similarly prior to the construction of the REV's Axis 1. This gives me confidence that treated and control stations saw similar ridership patterns prior to the REV's completion. At the time of treatment, usage of Bixi stations in both treated and control groups notably increases and begins to grow more quickly. Outcomes improve more for treated stations than for control stations, and remain more elevated through the post-treatment period.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_count_sa.png" width="425" height="250">
 
