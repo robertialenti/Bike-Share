@@ -1,4 +1,4 @@
-# Impact of the REV on Bike Share in Montreal
+# Impact of the REV on Montreal's Bike Share Program
 
 This project aims to assess how the development of the Reseau Express Velo (REV) - a recently built network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I employ a difference-in-differences research design, comparing outcomes for Bixi stations located by the REV to those located farther away, to causally assess the REV's impact on bikesharing. Outcomes include average weekly ridership, average trip duration, and average trip distance.
 
@@ -26,13 +26,14 @@ In this section, I simply import modules that I'll need to conduct the work. I t
 ### 2. Importing and Cleaning Data
 In this section, I read and append ride-level data made available on Bixi's [open data portal](https://bixi.com/en/open-data/). In some years, Bixi provides ride-level data by month, while in other years all of the ridership data is included in a single dataset. Variable names change somewhat through time, as do date formats. The code handles these intertemporal inconsistencies. The dataset includes all of the approximately 62 million rides completed on Bixi bikes between April 2014 and July 2024.
 
-In order to generate aggregate ___ by station, it is important to have a reliable station identifier. The ride-level data from Bixi provides two potentially useful identifiers: Station name and station code. However, station name is susceptible to changes in spelling, even within a given year, which make it unreliable. Station codes are found to change over time, even when referring to the same station.
+In order to generate aggregate statistics by station, it is important to have a reliable station identifier. The ride-level data from Bixi provides two potentially useful identifiers: $\text{Station Name}$ and $\text{Station Code}$. However, $\text{Station Name}$ is susceptible to changes in spelling, even within a given year, while $\text{Station Code}$ is found to change over time, even when referring to the same station.
 
 As a result, I group Bixi stations together based on whether I believe stations with slightly different names and coordinates refer to the same station. I do so by retaining unique station names and sorting by coordinates. I assign stations to IDs ___. I then merge the ride-level microdata to this file, assigning an ID and coordinates to every station. For each Station ID, I select the modal station name. For each Station ID-Date, I select the modal coordinates.
 
 Here is an example:
 
-
+Date | Station Name | Latitude | Longitude | Station Code | ID |
+| -- | ------------ | -------- | --------- | ------------ | -- |
 
 ### 3. Creating Outcome Variables
 Here, I create three outcome variables of interest: trip count, trip distance, and trip duration.
