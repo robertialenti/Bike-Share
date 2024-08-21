@@ -135,7 +135,7 @@ Where:
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
 
 ## Discussion of Results																											
-Here are the regression results. For each outcome, I estimate three models - with each successive specification including additional covariates.
+Here are the regression results. For each outcome, I estimate three models. Each successive specification includes additional covariates.
 
 ![image](https://github.com/user-attachments/assets/c3be360a-e56c-4241-94b6-c616ad8d73ae)
 
