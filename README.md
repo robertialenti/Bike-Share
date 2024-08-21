@@ -33,16 +33,16 @@ Here, I create three outcome variables of interest: trip count, trip distance, a
 
 Trip count measures the number of trips by Bixi station and date.
 
-As Bixi does not provide trip-level GPS data, which would be needed to track the precise journey undertaken by a user, I instead measure trip distance as the Haversine distance between the starting and ending station. I recognize that this is a flawed measure and a lower bar for the actual distance traversed on any given trip. To avoid measurement error, for all trips with a distance of 0 - that is, trips beginning and ending at the same docking station - I replace trip distance with a missing value. These trips will not be included in econometric analysis.
+As Bixi does not provide trip-level GPS data, which would be needed to track the precise journey undertaken by a user, I instead measure trip distance as the Haversine distance between the starting and ending station. I recognize that this is a flawed measure and a lower bar for the actual distance traversed on any given trip. To avoid measurement error, for all trips with a distance of 0 - that is, trips beginning and ending at the same docking station - I replace trip distance with a missing value. These trips will not be included in regression analysis.
 
 Trip duration is calculated as the difference between a journey's start time and end time.
 
 I remove Bixi trips with implausible distances or journey times to reduce the impact of outliers on parameter estimates.
 
 ### 4. Identifying Treated Bixi Stations
-I define "treated" Bixi stations as those located within 100 meters of the REV path and "control" stations as those located between 100 and 300 meters from the REV. These thresholds are informed by the existing literature, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. I select a lower threshold, in part, because of high Bixi station density in the neighborhood served by the REV's Axis 1. For robustness, I try a number of alternative thresholds in my econometric analysis.
+I define "treated" Bixi stations as those located within 100 meters of the REV path and "control" stations as those located between 100 and 300 meters from the REV. These thresholds are informed by the existing literature, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. I select a lower threshold, in part, because of high Bixi station density in the neighborhood served by the REV's Axis 1.
 
-I focus exclusively on Axis 1 of the REV because it provides the best case study for assessing the REV's impact. Other axes were rolled out in a more staggered fashion, and were subject to delays and additional works. Axis 1, on the other hand, was inaugurated in its entirety on the same day.
+Rather than consider all axes of the REV, I focus exclusively on Axis 1 because it provides the best case study for assessing the REV's impact. Other axes were rolled out in a more staggered fashion, and were subject to delays and additional works. Axis 1, on the other hand, was inaugurated in its entirety on the same day and has been subject to fewer disruptions in the years since.
 
 The City of Montreal provides information on the location of all bike paths in the city, with each segment of each bike path geocoded. As such, there is no need for me to create geometries for all of the bike path segments. Instead, I can simply assign stations to treatment by employing the following procedure:
 
