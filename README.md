@@ -35,7 +35,7 @@ In order to generate aggregate statistics by station, it is important to have a 
 
 To address this issue, I group Bixi stations together based on whether I believe docking stations with different names actually refer to the same station. I do so by retaining unique station names and sorting by coordinates. I create a crosswalk file, `data/ridership/id_crosswalk.xlsx`, which I merge with the ride-level microdata. For consistency, I also update station names and coordinates. For each value of Station ID, I replace station name with the modal station name. For each Station ID-Year pair, I replace the station's coordinates with its modal coordinates.
 
-Here is an example with just 6 observations, which are sufficient for illustrating the process. I have selected six Bixi trips taken between April 2018 and June 2019. Trips taken on the same day in 2018, just a few minutes apart, are found to originate from seemingly different stations with different station names and codes. In reality, all of these trips should originate from a single Bixi station, installed at Vendome Metro since 2014. This becomes evident when verifying the location of the five Bixi stations through manual validation. 
+Here is an example with just six observations, which are sufficient for illustrating the process. Two of the trips taken on the same day in 2018, just a few minutes apart, are found to originate from seemingly different stations with different station names and codes. In reality, all of these trips should originate from a single Bixi station, installed at Vendome Metro since 2014. This becomes evident when verifying the location of the Bixi docking stations through manual validation. 
 
 | Year | Date | Station Name | Latitude | Longitude | Station Code |
 | ---- | ---- | ------------ | -------- | --------- | ------------ | 
@@ -46,7 +46,7 @@ Here is an example with just 6 observations, which are sufficient for illustrati
 | 2019 | 2019-06-10 17:49 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 6080 |
 | 2019 | 2019-06-10 17:50 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 6080 |
 
-After merging with the crosswalk, these observations are given the same $\text{Station ID}$. $\text{Station Name} is replaced with its modal name while the station's $\text{Latitude}$ and $\text{Longitude}$ are replaced with their year-specific mode.
+After merging with the crosswalk, these observations are reassigned the same $\text{Station ID}$. $\text{Station Name}$ is replaced with its modal name while the station's $\text{Latitude}$ and $\text{Longitude}$ are replaced with their year-specific mode. This ensures that the data captures changes to the docking station's precise location, which may change somewhat from year to year.
 
 | Year | Date | Station Name | Latitude | Longitude | Station ID |
 | ---- | ---- | ------------ | -------- | --------- | ---------- |
