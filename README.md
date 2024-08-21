@@ -124,7 +124,7 @@ Outcomes evolved quite similarly for both treated and control groups prior to th
 ### 8. Model Estimation
 I estimate a standard difference-in-difference model with $\text{Post}$, $\text{Treated}$, and $\text{Post} \times \text{Treated}$ terms. In addition to the key difference-in-differences regressors, I include a control for the distance between the Bixi station and the REV path as well as distance between the Bixi station and the city's central business district. Finally, I include observable weather-related covariates that I think may impact outcomes, including temperature, precipitation, and the amount of snow on the ground, as well as a full set of monthly dummies. Robust standard errors are used. The regressions are performed at the weekly-station level as outcomes are much less noisy than at a daily frequency. The most comprehensive specification is shown below:
 
-$Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}\text{Distance}\_{it} + \beta_{5}\text{Distance to CBD}\_{it} + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
+$Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}\text{Distance to REV}\_{it} + \beta_{5}\text{Distance to CBD}\_{it} + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
 
 Where:
 - $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $i$ in week $t$.
@@ -132,7 +132,7 @@ Where:
 - $\( \text{Treated}_i )$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t )$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Post}_t \times \text{Treated}_i )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
-- $\( \text{Distance}\_{it} )$ is the distance, in hundreds of meters, between Bixi station $i$ and the nearest segment of the REV path in week $t$
+- $\( \text{Distance to REV}\_{it} )$ is the distance, in hundreds of meters, between Bixi station $i$ and the nearest segment of the REV path in week $t$
 - $\( \text{Distance to CBD}_{it} )$ is the distance between Bixi station $i$ in week $t$ and the central business district of Montreal.
 - $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), precipitation (mm), and snow on ground (cm), as well as monthly dummies for months 1 through 11.
 - $\( \epsilon_{it} )$ is the error term. Robust standard errors are used.
