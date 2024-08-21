@@ -33,19 +33,20 @@ In order to generate aggregate statistics by station, it is important to have a 
 
 As a result, I group Bixi stations together based on whether I believe stations with different names and coordinates refer to the same station. I do so by retaining unique station names and sorting by coordinates. I manually verify whether I believe trips originating at different stations should really begin at the same station. I create a crosswalk file, `stations.xlsx`, which I merge into the ride-level microdata. For each Station ID, I replace station name with the modal station name. For each Station ID-Year pair, I replace coordinates with modal station coordinates.
 
-Here is an example. In the microdata, two Bixi trips taken on the same day in 2018, just 13 minutes apart, are found to originate from seemingly different stations with different station codes. In reality, both of these trips originated from a single Bixi station installed at Vendome Metro. This becomes evident when verifying the location of the two Bixi stations and comparing their coordinates. As such, both Bixi stations should have the same $\text{Station ID}$, which I assign after manual validation.
+Here is an example with just 5 observations, which are sufficient for illustrating the process. In the microdata, two Bixi trips taken on the same day in 2018, just 13 minutes apart, are found to originate from seemingly different stations with different station codes. In reality, both of these trips originated from a single Bixi station installed at Vendome Metro. This becomes evident when verifying the location of the two Bixi stations and comparing their coordinates. As such, both Bixi stations should have the same $\text{Station ID}$, which I assign after manual validation.
 
 | Date | Station Name | Latitude | Longitude | Station Code |
 | ---- | ------------ | -------- | --------- | ------------ | 
 | 2018-04-23 17:47 | Marlowe / de Maisonneuve | 45.4739 | -73.6047 | 6080 |
 | 2018-04-23 18:00 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 6418 |
 
+
 In the corrected data, these stations have the same Station ID, the modal name, and the modal coordinates.
 
 | Date | Station Name | Latitude | Longitude | Station ID |
 | ---- | ------------ | -------- | --------- | ---------- |
-| 2018-04-23 17:47 | Marlowe / de Maisonneuve | 45.4739 | -73.6047 | 174 |
-| 2018-04-23 18:00 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 174 |
+| 2018-04-23 17:47 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
+| 2018-04-23 18:00 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4744 | -73.604 | 174 |
 
 ### 3. Creating Outcome Variables
 Here, I create three outcome variables of interest: trip count, trip distance, and trip duration.
