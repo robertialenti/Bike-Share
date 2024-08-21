@@ -134,9 +134,8 @@ Where:
 
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
 
-## Discussion of Results	
-![image](https://github.com/user-attachments/assets/5107d4d1-6b9d-4fb0-a4c6-3e5b7398e13c)
-
+## Discussion of Results									
+![image](https://github.com/user-attachments/assets/f1c9e81f-7817-431d-ad8a-012c47b048e2)
 
 The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meaingful for all three outcomes. In particular, the model indicates that stations located in close proximity to the REV see xx more monthly trips than those located further away. Trips originating from ___ are yy meters farther and zz minutes longer, on average. For comparison, the the mean number of monthly trips taken from a treated station in the pre-treatment period was ___, while the mean distance and mean duration of trips taken from these stations was yy meters and zz minutes.
 
