@@ -34,6 +34,8 @@ Here is an example:
 
 Date | Station Name | Latitude | Longitude | Station Code | ID |
 | -- | ------------ | -------- | --------- | ------------ | -- |
+| 2018-04-23 17:47:00 | Marlowe / de Maisonneuve | 45.4739 | -73.6047 | 6080 | 174 |
+| 2018-04-23 18:00:00 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 6418 | 174 |
 
 ### 3. Creating Outcome Variables
 Here, I create three outcome variables of interest: trip count, trip distance, and trip duration.
