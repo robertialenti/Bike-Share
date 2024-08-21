@@ -135,14 +135,18 @@ Where:
 - $\( \text{Distance to REV}\_{it} )$ is the distance, in hundreds of meters, between Bixi station $i$ and the nearest segment of the REV path in week $t$
 - $\( \text{Distance to CBD}_{it} )$ is the distance between Bixi station $i$ in week $t$ and the central business district of Montreal.
 - $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), precipitation (mm), and snow on ground (cm), as well as monthly dummies for months 1 through 11.
-- $\( \epsilon_{it} )$ is the error term. Robust standard errors are used.
+- $\( \epsilon_{it} )$ is the error term.
 
-Because I am concerned about heterogenous treatment effects - that is, ____ - I also choose to estimate a two-way fixed effects (TWFE) model. This model absorbs all time-invariant, station specific factors, as well as _____. 
+Because I am concerned about heterogenous treatment effects - that is, ____ - I also choose to estimate a two-way fixed effects (TWFE) model. This model absorbs all time-invariant, station specific factors, as well as date-specific shocks. As such, it is better suited to absorb unoberved factors that may act to confound parameter estimates in the canonical difference-in-differences model.
 
 $Y_{it} = \theta_{i} + \mu_{t} + \delta(\text{Treated}\_{i} \times \text{Post}\_{t}) + \epsilon_{it}$
 
 Where: 
 
+$( \theta_{i} )$ are Bixi station fixed effects.
+$( \mu_{i} )$ are weekly date fixed effects.
+$( \text{Treated}\_{i} \times \text{Post}\_{t} )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
+- $\( \epsilon_{it} )$ is the error term.
 
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
 
