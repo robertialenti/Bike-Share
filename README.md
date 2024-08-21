@@ -74,11 +74,12 @@ At this point, I have all of the variables needed to generate descriptive statis
 | end_name | float | Longitude of station where ride ends |
 | end_lat | float | Longitude of station where ride ends |
 | end_long | float | Longitude of station where ride ends |
-| count | int | 1 |
-| distance | float | Haversine distance between start station and end station, in meters |
-| duration | float | Duration between start station and end station, in minutes |
+| trip_count | int | 1 |
+| trip_distance | float | Haversine distance between start station and end station, in meters |
+| trip_duration | float | Duration between start station and end station, in minutes |
 | treated | float | Treated = 1, Control = 0 |
 | post | float | Post-Treatment = 1, Pre-Treatment = 0 |
+| distance | float | Distance between start station and REV Axis 1, in meters |
 
 I first plot average daily ridership by month, for every month over the April 2014 - July 2024 period. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
 
