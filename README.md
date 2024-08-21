@@ -18,8 +18,12 @@ While the REV has been touted as a success by bike enthusiasts, this is the firs
 ## Data
 The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - July 2024. I also use data from the City of Montreal, which has geocoded all of the city's existing bike network, as well as daily weather data from Environment Canada.
 
+- Bixi, Rides: https://bixi.com/en/open-data/
+- City of Montreal, Bike Network: https://donnees.montreal.ca/dataset/pistes-cyclables
+- Environment Canada, Daily Weather in Montreal: https://climate.weather.gc.ca/climate_data/daily_data_e.html?StationID=51157
+
 ## Code
-Code for the project is written entirely in Python and separated into 8 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. I recommend storing the code in a folder called `code`. To run the code without modification, store the ride-level data in `data/ridership`, the City of Montreal's geocoded bike network in `data/rev`, and weather data from Environment Canada in `data/weather`. In the same directory, create empty folders called `figures` and `output` to collect results.
+Code for the project is written entirely in Python and separated into 8 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. I recommend storing the code in a folder called `code`. To run the code without modification, store the ride-level data in year-specific folders in `data/ridership`, the City of Montreal's geocoded bike network in `data/rev`, and weather data from Environment Canada in `data/weather`. In the same directory, create empty folders called `figures` and `output` to collect results.
 
 ### 1. Preliminaries
 In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics.
