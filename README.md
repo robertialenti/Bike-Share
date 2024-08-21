@@ -71,7 +71,7 @@ I remove Bixi trips with implausible distances or journey times to reduce the im
 ### 4. Identifying Treated Bixi Stations
 Rather than consider all axes of the REV, I focus exclusively on Axis 1 because it provides the best case study for assessing the REV's impact. Other axes were rolled out in a more staggered fashion, and were subject to delays and additional works. Axis 1, on the other hand, was inaugurated in its entirety on the same day and has been subject to fewer disruptions in the years since.
 
-I define "treated" Bixi stations as those located within 100 meters of the REV path and "control" stations as those located between 100 and 300 meters from the REV. These thresholds are informed by the existing literature, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. I select a lower threshold, in large part because of high Bixi station density in the neighborhood served by the REV's Axis 1.
+I define treated Bixi stations as those located within 100 meters of the REV path and control stations as those located between 100 and 300 meters from the REV. These thresholds are informed by the existing literature, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. I select a lower threshold, in large part because of high Bixi station density in the neighborhood served by the REV's Axis 1.
 
 The City of Montreal maintains a database with information on all bike paths in the city. Each path is subdivided into segments, each of which is precisely geocoded. As such, I can simply assign stations to treatment by employing the following procedure:
 
@@ -90,25 +90,6 @@ Here is a plot showing the location of the REV Axis 1. Bixi stations are classif
 
 ### 5. Exploring Data
 At this point, I have all of the variables needed to generate descriptive statistics and perform the econometric analysis. Here is a description of the variables.
-
-| Varaible Name | Type | Description |
-| ------------- | ---- | ----------- |
-| start_id | int | Unique ID for station where ride begins |
-| start_date | datetime | Date and time that ride begins |
-| start_name | str | Name of station where ride begins |
-| start_lat | float | Latitude of station where ride begins |
-| start_long | float | Longitude of station where ride begins |
-| end_id | float | Longitude of station where ride ends |
-| end_date | datetime | Date and time that ride ends |
-| end_name | float | Longitude of station where ride ends |
-| end_lat | float | Longitude of station where ride ends |
-| end_long | float | Longitude of station where ride ends |
-| trip_count | int | 1 |
-| trip_distance | float | Haversine distance between start station and end station, in meters |
-| trip_duration | float | Duration between start station and end station, in minutes |
-| treated | float | Treated = 1, Control = 0 |
-| post | float | Post-Treatment = 1, Pre-Treatment = 0 |
-| distance | float | Distance between start station and REV Axis 1, in meters |
 
 I first plot average daily ridership by month, for every month between January 2014 and July 2024. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
 
@@ -141,13 +122,9 @@ To ensure that outcomes evolved similarly prior to treatment for both treatment 
 Outcomes evolved quite similarly for both treated and control groups prior to the construction of the REV's Axis 1. At the time of treatment, usage of Bixi stations in both treated and control groups notably increased and began to grow more quickly in November 2020, following the REV's completion. Ridership increases more for treated stations than for control stations, and remains more elevated through the post-treatment period.
 
 ### 8. Model Estimation
-I estimate a standard difference-in-difference model with $\text{Post}$, $\text{Treated}$, and $\text{Post} \times \text{Treated}$ terms. In addition to the key difference-in-differences regressors, I include a control for the distance between the Bixi station and the REV path. Given that I expect the treatment effect to decline as the distance between a Bixi station and the REV grows, I also include the interaction of the difference-in-differences estimator and the distance term. 
+I estimate a standard difference-in-difference model with $\text{Post}$, $\text{Treated}$, and $\text{Post} \times \text{Treated}$ terms. In addition to the key difference-in-differences regressors, I include a control for the distance between the Bixi station and the REV path as well as distance between the Bixi station and the city's central business district. Finally, I include observable weather-related covariates that I think may impact outcomes, including temperature, precipitation, and the amount of snow on the ground, as well as a full set of monthly dummies. Robust standard errors are used. The regressions are performed at the weekly-station level as outcomes are much less noisy than at a daily frequency. The most comprehensive specification is shown below:
 
-Next, I include a control for ___. This is done to ___, but also to avoid confounding ____.
-
-Finally, I include observable weather-related covariates that I think may impact outcomes, including temperature, precipitation, and the amount of snow on the ground, as well as a full set of monthly dummies. Robust standard errors are used. The regressions are performed at the weekly-station level as outcomes are much less noisy than at a daily frequency. The most comprehensive specification is shown below:
-
-$Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}\text{Distance}\_{it} + \beta_{5}(\text{Treated}\_{i} \times \text{Post}\_{t} \times \text{Distance}\_{it}) + \beta_{6}\text{Distance to CBD}\_{it} + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
+$Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}\text{Distance}\_{it} + \beta_{5}\text{Distance to CBD}\_{it} + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
 
 Where:
 - $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $i$ in week $t$.
@@ -156,7 +133,6 @@ Where:
 - $\( \text{Post}_t )$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
 - $\( \text{Post}_t \times \text{Treated}_i )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
 - $\( \text{Distance}\_{it} )$ is the distance, in hundreds of meters, between Bixi station $i$ and the nearest segment of the REV path in week $t$
-- $\( \text{Post}_t \times \text{Treated}_i \times \text{Distance}\_{it} )$ is the interaction of distance, in hundreds of meters, and the difference-in-difference estimator for Bixi station $i$ in week $t$.
 - $\( \text{Distance to CBD}_{it} )$ is the distance between Bixi station $i$ in week $t$ and the central business district of Montreal.
 - $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), precipitation (mm), and snow on ground (cm), as well as monthly dummies for months 1 through 11.
 - $\( \epsilon_{it} )$ is the error term. Robust standard errors are used.
@@ -170,12 +146,12 @@ Here are the regression results. For each outcome, I estimate three models. Each
 
 The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meainngful for all three outcomes. In particular, results indicate that, holding all else equal, stations located in close proximity to the REV see around 54 more weekly trips than those located further away. Trips originating from treated stations end 43 meters farther and last around 32 seconds longer, on average. If the research design used is convincing, then improvements in Bixi usage are a direct result of the REV's completion, rather than some confounding factor.
 
-Distance is negatively and significantly related with number of trips taken. Parameter estimates suggest that, for every 100 meters further a Bixi station is from the REV, the number of weekly trips taken falls by nearly 12, on average. Distance to the REV has a comparatively smaller effect on trip distance and trip duration. This may be explained by the fact that proximity to the REV impacts an individual's decision whether to use ridesharing, but does not necessarily affect how long they choose to rent a bike. Alternatively, it is possible that
+Distance to REV path is negatively and significantly related with number of trips taken. Parameter estimates suggest that, for every kilometer further a Bixi station is from the REV, the number of weekly trips taken falls by nearly 12, on average. Distance to the REV has a comparatively smaller effect on trip distance and trip duration. This may be explained by the fact that proximity to the REV impacts an individual's decision whether to use ridesharing, but does not necessarily affect how long they choose to rent a bike. 
 
-The interaction of the distance variable and the difference-in-differences estimator measures to what extent distance from the REV moderates the treatment effect. The estimated coefficient has a statistically insignificant effect on number of weekly trips taken. That is, number of trips ___. At the same time, 
+Distance to the CBD is always negative and statistically significant. This is consistent with the fact that the city center is denser with amenities, has more comprehensive bike coverage, and a denser network of Bixi docking stations.
 
 Other control variables have the expected sign, with temperature being positiely associated with ridesharing while precipitation and snow on ground are found to be negatively related with ridesharing. The addition of these controls, as well as monthly dummies, is not found to significantly impact parameter estimates. 
 
-I find the sign, magnitude, and statistical significance of the key results to be robust to changes in the treated/control thresholds.
+I find the sign, magnitude, and statistical significance of the key results to be robust to changes in the treated/control thresholds and the addition of monthly dummies.
 
 Results indicate that the REV broadly improved ridership at stations located nearest to its path. However, without ride-level user IDs it is impossible for me to infer whether increased usage is the result of new Bixi users being induced by the REV, or simply a spatial reallocation of existing users. That is, it is possible the treatment effect is being driven by existing Bixi users choosing to rent their bikes from a Bixi station closer to the REV path after its completion, rather than new users choosing to use the bikeshare program.
