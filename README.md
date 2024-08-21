@@ -1,6 +1,6 @@
 # Impact of the REV on Montreal's Bike Share Program
 
-This project aims to assess how the development of the Reseau Express Velo (REV) - a recently built network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I employ a difference-in-differences research design, comparing outcomes for Bixi stations located by the REV to those located farther away, to causally assess the REV's impact on bikesharing. Outcomes include average weekly ridership, average trip duration, and average trip distance. You can read more about the REV [here](https://montreal.ca/articles/le-rev-un-reseau-express-velo-4666).
+This project aims to assess how the development of the Reseau Express Velo (REV) - a recently built network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I employ a difference-in-differences research design, comparing outcomes for Bixi stations located by the REV to those located farther away, to assess the REV's impact on bikesharing. Outcomes include average weekly ridership, average trip duration, and average trip distance. You can read more about the REV [here](https://montreal.ca/articles/le-rev-un-reseau-express-velo-4666).
 
 ## Context
 In 2019, Valerie Plante, Mayor of Montreal and leader of Projet Montreal, announced that the city would be undertaking a project to build more, higher-quality bike infrastructure across the city, beginning in its central neighborhoods. This would include the construction of new, wide, well sign-posted, and protected bike lanes with synchronized street lights to help Montrealers more comfortably and safely traverse large distances. These paths would also be prioritized for snow clearing in winter, making them usable year-round.
@@ -13,7 +13,7 @@ Projet Montreal put forward plans to build 5 such axes:
 - Axis 4: Peel: This axis serves a short North-South corridor on Peel, a major commercial shopping street in the city's downtown core, between avenue des Pins and rue Smith.
 - Axis 5: Bellechasse: An East-West axis running on Bellechase between de Gaspe and Chatelain, predominantly in the Rosemont-La Petite-Patrie borough, and intersecting with Axis 1 of the REV at Saint-Denis/Bellechasse.
 
-While the REV has been touted as a success by bike enthusiasts, this is the first attempt - as far as I know - to causally assess the REV's impact on bikeshare usage.
+While the REV has been touted as a success by bike enthusiasts, this is the first attempt - as far as I know - to causally evaluate the REV's effect on bikeshare usage.
 
 ## Data
 The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - July 2024. I also use data from the City of Montreal, which has geocoded all of the city's existing bike network, as well as daily weather data from Environment Canada.
