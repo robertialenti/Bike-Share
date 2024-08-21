@@ -39,7 +39,7 @@ Here is an example with just six observations, which are sufficient for illustra
 
 | Year | Date | Station Name | Latitude | Longitude | Station Code |
 | ---- | ---- | ------------ | -------- | --------- | ------------ | 
-| 2018 | 2018-04-23 17:42 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 6080 |
+| 2018 | 2018-04-23 17:42 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 6418 |
 | 2018 | 2018-04-23 18:00 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 6418 |
 | 2018 | 2018-04-23 18:03 | Marlowe / de Maisonneuve | 45.4739 | -73.6047 | 6080 |
 | 2019 | 2019-06-10 17:45 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 6080 |
