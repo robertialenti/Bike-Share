@@ -23,7 +23,7 @@ The project primilarly relies on ride-level data made freely available by Bixi f
 - Environment Canada, Daily Weather in Montreal: https://climate.weather.gc.ca/climate_data/daily_data_e.html?StationID=51157
 
 ## Code
-Code for the project is written entirely in Python and separated into 8 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. I recommend storing the code in a folder called `code`. To run the code without modification, store the ride-level data in year-specific folders in `data/ridership`, the City of Montreal's geocoded bike network in `data/rev`, and weather data from Environment Canada in `data/weather`. In the same directory, create empty folders called `figures` and `output` to collect results.
+Code for the project is written entirely in Python and separated into 8 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. I recommend storing the code in a folder called `code`. To run the code without modification, store the ride-level data in year-specific folders in `data/ridership`, geocoded bike network data from the City of Montreal in `data/rev`, and weather data from Environment Canada in `data/weather`. In the same project directory, create empty folders called `figures` and `output` to collect results.
 
 ### 1. Preliminaries
 In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics.
@@ -31,19 +31,18 @@ In this section, I simply import modules that I'll need to conduct the work. I t
 ### 2. Importing and Cleaning Data
 In this section, I read and append Bixi's ride-level microdata. In some years, Bixi provides ride-level data by month, while in other years all of the ridership data is included in a single dataset. Variable names change somewhat through time, as do date formats. The code handles these intertemporal inconsistencies. The dataset includes all of the approximately 62 million rides completed on Bixi bikes between April 2014 and July 2024.
 
-In order to generate aggregate statistics by station, it is important to have a reliable, time-invariant station identifier. The ride-level data from Bixi provides two potentially useful identifiers: $\text{Station Name}$ and $\text{Station Code}$. However, both can be unreliable in certain settings. 
+In order to generate aggregate statistics by station, it is important to have a consistent, time-invariant station identifier. The ride-level data from Bixi provides two potentially useful identifiers: $\text{Station Name}$ and $\text{Station Code}$. However, both can be unreliable as the same station may use different names or different station codes, both in the same year and through time.
 
-As a result, I group Bixi stations together based on whether I believe stations with different names and coordinates refer to the same station. I do so by retaining unique station names and sorting by coordinates. I manually verify whether I believe trips originating at different stations should really begin at the same station. I create a crosswalk file, `stations.xlsx`, which I merge into the ride-level microdata. For each Station ID, I replace station name with the modal station name. For each Station ID-Year pair, I replace coordinates with modal station coordinates.
+To address this issue, I group Bixi stations together based on whether I believe stations with different names actually refer to the same station. I do so by retaining unique station names and sorting by coordinates. I create a crosswalk file, `stations.xlsx`, which allows me to assign new IDs to stations. I merge the crosswalk with the ride-level microdata. For each value of Station ID, I replace station name with the modal station name. For each Station ID-Year pair, I replace the station's coordinates with its modal coordinates.
 
-Here is an example with just 5 observations, which are sufficient for illustrating the process. In the microdata, two Bixi trips taken on the same day in 2018, just 13 minutes apart, are found to originate from seemingly different stations with different station codes. In reality, both of these trips originated from a single Bixi station installed at Vendome Metro. This becomes evident when verifying the location of the two Bixi stations and comparing their coordinates. As such, both Bixi stations should have the same $\text{Station ID}$, which I assign after manual validation.
+Here is an example with just 5 observations, which are sufficient for illustrating the process. In the microdata, two Bixi trips taken on the same day in 2018, just 13 minutes apart, are found to originate from seemingly different stations with different station codes. In 2021, three trips taken from ____. In reality, all of these trips should originate from a single Bixi station installed at Vendome Metro. This becomes evident when verifying the location of the five Bixi stations through manual validation. All of these Bixi stations should have the same $\text{Station ID}$.
 
 | Date | Station Name | Latitude | Longitude | Station Code |
 | ---- | ------------ | -------- | --------- | ------------ | 
 | 2018-04-23 17:47 | Marlowe / de Maisonneuve | 45.4739 | -73.6047 | 6080 |
 | 2018-04-23 18:00 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 6418 |
 
-
-In the corrected data, these stations have the same Station ID, the modal name, and the modal coordinates.
+In the corrected data, these stations have the same $\text{Station ID}$. Station Name is replaced with its modal name while the station's coordinates are replaced with its year-specific modal coordinates.
 
 | Date | Station Name | Latitude | Longitude | Station ID |
 | ---- | ------------ | -------- | --------- | ---------- |
