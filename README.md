@@ -13,7 +13,7 @@ Projet Montreal put forward plans to build 5 such axes:
 - Axis 4: Peel: This axis serves a short North-South corridor on Peel, a major commercial shopping street in the city's downtown core, between avenue des Pins and rue Smith.
 - Axis 5: Bellechasse: An East-West axis running on Bellechase between de Gaspe and Chatelain, predominantly in the Rosemont-La Petite-Patrie borough, and intersecting with Axis 1 of the REV at Saint-Denis/Bellechasse.
 
-While the REV has been touted as a success by bike enthusiasts, this is the first attempt - as far as I know - to causally evaluate the REV's effect on rideshare utilization.
+While the REV has been touted as a success by bike enthusiasts, this is the first attempt - as far as I know - to causally evaluate the its effect on rideshare utilization.
 
 ## Data
 The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - July 2024. I also use data from the City of Montreal, which has geocoded all of the city's existing bike network, as well as daily weather data from Environment Canada.
@@ -23,19 +23,19 @@ The project primilarly relies on ride-level data made freely available by Bixi f
 - Environment Canada, Daily Weather in Montreal: https://climate.weather.gc.ca/climate_data/daily_data_e.html?StationID=51157
 
 ## Code
-Code for the project is written entirely in Python and separated into 8 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. I recommend storing the code in a folder called `code`. To run the code without modification, store the ride-level data in year-specific folders in `data/ridership`, geocoded bike network data from the City of Montreal in `data/rev`, and weather data from Environment Canada in `data/weather`. In the same project directory, create empty folders called `figures` and `output` to collect results.
+Code for the project is written entirely in Python and separated into 8 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. I recommend storing the code in a folder called `code`. To run the code without modification, store the ride-level data in year-specific folders in `data/ridership/`, geocoded bike network data from the City of Montreal in `data/bike_paths/`, and weather data from Environment Canada in `data/weather/`. In the same project directory, create empty folders called `figures` and `output` to collect results.
 
 ### 1. Preliminaries
 In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics.
 
 ### 2. Importing and Cleaning Data
-In this section, I read and append Bixi's ride-level microdata. In some years, Bixi provides ride-level data by month, while in other years all of the ridership data is included in a single dataset. Variable names change somewhat through time, as do date formats. The code handles these intertemporal inconsistencies. The dataset includes all of the approximately 62 million rides completed on Bixi bikes between April 2014 and July 2024.
+I begin by reading and appending Bixi's ride-level microdata. In some years, Bixi provides ride-level data by month, while in other years all of the ridership data is included in a single dataset. Variable names change somewhat through time, as do date formats. The code handles these intertemporal inconsistencies. The dataset includes all of the approximately 62 million rides completed on Bixi bikes between April 2014 and July 2024.
 
-In order to generate aggregate statistics by station, it is important to have a consistent, time-invariant station identifier. The ride-level data from Bixi provides two potentially useful identifiers: $\text{Station Name}$ and $\text{Station Code}$. However, both can be unreliable as the same station may use different names or different station codes, both in the same year and through time.
+In order to generate aggregate statistics by station, it is important to have a unique and time-invariant station identifier. The ride-level data from Bixi provides two potentially useful identifiers: $\text{Station Name}$ and $\text{Station Code}$. However, both can be unreliable as the same station may use different names or different station codes, in the same year and through time.
 
-To address this issue, I group Bixi stations together based on whether I believe stations with different names actually refer to the same station. I do so by retaining unique station names and sorting by coordinates. I create a crosswalk file, `stations.xlsx`, which allows me to assign new IDs to stations. I merge the crosswalk with the ride-level microdata. For consistency, I also replace station names and coordinates. That is, for each value of Station ID, I replace station name with the modal station name. For each Station ID-Year pair, I replace the station's coordinates with its modal coordinates.
+To address this issue, I group Bixi stations together based on whether I believe docking stations with different names actually refer to the same station. I do so by retaining unique station names and sorting by coordinates. I create a crosswalk file, `data/ridership/id_crosswalk.xlsx`, which I merge with the ride-level microdata. For consistency, I also update station names and coordinates. For each value of Station ID, I replace station name with the modal station name. For each Station ID-Year pair, I replace the station's coordinates with its modal coordinates.
 
-Here is an example with just 6 observations, which are sufficient for illustrating the process. I have selected six Bixi trips, with three taken in 2018 and 2019, respectively. taken on the same day in 2018, just 13 minutes apart, are found to originate from seemingly different stations with different station codes. In 2021, three trips taken from ____. In reality, all of these trips should originate from a single Bixi station installed at Vendome Metro. This becomes evident when verifying the location of the five Bixi stations through manual validation. All of these Bixi stations should have the same $\text{Station ID}$.
+Here is an example with just 6 observations, which are sufficient for illustrating the process. I have selected six Bixi trips taken between April 2018 and June 2019. Trips taken on the same day in 2018, just a few minutes apart, are found to originate from seemingly different stations with different station names and codes. In reality, all of these trips should originate from a single Bixi station, installed at Vendome Metro since 2014. This becomes evident when verifying the location of the five Bixi stations through manual validation. 
 
 | Year | Date | Station Name | Latitude | Longitude | Station Code |
 | ---- | ---- | ------------ | -------- | --------- | ------------ | 
@@ -46,7 +46,7 @@ Here is an example with just 6 observations, which are sufficient for illustrati
 | 2019 | 2019-06-10 17:49 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 6080 |
 | 2019 | 2019-06-10 17:50 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 6080 |
 
-In the corrected data, these stations have the same $\text{Station ID}$. Station Name is replaced with its modal name while the station's coordinates are replaced with its year-specific modal coordinates.
+After merging with the crosswalk, these observations are given the same $\text{Station ID}$. $\text{Station Name} is replaced with its modal name while the station's $\text{Latitude}$ and $\text{Longitude}$ are replaced with their year-specific mode.
 
 | Year | Date | Station Name | Latitude | Longitude | Station ID |
 | ---- | ---- | ------------ | -------- | --------- | ---------- |
@@ -54,11 +54,11 @@ In the corrected data, these stations have the same $\text{Station ID}$. Station
 | 2018 | 2018-04-23 18:00 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
 | 2018 | 2018-04-23 18:03 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
 | 2019 | 2019-06-10 17:45 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
-| 2019 | 2019-06-10 17:49 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4744 | -73.604 | 174 |
+| 2019 | 2019-06-10 17:49 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4744 | -73.6047 | 174 |
 | 2019 | 2019-06-10 17:50 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
 
 ### 3. Creating Outcome Variables
-Here, I create three outcome variables of interest: trip count, trip distance, and trip duration.
+Here, I create three outcome variables: trip count, trip distance, and trip duration.
 
 Trip count measures the number of trips undertaken, by Bixi station and date.
 
