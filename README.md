@@ -30,12 +30,12 @@ In order to generate aggregate statistics by station, it is important to have a 
 
 As a result, I group Bixi stations together based on whether I believe stations with slightly different names and coordinates refer to the same station. I do so by retaining unique station names and sorting by coordinates. I assign stations to IDs ___. I then merge the ride-level microdata to this file, assigning an ID and coordinates to every station. For each Station ID, I select the modal station name. For each Station ID-Date, I select the modal coordinates.
 
-Here is an example:
+Here is an example. Two Bixi trips taken on the same day in 2018, just 13 minutes apart, are found to originate from seemingly different stations. Accordingly, these stations are assigned different station codes: 6080 and 6418. In reality, both of these Bixi stations were installed at Vendome Metro, and have nearly identical coordinates. Both should have the same $\text{Station ID}$, which I assign after manual validation.
 
-Date | Station Name | Latitude | Longitude | Station Code | ID |
-| -- | ------------ | -------- | --------- | ------------ | -- |
-| 2018-04-23 17:47:00 | Marlowe / de Maisonneuve | 45.4739 | -73.6047 | 6080 | 174 |
-| 2018-04-23 18:00:00 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 6418 | 174 |
+Date | Station Name | Latitude | Longitude | Station Code | Station ID |
+| -- | ------------ | -------- | --------- | ------------ | ---------- |
+| 2018-04-23 17:47 | Marlowe / de Maisonneuve | 45.4739 | -73.6047 | 6080 | 174 |
+| 2018-04-23 18:00 | de Vendôme / de Maisonneuve | 45.4744 | -73.604 | 6418 | 174 |
 
 ### 3. Creating Outcome Variables
 Here, I create three outcome variables of interest: trip count, trip distance, and trip duration.
