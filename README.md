@@ -131,11 +131,15 @@ Where:
 - $( \alpha )$ is the intercept.
 - $\( \text{Treated}_i )$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t )$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
-- $\( \text{Post}_t \times \text{Treated}_i )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
+- $\( \text{Treated}_i \times \text{Post}_t )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
 - $\( \text{Distance to REV}\_{it} )$ is the distance, in hundreds of meters, between Bixi station $i$ and the nearest segment of the REV path in week $t$
 - $\( \text{Distance to CBD}_{it} )$ is the distance between Bixi station $i$ in week $t$ and the central business district of Montreal.
 - $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), precipitation (mm), and snow on ground (cm), as well as monthly dummies for months 1 through 11.
 - $\( \epsilon_{it} )$ is the error term. Robust standard errors are used.
+
+Because I am concerned about heterogenous treatment effects - that is, ____ - I also choose to estimate a two-way fixed effects (TWFE) model.
+
+$Y_{it} = \theta_{i} + \mu_{t} + \delta( \text{Treated}_{i} \times \text{Post}_{t} ) + \epsilon_{it}$
 
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
 
