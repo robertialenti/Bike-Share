@@ -139,7 +139,10 @@ Where:
 
 Because I am concerned about heterogenous treatment effects - that is, ____ - I also choose to estimate a two-way fixed effects (TWFE) model. This model absorbs all time-invariant, station specific factors, as well as _____. 
 
-$Y_{it} = \theta_{i} + \mu_{t} + \delta(\text{Treated}_{i} \times \text{Post}_{t}) + \epsilon_{it}$
+$Y_{it} = \theta_{i} + \mu_{t} + \epsilon_{it}$
+
+Where: 
+
 
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
 
