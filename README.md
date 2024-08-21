@@ -142,10 +142,9 @@ Because I am concerned about heterogenous treatment effects - that is, ____ - I 
 $Y_{it} = \theta_{i} + \mu_{t} + \delta(\text{Treated}\_{i} \times \text{Post}\_{t}) + \epsilon_{it}$
 
 Where: 
-
-$( \theta_{i} )$ are Bixi station fixed effects.
-$( \mu_{i} )$ are weekly date fixed effects.
-$( \text{Treated}\_{i} \times \text{Post}\_{t} )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
+- $( \theta_{i} )$ are Bixi station fixed effects.
+- $( \mu_{i} )$ are weekly date fixed effects.
+- $( \text{Treated}\_{i} \times \text{Post}\_{t} )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
 - $\( \epsilon_{it} )$ is the error term.
 
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
