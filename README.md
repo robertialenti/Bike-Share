@@ -137,7 +137,7 @@ I estimate a standard difference-in-difference model with $\text{Post}$, $\text{
 $Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}\text{Distance}\_{i} + \beta_{5}(\text{Treated}\_{i} \times \text{Post}\_{t} \times \text{Distance}\_{i}) + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
 
 Where:
-- $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $\i$ in week $\t$.
+- $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $ \i$ in week $ \t$.
 - $( \alpha )$ is the intercept.
 - $\( \text{Treated}_i )$ is a binary variable indicating the treatment group (1 if treated, 0 if control).
 - $\( \text{Post}_t )$ is a binary variable indicating the post-treatment period (1 if after treatment, 0 if before). The treatment date is 11/07/2020.
@@ -154,14 +154,14 @@ Here are the regression results. For each outcome, I estimate three models. Each
 
 ![image](https://github.com/user-attachments/assets/c3be360a-e56c-4241-94b6-c616ad8d73ae)
 
-The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meainngful for all three outcomes. In particular, results indicate that, holding all else equal, stations located in close proximity to the REV see around 54 more weekly trips than those located further away. Trips originating from treated stations end 43 meters farther and last around 32 seconds longer, on average. If the rsearch design used is convincing, then these effects are causal, and a direct result of the REV's completion rather than some confounding factor.
+The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meainngful for all three outcomes. In particular, results indicate that, holding all else equal, stations located in close proximity to the REV see around 54 more weekly trips than those located further away. Trips originating from treated stations end 43 meters farther and last around 32 seconds longer, on average. If the research design used is convincing, then improvements in Bixi usage are a direct result of the REV's completion, rather than some confounding factor.
 
 Distance is negatively and significantly related with number of trips taken. Parameter estimates suggest that, for every 100 meters further a Bixi station is from the REV, the number of weekly trips taken falls by nearly 12, on average. Distance to the REV has a comparatively smaller effect on trip distance and trip duration. This may be explained by the fact that proximity to the REV impacts an individual's decision whether to use ridesharing, but does not necessarily affect how long they choose to rent a ___. This is an especially compelling explanation when considering that the neighborhoods through which the REV's Axis 1 are already well suited for biking ____
 
 The interaction of the distance variable and the difference-in-difference term measures to what extent distance from the REV moderates the treatment effect. The estimated coefficient has a statistically insignificant effect on number of weekly trips taken.
 
-Other control variables have the expected sign, with temperature being positiely associated with ridesharing while precipitation and snow on ground are found to be negatively related with ridesharing. The addition of these controls, as well as monthly dummies, is not found to significantly impact parameter estimates.
+Other control variables have the expected sign, with temperature being positiely associated with ridesharing while precipitation and snow on ground are found to be negatively related with ridesharing. The addition of these controls, as well as monthly dummies, is not found to significantly impact parameter estimates. 
 
-I find the sign, magnitude, and statistical significance of the key results to be robust to changes in the treated/control thresholds, the omission of additional covariates, and the use of a two-way fixed effect (TWFE) model.
+I find the sign, magnitude, and statistical significance of the key results to be robust to changes in the treated/control thresholds.
 
 Results indicate that the REV broadly improved ridership at stations located nearest to its path. However, without ride-level user IDs it is impossible for me to infer whether increased usage is the result of new Bixi users being induced by the REV, or simply a spatial reallocation of existing users. That is, it is possible the treatment effect is being driven by existing Bixi users choosing to rent their bikes from a Bixi station closer to the REV path after its completion, rather than new users choosing to use the bikeshare program.
