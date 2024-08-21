@@ -134,39 +134,7 @@ Where:
 
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
 
-## Discussion of Results
-
-<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_count_sa.png">
-
-<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_distance_sa.png">
-
-<img src="https://github.com/robertialenti/Bixi/raw/main/output/regression_trip_duration_sa.png">
-
-	(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)	(9)
-	Number of Trips			Trip Distance (km)			Trip Duration (min)		
-Constant	92.266***	116.048***	122.115***	0.544***	0.568***	0.589***	3.714***	3.792***	3.983***
-	(1.011)	(3.544)	(4.432)	(0.005)	(0.014)	(0.016)	(0.031)	(0.094)	(0.113)
-Post	75.336***	75.336***	77.420***	0.124***	0.124***	0.123***	1.013***	1.013***	1.003***
-	(2.409)	(2.406)	(2.498)	(0.008)	(0.008)	(0.008)	(0.056)	(0.056)	(0.057)
-Treated	16.935***	-0.373	-0.373	0.141***	0.123***	0.1223***	0.864***	0.808***	0.808***
-	(2.003)	(3.451)	(3.451)	(0.008)	(0.012)	(0.012)	(0.053)	(0.084)	(0.084)
-Post x Treated	59.988***	54.244***	54.244***	0.043***	0.109***	0.109***	0.209**	0.53***	0.530***
-	(5.271)	(7.654)	7.633	(0.014)	(0.021)	(0.021)	(0.096)	(0.142)	(0.142)
-Distance		-11.621***	-11.621***		-0.012*	-0.012*		-0.038	-0.038
-		(1.594)	(1.594)		(0.006)	(0.006)		(0.044)	(0.044)
-Post x Treated x Distance		0.103	0.103		-0.001***	-0.001***		-0.006***	-0.006***
-		(0.120)	(0.120)		(0.000)	(0.000)		(0.002)	(0.002)
-Temperature			0.181			0.003***			0.029***
-			(0.250)			(0.001)			(0.006)
-Precipitation			-0.286			-0.001			-0.014
-			(0.401)			(0.001)			(0.009)
-Snow on Ground			-1.444***			-0.002***			-0.014***
-			(0.156)			(0.000)			(0.003)
-Monthly Dummies	No	No	Yes	No	No	Yes	No	No	Yes
-Observations	55607	55611	55611	55611	55611	55611	55611	55611	55611
-Adjusted R-Squared	0.052	0.020	0.054	0.019	0.020	0.020	0.019	0.019	0.020
-Heteroscedasticity robust standard errors are shown in parantheses.									
-***, **, and * denote statistical significance at 1%, 5%, and 10% levels, respectively.									
+## Discussion of Results	
 ![image](https://github.com/user-attachments/assets/5107d4d1-6b9d-4fb0-a4c6-3e5b7398e13c)
 
 
