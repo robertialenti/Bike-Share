@@ -1,21 +1,21 @@
 # Impact of the REV on Bike Share in Montreal
 
-This project aims to assess how the development of the Reseau Express Velo (REV) - a network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I seek to estimate a causal effect by employing a difference-in-differences research design, comparing outcomes for treated Bixi stations - those located nearby to the REV paths - to those located further away. Outcomes include average weekly ridership, average trip duration, and average trip distance.
+This project aims to assess how the development of the Reseau Express Velo (REV) - a recently built network of high-quality bike infrastructure in Montreal's central neighborhoods - impacted usage of the city's bikeshare program, Bixi. I employ a difference-in-differences research design, comparing outcomes for Bixi stations located by the REV to those located farther away, to causally assess the REV's impact on bikesharing. Outcomes include average weekly ridership, average trip duration, and average trip distance.
 
-The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - December 2024. I also use data from the City of Montreal, who has geocoded all of the city's bike paths, as well as weather data from Environment Canada.
+The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - July 2024. I also use data from the City of Montreal, who has geocoded all of the city's existing bike network, as well as weather data from Environment Canada.
 
 ## Context
-In 2019, Valerie Plante, Mayor of Montreal and leader of Projet Montreal, announced that the city would be undertaking a project to build more, higher-quality bike infrastructure across the city, beginning in its central neighborhoods. This would include the construction of new, wide, and protected bike lanes with synchronized street lights to help Montrealers more comfortably and safely traverse larger distances. These paths would also be prioritized for snow clearing in winter, making them usable year-round.
+In 2019, Valerie Plante, Mayor of Montreal and leader of Projet Montreal, announced that the city would be undertaking a project to build more, higher-quality bike infrastructure across the city, beginning in its central neighborhoods. This would include the construction of new, wide, well sign-posted, and protected bike lanes with synchronized street lights to help Montrealers more comfortably and safely traverse large distances. These paths would also be prioritized for snow clearing in winter, making them usable year-round.
 
 Projet Montreal put forward plans to build 5 such axes:
 
 - Axis 1: Berri-Lajeunesse-Saint-Denis: This axis is the longest in the REV network and provides North-South coverage in the center of the city. It links the boulevard Gouin with the rue Roy. The axis was inauguarateed on 11/07/2020.
-- Axis 2: Viger-Saint-Antonine-Saint-Jacques: This axis serves a short East-West segment, predominantly in the city's Ville-Marie borough.
+- Axis 2: Viger-Saint-Antonine-Saint-Jacques: This axis serves a short East-West segment between rue Guy and rue De Coucelle, predominantly in the city's Ville-Marie borough.
 - Axis 3: Souligny: This axis, running East-West between the rue Honore-Beaugrand and avenue Hector, is furthest from the city center.
 - Axis 4: Peel: This axis serves a short North-South corridor on Peel, a major commercial shopping street in the city's downtown core, between avenue des Pins and rue Smith.
-- Axis 5: Bellechasse: An East-West Corridor running on Bellechase between de Gaspe and Chatelain, predominantly in the Rosemont-La Petite-Patrie borough, and intersecting with Axis 1 of the REV at Saint-Denis/Bellechasse.
+- Axis 5: Bellechasse: An East-West axis running on Bellechase between de Gaspe and Chatelain, predominantly in the Rosemont-La Petite-Patrie borough, and intersecting with Axis 1 of the REV at Saint-Denis/Bellechasse.
 
-In 2023, the city put forward plans to expand the network by 2027 with the aim of helping to increase the bike modal share to 15% in Montreal. You can read more about the REV [here](https://montreal.ca/articles/le-rev-un-reseau-express-velo-4666).
+In 2023, the city put forward plans to expand the network by 2027 with the ultimate aim of helping to increase Montreal's bike modal share to 15%. You can read more about the REV [here](https://montreal.ca/articles/le-rev-un-reseau-express-velo-4666).
 
 ## Outline of Code
 Code for the project is written entirely in Python. The code is separated into 8 sections and ran primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory.
@@ -26,23 +26,25 @@ In this section, I simply import modules that I'll need to conduct the work. I t
 ### 2. Importing and Cleaning Data
 In this section, I read and append ride-level data made available on Bixi's [open data portal](https://bixi.com/en/open-data/). In some years, Bixi provides ride-level data by month, while in other years all of the ridership data is included in a single dataset. Variable names change somewhat through time, as do date formats. The code handles these intertemporal inconsistencies. The dataset includes all of the approximately 62 million rides completed on Bixi bikes between April 2014 and July 2024.
 
-Rather than rely on ____. Station names and IDs are somewhat unreliable as they ___ and can change through time. As a result, I group Bixi stations with a user-generated ID and manual validation. That is, I group stations - with similar names and ____ - to the same ID. I then merge the ride-level data to this file, assigning an ID and coordinates to every station. For each station ID, I select the modal station name. For each station ID-Date, I select the modal coordinates. Here is an example:
+Key to ___ is being able to group stations. The ride-level data from Bixi provides two useful identifiers: Station name and station code. Station names and IDs are somewhat unreliable as they ___ and can change through time. 
+
+As a result, I group Bixi stations together based on whether I believe stations with slightly different names and coordinates denote the same station. I manually validate the accuracy of my user-generated ID. I then merge the ride-level data to this file, assigning an ID and coordinates to every station. For each station ID, I select the modal station name. For each station ID-Date, I select the modal coordinates. Here is an example:
 
 ### 3. Creating Outcome Variables
 Here, I create three outcome variables of interest: trip count, trip distance, and trip duration.
 
-Trip count measures the number of trips by Bixi station and date.
+Trip count measures the number of trips undertaken, by Bixi station and date.
 
-As Bixi does not provide trip-level GPS data, which would be needed to track the precise journey undertaken by a user, I instead measure trip distance as the Haversine distance between the starting and ending station. I recognize that this is a flawed measure and a lower bar for the actual distance traversed on any given trip. To avoid measurement error, for all trips with a distance of 0 - that is, trips beginning and ending at the same docking station - I replace trip distance with a missing value. These trips will not be included in regression analysis.
+As Bixi does not provide trip-level GPS data, which would be needed to track the precise journey undertaken by a user, I instead measure trip distance as the Haversine distance between the starting and ending station. I recognize that this is a flawed measure and a lower bar for the actual distance traversed on any given trip. For all trips with a distance of 0 - that is, trips beginning and ending at the same docking station - I replace trip distance with a missing value. As such, these trips will not be included in regression analysis in instances where the outcome of interest is trip distance.
 
 Trip duration is calculated as the difference between a journey's start time and end time.
 
-I remove Bixi trips with implausible distances or journey times to reduce the impact of outliers on parameter estimates.
+I remove Bixi trips with implausible distances or journey times to reduce the impact of outliers on parameter estimates. This removes relatively few observations.
 
 ### 4. Identifying Treated Bixi Stations
-I define "treated" Bixi stations as those located within 100 meters of the REV path and "control" stations as those located between 100 and 300 meters from the REV. These thresholds are informed by the existing literature, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. I select a lower threshold, in part, because of high Bixi station density in the neighborhood served by the REV's Axis 1.
-
 Rather than consider all axes of the REV, I focus exclusively on Axis 1 because it provides the best case study for assessing the REV's impact. Other axes were rolled out in a more staggered fashion, and were subject to delays and additional works. Axis 1, on the other hand, was inaugurated in its entirety on the same day and has been subject to fewer disruptions in the years since.
+
+I define "treated" Bixi stations as those located within 100 meters of the REV path and "control" stations as those located between 100 and 300 meters from the REV. These thresholds are informed by the existing literature, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. I select a lower threshold, in part because of high Bixi station density in the neighborhood served by the REV's Axis 1.
 
 The City of Montreal provides information on the location of all bike paths in the city, with each segment of each bike path geocoded. As such, there is no need for me to create geometries for all of the bike path segments. Instead, I can simply assign stations to treatment by employing the following procedure:
 
@@ -81,7 +83,7 @@ At this point, I have all of the variables needed to generate descriptive statis
 | post | float | Post-Treatment = 1, Pre-Treatment = 0 |
 | distance | float | Distance between start station and REV Axis 1, in meters |
 
-I first plot average daily ridership by month, for every month over the April 2014 - July 2024 period. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
+I first plot average daily ridership by month, for every month between January 2014 and July 2024. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/average_daily_ridership.png" width="425" height="250">
 
@@ -102,20 +104,18 @@ It's also informative to animate the previous static image. In doing so, it's cl
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/gif_map.gif" width="900" height="500">
 
 ### 6. Preparing Data for Econometric Analysis
-
-Before I can perform regressions, I make the following adjustments. First, I convert key variables for the difference-in-difference regressiont to binary. Second, I seasonally adjust the outcome variables. Finally, I merge in additional covariates measuring daily mean temperature, precipitation, and amount of snow on ground in Montreal.
+Before I can perform regressions, I make the following adjustments. First, I convert key variables for the difference-in-difference regressiont to binary type. Second, I seasonally adjust the outcome variables. Finally, I merge in additional covariates measuring daily mean temperature, precipitation, and amount of snow on ground in Montreal.
 
 ### 7. Assessing Parallel Trends
-
 To ensure that outcomes evolved similarly prior to treatment for both treatment and control groups, and to verify that bikeshare activity at treated stations did not somehow frontrun the completion of the REV, I plot seasonally adjusted outcomes in event time. The event time variable measures time elapsed since the inauguration of the REV's Axis 1 on 11/07/2020. In an effort to better assess trends, I plot only a single month, November, for every year.
-
-We see that outcomes evolved quite similarly prior to the construction of the REV's Axis 1. This gives me confidence that treated and control stations saw similar ridership patterns prior to the REV's completion. At the time of treatment, usage of Bixi stations in both treated and control groups notably increases and begins to grow more quickly. Outcomes improve more for treated stations than for control stations, and remain more elevated through the post-treatment period.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_count_sa.png" width="425" height="250">
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_distance_sa.png" width="425" height="250">
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_trip_duration_sa.png" width="425" height="250">
+
+Outcomes evolved quite similarly for both treated and control groups prior to the construction of the REV's Axis 1. At the time of treatment, usage of Bixi stations in both treated and control groups notably increased and began to grow more quickly in November 2020, following the REV's completion. Ridership increases more for treated stations than for control stations, and remains more elevated through the post-treatment period.
 
 ### 8. Model Estimation
 I estimate a standard difference-in-difference model with \text{Post}, \text{Treatment}, and \text{Post \times Treatment} terms. In addition to the key difference-in-difference regressors, I also include a control for the distance between the Bixi station and the REV path as well as the interaction of the difference-in-difference regressor and the distance term, given that I expect the treatment effect to decline as the distance between ___ and the REV grows. I also include observable weather-related covariates that I think may impact outcomes, including temperature, precipitation, and the amount of snow on the ground, as well as a full set of monthly dummies. Robust standard errors are used. The regressions are performed at the weekly-station level as outcomes are much less noisy at a weekly level than at a daily level. The most comprehensive specification is shown below:
