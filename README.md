@@ -137,9 +137,9 @@ Where:
 - $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), precipitation (mm), and snow on ground (cm), as well as monthly dummies for months 1 through 11.
 - $\( \epsilon_{it} )$ is the error term. Robust standard errors are used.
 
-Because I am concerned about heterogenous treatment effects - that is, ____ - I also choose to estimate a two-way fixed effects (TWFE) model.
+Because I am concerned about heterogenous treatment effects - that is, ____ - I also choose to estimate a two-way fixed effects (TWFE) model. This model absorbs all time-invariant, station specific factors, as well as _____. 
 
-$Y_{it} = \theta_{i} + \mu_{t} + \delta( \text{Treated}_{i} \times \text{Post}_{t} ) + \epsilon_{it}$
+$Y_{it} = \theta_{i} + \mu_{t} + \delta(\text{Treated}_{i} \times \text{Post}_{t}) + \epsilon_{it}$
 
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
 
