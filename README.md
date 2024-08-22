@@ -152,7 +152,7 @@ Where:
 Estimation results are exported as a LaTeX file, which is then interpreted in Overleaf.
 
 ## Discussion of Results																											
-Here are the regression results. For each outcome, I estimate three models. Each successive specification includes additional covariates.
+Here are the regression results from the standard difference-in-differences model. For each outcome, I estimate three models. Each successive specification includes additional covariates.
 
 ![image](https://github.com/user-attachments/assets/c3be360a-e56c-4241-94b6-c616ad8d73ae)
 
@@ -165,7 +165,9 @@ Distance to the CBD is always negative and statistically significant. This is co
 Other control variables have the expected sign, with temperature being positiely associated with ridesharing while precipitation and snow on ground are found to be negatively related with ridesharing. The addition of these controls, as well as monthly dummies, is not found to significantly impact parameter estimates. 
 
 I find the sign, magnitude, and statistical significance of the key results to be robust to changes in the treated/control thresholds and the addition of monthly dummies.
-			
-![image](https://github.com/user-attachments/assets/be552436-4367-4746-b664-f71c59494ced)
 
-Results indicate that the REV broadly improved ridership at stations located nearest to its path. However, without ride-level user IDs it is impossible for me to infer whether increased usage is the result of new Bixi users being induced by the REV, or simply a spatial reallocation of existing users. That is, it is possible the treatment effect is being driven by existing Bixi users choosing to rent their bikes from a Bixi station closer to the REV path after its completion, rather than new users choosing to use the bikeshare program.
+Here are the regression results from the TWFE model. These results are both qualitatively and quantitatively consistent with those put forward in the standard model.
+     
+![image](https://github.com/user-attachments/assets/b7dec6bf-9dd1-405e-a29f-39b4163145e6)
+
+To conclude, results indicate that the REV broadly improved ridership at stations located nearest to its path. However, without ride-level user IDs it is impossible for me to infer whether increased usage is the result of new Bixi users being induced by the REV, or simply a spatial reallocation of existing users. That is, it is possible the treatment effect is being driven by existing Bixi users choosing to rent their bikes from a Bixi station closer to the REV path after its completion, rather than new users choosing to use the bikeshare program.
