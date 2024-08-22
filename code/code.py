@@ -1,8 +1,3 @@
-"""
-This script combines data made available by Bixi, analyzes it, and plots the most common routes.
-bsub -q short_int -M 100G -n 1 -Is spyder
-"""
-
 #%% Section 1: Preliminaries
 # Libraries
 # General
