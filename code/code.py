@@ -48,9 +48,13 @@ warnings.filterwarnings("ignore", category=FutureWarning, message="The frame.app
 warnings.filterwarnings("ignore", category=UserWarning, module='matplotlib.font_manager')
 pd.set_option("display.expand_frame_repr", False)
 
-# Paths
-#filepath = "C:/Users/rialenti/Dropbox (Harvard University)/bixi/"
-filepath = "/export/home/dor/rialenti/dropbox/bixi/"
+# Filepath
+if os.path.exists(""):
+    # Personal Computer
+    filepath = ""
+else:
+    # Computing Cluster
+    filepath = ""
 
 
 #%% Section 2: Creating Dataset
@@ -60,7 +64,7 @@ def import_data():
     for year in tqdm(range(2014,2025)):
         # Years with Bixi Trip Data Stored in Single File
         try:
-            file = filepath + f"{year}/data_{year}.csv"
+            file = filepath + f"data/ridership/{year}/data_{year}.csv"
             df_temp = pd.read_csv(file, 
                                   low_memory = False, 
                                   engine = "c")
@@ -70,9 +74,9 @@ def import_data():
             df_temp = pd.DataFrame()
             for month in range(1,13):
                 if month < 10:
-                    file = filepath + f"{year}/OD_{year}-0{month}.csv"
+                    file = filepath + f"data/ridership/{year}/OD_{year}-0{month}.csv"
                 else:
-                    file = filepath + f"{year}/OD_{year}-{month}.csv"
+                    file = filepath + f"data/ridership/{year}/OD_{year}-{month}.csv"
                 if os.path.exists(file):
                     df_month = pd.read_csv(file, 
                                            low_memory = False, 
@@ -87,7 +91,7 @@ def import_data():
                 df_temp = df_temp.rename(columns = {f"{type}_station_code": "code"})    
                 df_temp['code'] = pd.to_numeric(df_temp['code'], errors='coerce').astype('Int64')
                 df_temp = pd.merge(df_temp,
-                                   pd.read_csv(filepath + f"{year}/Stations_{year}.csv", 
+                                   pd.read_csv(filepath + f"data/ridership/{year}/Stations_{year}.csv", 
                                                usecols = ["code", "name"],
                                                dtype = {"code": "Int64"},
                                                low_memory = False,
@@ -158,7 +162,7 @@ def import_data():
                  axis = 1)
     
     # Gather ID and Coordinates for Bixi Stations 
-    df_stations = pd.read_excel(filepath + "id_crosswalk.xlsx")
+    df_stations = pd.read_excel(filepath + "data/ridership/id_crosswalk.xlsx")
     for type in ["start", "end"]:
         df_stations_temp = df_stations.rename(columns = {"id": f"{type}_id",
                                                          "name": f"{type}_name",
@@ -285,7 +289,7 @@ df_merged["monthly_date"] = df_merged["monthly_date"].dt.date
 
 
 #%% Section 4: Identify Treated Bixi Stations
-df_paths = gpd.read_file(filepath + "reseau_cyclable.geojson")
+df_paths = gpd.read_file(filepath + "data/bike_network/reseau_cyclable.geojson")
 
 # Identify REV Segments by Axis
 list_axis1 = [21598, 24146, 21597, 21599, 21355, 23819, 21601, 21601, 21027, 21026, 21600, 21601, 24147, 21025, 21024, 26063, 25554, 25912, 25913, 25911, 21023, 25553, 21030, 23821, 21029, 21357, 21356, 21028, 21359, 25584, 21358, 25585, 25796, 25833, 26136, 25866, 21360, 24187, 22907, 25865, 25627, 22906, 25626, 22905, 25618, 20705, 25617, 20704, 25616, 24826, 22908, 25615, 20726, 20725, 20724, 24635, 24031, 24342, 25218, 25609, 25608, 25607, 25878, 26137, 25613, 25848, 26139, 26140, 25849, 25851, 26142, 25850, 26141, 25813, 26138, 25634, 25633, 25632, 25233, 22212, 25631, 20181, 25874, 25526, 22186, 33616, 33618, 33617, 33620, 33622, 33621, 33619, 33624, 33626, 33625, 33623, 33628, 33630, 33629, 33627, 25241, 25641, 30443]
@@ -293,24 +297,24 @@ df_rev = df_paths[df_paths['ID_CYCL'].isin(list_axis1)]
 
 # Define Function for Calculating Distance Between Point and Line
 def point_to_line_distance(point, start, end):
-    # Convert coordinates to numpy arrays
+    # Convert Coordinates to Arrays
     point = np.array(point)
     start = np.array(start)
     end = np.array(end)
 
-    # Calculate the projection of the point onto the line
+    # Project Point Onto Line
     line_vec = end - start
     point_vec = point - start
     line_len = np.dot(line_vec, line_vec)
     projection = np.dot(point_vec, line_vec) / line_len
 
-    # Clamp projection value between 0 and 1 to stay within the line segment
+    # Bound Projection Value Between 0 and 1
     projection = max(0, min(1, projection))
 
-    # Find the closest point on the line segment
+    # Find Closest Point to Line Segment
     closest_point = start + projection * line_vec
 
-    # Calculate the distance between the point and the closest point on the line
+    # Calculate Distance Between Point and Closest Point on Line Segment
     return geodesic(point, closest_point).meters
 
 
@@ -330,26 +334,26 @@ def station_to_path_distance(station_coords, path_coords, treated_threshold, con
         # Calculate Distance from Bixi Station to Rev Path
         distance = point_to_line_distance(station_coords, start_vertex, end_vertex)
         
-        # Check if within treated threshold
+        # Treated
         if distance <= treated_threshold:
             return 1, distance  
         
-        # Check if within control threshold but not treated
+        # Control
         elif distance <= control_threshold:
             treated = 0
             if distance < min_distance:
                 min_distance = distance
         
-    # If treated status was updated to control, return control status and min distance
+    # Return Treatment Status and Distance
     if treated is not None:
         # Handle case where no valid min_distance was found
         return treated, min_distance if min_distance != float('inf') else None
     
-    # If no treatment or control condition met, return None and None
+    # Other
     return None, None
 
 
-# Define Function for Assigning Stationst to Treatment
+# Define Function for Assigning Stations to Treatment
 def assign_stations_to_treatment(data):
     # Identify Unique Bixi Stations
     unique_stations = data.groupby("start_id")[["start_lat","start_long"]].mean().reset_index()
@@ -358,16 +362,16 @@ def assign_stations_to_treatment(data):
     # Initialize Treatment Dictionary
     treated_dict = {}
     
-    # Calculate Distance from Bixi Station to REV Path
+    # Iterate Over Bixi Stations
     for index, station_row in tqdm(unique_stations.iterrows(), total=unique_stations.shape[0]):
-        # Extract station coordinates as a tuple (lat, long)
         station_coords = (station_row['start_lat'], station_row['start_long'])
         start_id = station_row["start_id"]
         
-        treated = None  # Initialize with None
-        min_distance = float('inf')  # Initialize min_distance to infinity
+        # Initialize Treatment Status and Distance to REV Path
+        treated = None
+        min_distance = float('inf')  
         
-        # Iterate Over All REV Path Segments
+        # Iterate Over REV Path Segments
         for _, path_row in df_rev.iterrows():
             path_geometry = path_row['geometry']
             coords_list = list(path_geometry.coords)
@@ -380,19 +384,19 @@ def assign_stations_to_treatment(data):
             
             # Treated
             if result == 1:
-                treated = 1  # Mark as treated if any path meets treated condition
-                min_distance = distance  # Use this treated distance
-                break  # No need to check further if treated
+                treated = 1 
+                min_distance = distance 
+                break
             
             # Control
             elif result == 0:
-                treated = 0  # Mark as control if no treated path found yet
+                treated = 0
                 if distance < min_distance:
-                    min_distance = distance  # Update min_distance with the smallest found
+                    min_distance = distance
         
-        # If the station is marked as control, ensure min_distance is properly set
+        # Other
         if treated == 0 and min_distance == float('inf'):
-            min_distance = None  # No valid distance found, so set it to None
+            min_distance = None  
         
         # Store Treatment Status and Distance in Dictionary
         treated_dict[start_id] = {"treated": treated,
@@ -420,12 +424,12 @@ df_merged['post'] = (df_merged['start_date'] >= pd.Timestamp('2020-11-07')).asty
 
 
 #%% Section 5: Exploring Data
-# Average Daily Bixi Ridership Over Time
+# 1. Average Daily Bixi Ridership Over Time
 df_plot = df_merged
 df_plot = df_plot.groupby("monthly_date")["trip_count"].sum().reset_index()
 df_plot["trip_count"] = df_plot["trip_count"]/30.25
 
-ax = sns.barplot(data=df_plot, x='monthly_date', y='trip_count', color = "blue")
+ax = sns.barplot(data = df_plot, x = 'monthly_date', y = 'trip_count', color = "blue")
 plt.grid(False)
 ticks = ax.get_xticks()
 ax.set_xticks(ticks[::12])
@@ -436,7 +440,7 @@ plt.title("Average Number of Daily Bixi Trips, Jan 2014 - July 2024")
 plt.savefig(filepath + "figures/average_daily_ridership.png", bbox_inches = "tight")
 plt.show()
 
-# Average Daily Bixi Trips per Day of Week in July 2024
+# 2. Average Daily Bixi Trips per Day of Week in July 2024
 df_plot = df_merged
 df_plot = df_plot[df_plot["start_date"].dt.year == 2024]
 df_plot = df_plot[df_plot["start_date"].dt.month == 7]
@@ -445,7 +449,7 @@ df_plot["day_week"] = df_plot['start_date'].dt.day_name()
 df_plot = df_plot.groupby("day_week")["trip_count"].mean().reset_index()
 df_plot = df_plot.sort_values(by = "trip_count", ascending = False)
 
-ax = sns.barplot(data=df_plot, x='day_week', y='trip_count', color = "blue")
+ax = sns.barplot(data = df_plot, x= 'day_week', y = 'trip_count', color = "blue")
 plt.grid(False)
 ticks = ax.get_xticks()
 plt.ylabel("Average Daily Trips")
@@ -454,12 +458,12 @@ plt.title("Average Number of Daily Bixi Trips per Day of Week, July 2024")
 plt.savefig(filepath + "figures/average_daily_ridership_dayofweek.png", bbox_inches = "tight")
 plt.show()
 
-# Number of Bixi Stations Over Time
+# 3. Number of Bixi Stations Over Time
 df_plot = df_merged
 df_plot = df_plot[df_plot["trip_count"] > 0]
 df_plot = df_plot.groupby(["monthly_date"])["start_id"].nunique().reset_index()
 
-ax = sns.lineplot(data=df_plot, x='monthly_date', y='start_id', color = "blue")
+ax = sns.lineplot(data = df_plot, x = 'monthly_date', y = 'start_id', color = "blue")
 plt.grid(False)
 plt.ylim([0,1000])
 ticks = ax.get_xticks()
@@ -471,7 +475,7 @@ plt.show()
 
 
 #%% Section 6: Mapping
-# Map of Usage by Bixi Station
+# 1. Map of Usage by Bixi Station
 df_map = df_merged
 df_map = df_map.groupby(["start_id", "weekly_date"]).agg(
     {"trip_count": "sum",
@@ -483,7 +487,6 @@ df_map = df_map.groupby(["start_id", "weekly_date"]).agg(
 df_map["weekly_date"] = pd.to_datetime(df_map["weekly_date"])
 df_map['weekly_date_str'] = df_map['weekly_date'].dt.strftime('%Y-%m-%d')
 df_map = df_map.sort_values(by = "weekly_date")
-df_map.to_excel(filepath + "map_data.xlsx")
 
 # Define Function for Specifying Map Parameters
 def map_parameters(data, animation_frame, title, size_max):     
@@ -607,76 +610,77 @@ def map_station_usage(data, type):
                        loop = 0)
         
 
-# Create Map of Usage by Bixi Station
+# Create Map
 map_station_usage(df_map, type = "gif")
 
-# Map of REV Path, Treated Bixi Stations, and Control Bixi Stations
-df_map = df_merged
-df_map = df_map.groupby(["start_id", "weekly_date"]).agg(
+# 2. Map of REV Path, Treated Bixi Stations, and Control Bixi Stations
+df_station_treatment_status = df_merged
+df_station_treatment_status = df_station_treatment_status.groupby(["start_id", "weekly_date"]).agg(
     {"rev_distance": "first",
      "treated": "first",
      "post": "first",
      "start_lat": "first",
      "start_long": "first"}).reset_index()
 
-df_map = df_map[df_map["weekly_date"].dt.date == dt.date(2024, 7, 29)]
-df_map.to_csv(filepath + "treated_controlled.csv")
-
-# Import Bike Paths
-df_paths = gpd.read_file(filepath + "reseau_cyclable.geojson")
+df_station_treatment_status = df_station_treatment_status[df_station_treatment_status["weekly_date"].dt.date == dt.date(2024, 7, 29)]
+df_station_treatment_status.to_excel(filepath + "data/bike_network/station_treatment_status.xlsx")
 
 # Identify REV Bike Paths
+df_paths = gpd.read_file(filepath + "reseau_cyclable.geojson")
 list_axis1 = [21598, 24146, 21597, 21599, 21355, 23819, 21601, 21601, 21027, 21026, 21600, 21601, 24147, 21025, 21024, 26063, 25554, 25912, 25913, 25911, 21023, 25553, 21030, 23821, 21029, 21357, 21356, 21028, 21359, 25584, 21358, 25585, 25796, 25833, 26136, 25866, 21360, 24187, 22907, 25865, 25627, 22906, 25626, 22905, 25618, 20705, 25617, 20704, 25616, 24826, 22908, 25615, 20726, 20725, 20724, 24635, 24031, 24342, 25218, 25609, 25608, 25607, 25878, 26137, 25613, 25848, 26139, 26140, 25849, 25851, 26142, 25850, 26141, 25813, 26138, 25634, 25633, 25632, 25233, 22212, 25631, 20181, 25874, 25526, 22186, 33616, 33618, 33617, 33620, 33622, 33621, 33619, 33624, 33626, 33625, 33623, 33628, 33630, 33629, 33627, 25241, 25641, 30443]
 df_rev = df_paths[df_paths['ID_CYCL'].isin(list_axis1)]
 
 # Convert DataFrame to GeoDataFrame
-gdf = gpd.GeoDataFrame(df_rev, geometry='geometry')
+df_map = gpd.GeoDataFrame(df_rev, geometry='geometry')
 
 # Define Function for Creating Map
 def map_rev_treated_control(data):
-    # Extract latitude and longitude from the LineString for plotting
-    gdf['lon'] = gdf.geometry.apply(lambda x: list(x.coords)[0][0])
-    gdf['lat'] = gdf.geometry.apply(lambda x: list(x.coords)[0][1])
+    # Extract Latitude and Longitude from LineString
+    data['lon'] = data.geometry.apply(lambda x: list(x.coords)[0][0])
+    data['lat'] = data.geometry.apply(lambda x: list(x.coords)[0][1])
     
-    # Create a list of all points in each LineString for plotting
-    gdf['coords'] = gdf['geometry'].apply(lambda x: list(x.coords))
+    # Create List of Points in All LineStrings
+    data['coords'] = data['geometry'].apply(lambda x: list(x.coords))
     
-    # Explode the coordinates so that each row corresponds to a single point
-    gdf_exploded = gdf.explode('coords')
+    # Explode Coordinates
+    data = data.explode('coords')
     
-    # Separate the exploded coordinates into latitude and longitude
-    gdf_exploded['lon'] = gdf_exploded['coords'].apply(lambda x: x[0])
-    gdf_exploded['lat'] = gdf_exploded['coords'].apply(lambda x: x[1])
+    # Separate Exploded Coordinates into Latitude and Longitude
+    data['lon'] = data['coords'].apply(lambda x: x[0])
+    data['lat'] = data['coords'].apply(lambda x: x[1])
     
-    df_treated_controlled = pd.read_csv(filepath + "treated_controlled.csv")
-    df_treated_controlled['treated'] = df_treated_controlled['treated'].map(
+    # Merge in Treatment Status by Station
+    df_station_treatment_status = pd.read_excel(filepath + "station_treatment_status.xlsx")
+    
+    # Recode Treatment Status
+    df_station_treatment_status['treated'] = df_station_treatment_status['treated'].map(
         {0: 'Control', 
          1: 'Treated'}).fillna("Other")
-    df_treated_controlled = df_treated_controlled.sort_values(by=['treated'], key=lambda x: x.map({'Treated': 0, 'Control': 1, 'Other': 2}))
-    df_treated_controlled.to_csv(filepath + "treated_controlled.csv")
-    
+    df_station_treatment_status = df_station_treatment_status.sort_values(by=['treated'], key=lambda x: x.map({'Treated': 0, 'Control': 1, 'Other': 2}))
     color_map = {"Control": 'red', 
                  "Treated": 'green',
                  "Other": "grey"}
     
-    # Create a Plotly Express map
+    # Plot REV Path
     line_fig = px.line_mapbox(
-        gdf_exploded,
-        lon='lon',
-        lat='lat',
-        mapbox_style="open-street-map",
-        line_group=gdf_exploded.index,  # Ensure lines are grouped by the original geometry
+        data,
+        lon = 'lon',
+        lat = 'lat',
+        mapbox_style = "open-street-map",
+        line_group = data.index,  # Ensure lines are grouped by the original geometry
     )
     
+    # Adjust Line Color
     line_fig.update_traces(line=dict(color='black'))
     
+    # Plot Bike Rental Stations
     scatter_fig = px.scatter_mapbox(
-        df_treated_controlled,
-        lon='start_long',
-        lat='start_lat',
+        df_station_treatment_status,
+        lon = 'start_long',
+        lat = 'start_lat',
         color = "treated",
         color_discrete_map = color_map,
-        mapbox_style="open-street-map",
+        mapbox_style = "open-street-map",
     )
     
     # Adjust Scatter Size
@@ -707,8 +711,8 @@ def map_rev_treated_control(data):
     line_fig.show()
 
 
-# Create Map of REV Path, Treated Bixi Stations, and Control Bixi Stations
-map_rev_treated_control(gdf)
+# Create Map
+map_rev_treated_control(df_map)
 
 
 #%% Section 7: Prepare Data for Regressions
@@ -868,6 +872,7 @@ def did_plot(data, outcomes):
 # Create Difference-in-Difference Plot
 did_plot(df_regression, ["trip_count_sa", "trip_distance_sa", "trip_duration_sa"])
 
+
 #%% Section 9: Model Estimation
 # Define Function for Estimating Treatment Effect
 def estimation(data, outcomes, models):
@@ -943,3 +948,4 @@ def estimation(data, outcomes, models):
 estimation(df_regression, 
            ["trip_count_sa", "trip_distance_sa", "trip_duration_sa"],
            ["standard"])
+
