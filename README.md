@@ -23,10 +23,10 @@ The project primilarly relies on ride-level data made freely available by Bixi f
 - Environment Canada, Daily Weather in Montreal: https://climate.weather.gc.ca/climate_data/daily_data_e.html?StationID=51157
 
 ## Code
-Code for the project is written entirely in Python and separated into 8 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. To run the code without modification, store the Bixi ride-level data in year-specific folders in `data/ridership/`, geocoded bike network data from the City of Montreal in `data/bike_network/`, and weather data from Environment Canada in `data/weather/`. In the same project directory, create empty folders called `figures` and `output` to collect results.
+Code for the project is written entirely in Python and separated into 8 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. To run the code without modification, begin by specifying a filepath pointing to the project's directory. Then, store the Bixi ride-level data in year-specific folders in `data/ridership/`, geocoded bike network data from the City of Montreal in `data/bike_network/`, and weather data from Environment Canada in `data/weather/`. In the same project directory, create empty folders called `figures` and `output` to collect results.
 
 ### 1. Preliminaries
-In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics.
+In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics. I also select a filepath, which is automatically selected based on whether I am working on my personal computer or computing cluster.
 
 ### 2. Importing and Cleaning Data
 I begin by reading and appending Bixi's ride-level microdata. In some years, Bixi provides ride-level data by month, while in other years all of the ridership data is included in a single dataset. Variable names change somewhat through time, as do date formats. The code handles these intertemporal inconsistencies. The dataset includes all of the approximately 62 million rides completed on Bixi bikes between April 2014 and July 2024.
