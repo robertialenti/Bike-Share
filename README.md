@@ -112,7 +112,7 @@ Given that the data is spatial in nature, I generate some maps as well. First, I
 
 It's also informative to animate the previous static image. In doing so, it's clear to see the gradual expansion of the network into neighborhoods further from the city center, as well as increased rideshare usage, both at the extensive and intensive margins.
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/figures/gif_map.gif" width="900" height="500">
+<img src="C:/Users/rialenti/Dropbox (Harvard University)/bixi/figures/gif_map.gif" width="900" height="500">
 
 ### 7. Preparing Data for Econometric Analysis
 Before I can perform regressions, I make the following adjustments. First, I convert key variables for the difference-in-difference regressiont to binary type. Second, I seasonally adjust the outcome variables. Finally, I merge in additional covariates measuring daily mean temperature, precipitation, and amount of snow on ground in Montreal.
