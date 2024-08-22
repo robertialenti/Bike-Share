@@ -52,7 +52,7 @@ else:
     filepath = ""
 
 
-#%% Section 2: Creating Dataset
+#%% Section 2: Importing and Cleaning Ridership Data
 # Define Function for Importing Bixi Trip Data
 def import_data():
     df = pd.DataFrame()
@@ -214,7 +214,7 @@ def clean_data(df):
 df = clean_data(df)
 
 
-#%% Section 3: Creating Variables of Interest
+#%% Section 3: Creating Outcome Variables of Interest
 # Number of Trips
 df["trip_count"] = 1
 
@@ -283,7 +283,7 @@ df_merged['monthly_date'] = df_merged['start_date'].dt.to_period('M').dt.to_time
 df_merged["monthly_date"] = df_merged["monthly_date"].dt.date
 
 
-#%% Section 4: Identify Treated Bixi Stations
+#%% Section 4: Identifying Treated Bixi Stations
 df_paths = gpd.read_file(filepath + "data/bike_network/reseau_cyclable.geojson")
 
 # Identify REV Segments by Axis
@@ -710,7 +710,7 @@ def map_rev_treated_control(data):
 map_rev_treated_control(df_map)
 
 
-#%% Section 7: Prepare Data for Regressions
+#%% Section 7: Prepare Data for Econometric Analysis
 # Define Function for Preparing Dataset for Regressions
 def prepare_regressions(data):
     # Select Relevant Variables
