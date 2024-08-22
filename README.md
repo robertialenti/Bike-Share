@@ -25,6 +25,8 @@ The project primilarly relies on ride-level data made freely available by Bixi f
 ## Code
 Code for the project is written entirely in Python and separated into 8 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. To run the code without modification, begin by specifying a filepath pointing to the project's directory. Then, store the Bixi ride-level data in year-specific folders in `data/ridership/`, geocoded bike network data from the City of Montreal in `data/bike_network/`, and weather data from Environment Canada in `data/weather/`. In the same project directory, create empty folders called `figures` and `output` to collect results.
 
+Those looking to use the script to generate a GIF of ridershare usage by Bixi station, as is done in the script, will need a free chart_studio account.
+
 ### 1. Preliminaries
 In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics. I also select a filepath, which is automatically selected based on whether I am working on my personal computer or computing cluster.
 
