@@ -165,9 +165,7 @@ Distance to the CBD is always found to enter statistically significantly, but wi
 Other control variables have the expected sign, with temperature being positiely associated with ridesharing while precipitation and snow on ground are found to be negatively related with ridesharing. However, only the amount of snow on the ground is found statistically significantly benefit or reduce bikesharing. 
 
 I find the sign, magnitude, and statistical significance of the key results to be robust to changes in the treated/control thresholds and the addition of monthly dummies.
+	
+![image](https://github.com/user-attachments/assets/bb9b30f3-9765-450b-ad6f-a8630e543be4)
 
-Here are the regression results from the TWFE model. These results are both qualitatively and quantitatively consistent with those put forward in the standard model.
-     
-![image](https://github.com/user-attachments/assets/b7dec6bf-9dd1-405e-a29f-39b4163145e6)
-
-To conclude, results indicate that the REV broadly improved ridership at stations located nearest to its path. However, without ride-level user IDs it is impossible for me to infer whether increased usage is the result of new Bixi users being induced by the REV, or simply a spatial reallocation of existing users. That is, it is possible the treatment effect is being driven by existing Bixi users choosing to rent their bikes from a Bixi station closer to the REV path after its completion, rather than new users choosing to use the bikeshare program.
+To conclude, results indicate that the REV broadly improved ridership at stations located nearest to its path. However, without ride-level user IDs it is impossible for me to infer whether increased usage is the result of new riders being induced by the REV, or simply a spatial reallocation of existing users. That is, it is possible the treatment effect is being driven by existing Bixi users choosing to rent their bikes from a Bixi station closer to the newly completed REV path, rather than new users choosing to begin using the bikeshare program.
