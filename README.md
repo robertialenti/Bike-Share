@@ -23,14 +23,14 @@ The project primilarly relies on ride-level data made freely available by Bixi f
 - Environment Canada, Daily Weather in Montreal: https://climate.weather.gc.ca/climate_data/daily_data_e.html?StationID=51157
 
 ## Code
-Code for the project is written entirely in Python and separated into 8 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. To run the code without modification, begin by specifying a filepath pointing to the project's directory. Then, store the Bixi ride-level data in year-specific folders in `data/ridership/`, geocoded bike network data from the City of Montreal in `data/bike_network/`, and weather data from Environment Canada in `data/weather/`. In the same project directory, create empty folders called `figures` and `output` to collect results.
+Code for the project is written entirely in Python and separated into 9 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. To run the code without modification, begin by specifying a filepath pointing to the project's directory. Then, store the Bixi ride-level data in year-specific folders in `data/ridership/`, geocoded bike network data from the City of Montreal in `data/bike_network/`, and weather data from Environment Canada in `data/weather/`. In the same project directory, create empty folders called `figures` and `output` to collect results.
 
 Those looking to use the script to generate a GIF of ridershare usage by Bixi station, as is done in the script, will need a free chart_studio account.
 
 ### 1. Preliminaries
 In this section, I simply import modules that I'll need to conduct the work. I take advantage of a number of widely used libraries for data science, spatial analysis, and econometrics. I also select a filepath, which is automatically selected based on whether I am working on my personal computer or computing cluster.
 
-### 2. Importing and Cleaning Data
+### 2. Importing and Cleaning Ridership Data
 I begin by reading and appending Bixi's ride-level microdata. In some years, Bixi provides ride-level data by month, while in other years all of the ridership data is included in a single dataset. Variable names change somewhat through time, as do date formats. The code handles these intertemporal inconsistencies. The dataset includes all of the approximately 62 million rides completed on Bixi bikes between April 2014 and July 2024.
 
 In order to generate aggregate statistics by station, it is important to have a unique and time-invariant station identifier. The ride-level data from Bixi provides two potentially useful identifiers: $\text{Station Name}$ and $\text{Station Code}$. However, both can be unreliable as the same station may use different names or different station codes, in the same year and through time.
@@ -59,7 +59,7 @@ After merging the ride-level data with the crosswalk, these observations are ass
 | 2019 | 2019-06-10 17:49 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4744 | -73.6047 | 174 |
 | 2019 | 2019-06-10 17:50 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 174 |
 
-### 3. Creating Outcome Variables
+### 3. Creating Outcome Variables of Interest
 Here, I create three outcome variables: trip count, trip distance, and trip duration.
 
 Trip count measures the number of trips undertaken, by Bixi station and date.
@@ -105,6 +105,7 @@ Finally, I plot the number of active Bixi stations over time, only in months in 
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/number_stations.png" width="425" height="250">
 
+### 6. Mapping 
 Given that the data is spatial in nature, I generate some maps as well. First, I present a static map showing Bixi usage during the week ending 07-31-2024, the last week with available data. Each bubble represents a Bixi station. The bubble's color scales in accordance with the number of bikeshare trips originating from that station while the bubble's size scales with the total distance travelled by bikeshare users on trips originating from that station.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/static_map.png" width="900" height="500">
@@ -113,17 +114,17 @@ It's also informative to animate the previous static image. In doing so, it's cl
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/gif_map.gif" width="900" height="500">
 
-### 6. Preparing Data for Econometric Analysis
+### 7. Preparing Data for Econometric Analysis
 Before I can perform regressions, I make the following adjustments. First, I convert key variables for the difference-in-difference regressiont to binary type. Second, I seasonally adjust the outcome variables. Finally, I merge in additional covariates measuring daily mean temperature, precipitation, and amount of snow on ground in Montreal.
 
-### 7. Assessing Parallel Trends
+### 8. Assessing Parallel Trends
 To ensure that outcomes evolved similarly prior to treatment for both treatment and control groups, and to verify that bikeshare activity at treated stations did not somehow frontrun the completion of the REV, I plot seasonally adjusted outcomes in event time. The event time variable measures time elapsed since the inauguration of the REV's Axis 1 on 11/07/2020. In an effort to better assess trends, I plot only a single month, November, for every year.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/did_combined.png">
 
 Outcomes evolved quite similarly for both treated and control groups prior to the construction of the REV's Axis 1. At the time of treatment, usage of Bixi stations in both treated and control groups notably increased and began to grow more quickly in November 2020, following the REV's completion. Ridership increases more for treated stations than for control stations, and remains more elevated through the post-treatment period.
 
-### 8. Model Estimation
+### 9. Model Estimation
 I estimate a standard difference-in-difference model with $\text{Post}$, $\text{Treated}$, and $\text{Post} \times \text{Treated}$ terms. In addition to the key difference-in-differences regressors, I include a control for the distance between the Bixi station and the REV path as well as distance between the Bixi station and the city's central business district. Finally, I include observable weather-related covariates that I think may impact outcomes, including temperature, precipitation, and the amount of snow on the ground, as well as a full set of monthly dummies. Robust standard errors are used. The regressions are performed at the weekly-station level as outcomes are much less noisy than at a daily frequency. The most comprehensive specification is shown below.
 
 $Y_{it} = \alpha + \beta_{1}\text{Treated}\_{i} + \beta_{2}\text{Post}\_{t} + \beta_{3}(\text{Treated}\_{i} \times \text{Post}\_{t}) + \beta_{4}\text{Distance to REV}\_{it} + \beta_{5}\text{Distance to CBD}\_{it} + \sum_{n}\beta_{n}X_t + \epsilon_{it}$
