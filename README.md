@@ -160,7 +160,7 @@ The difference-in-difference estimator captures the treatment effect. It is foun
 
 Distance to the REV path is negatively and significantly related with the number of trips taken. Parameter estimates suggest that, for every 100 meters further a Bixi station is from the REV, the number of weekly trips taken falls by around 4, on average. Distance to the REV has a comparatively larger effect on trip distance and trip duration. Trips originating at Bixi docking stations located 100 meters from the REV are expected to travel 40 fewer meters and last 2 fewer minutes, on average, than Bixi stations located adjacent to the path.
 
-Distance to the CBD is always negative and statistically significant. This is consistent with the fact that the city center is denser with amenities, has more comprehensive bike coverage, and a denser network of Bixi docking stations.
+Distance to the CBD is always found to enter statistically significantly, but with a sign that varies. My interpretation is that, the number of trips taken at any given Bixxi station declines as the distance to the CBD grows, on account of less central neighborhoods having fewer Bixi stations at which to dock or rent a bike, as well as poorer auxiliary bike infrastructure. On the other hand, the distance and duration of ridersharing trips grows longer as a function of distance to the CBD because urban amenities are more sparsely distributed.
 
 Other control variables have the expected sign, with temperature being positiely associated with ridesharing while precipitation and snow on ground are found to be negatively related with ridesharing. However, only the amount of snow on the ground is found statistically significantly benefit or reduce bikesharing. 
 
