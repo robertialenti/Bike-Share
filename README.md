@@ -78,11 +78,11 @@ The City of Montreal maintains a database with information on all bike paths in 
 1. Select a Bixi station.
 2. For each Bixi station, iterate through every segment of the REV.
 3. For each REV segment, create a polygon using the coordinates bounding the segment.
-4. Calculate the distance between the Bixi station and each pair of vertices forming the polygon for the segment.
-5. If the distance is less than 100 meters, assign the Bixi station to treatment.
-6. If the distance is beteween 100 meters and 300 meters, continue iterating through REV segments. If no other REV segment is found to be less than 100 meters from the Bixi station, assign the Bixi station to the control group.
-7. If the distance between the Bixi station and the REV is never found to be less than 300 meters, assign the station to neither the treatment nor the control group.
-8. Return the treatment status and distance between Bixi station and REV path.
+4. Calculate the distance between the Bixi station and each line segment formed from any pair of vertices aassociated with the REV segment.
+5. If the distance calculated is less than 100 meters, assign the Bixi station to treatment.
+6. If the distance calculated is beteween 100 meters and 300 meters, continue iterating through REV segments. If no other REV segment is found to be less than 100 meters from the Bixi station, assign the Bixi station to the control group.
+7. If the distance calculated between the Bixi station and the REV is never found to be less than 300 meters, assign the station to neither the treatment nor the control groups.
+8. Return the treatment status and the distance between Bixi station and REV path.
 
 Here is a plot showing the location of the REV Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on how far they are located from the path of the REV's Axis 1.
 
@@ -163,5 +163,7 @@ Distance to the CBD is always negative and statistically significant. This is co
 Other control variables have the expected sign, with temperature being positiely associated with ridesharing while precipitation and snow on ground are found to be negatively related with ridesharing. The addition of these controls, as well as monthly dummies, is not found to significantly impact parameter estimates. 
 
 I find the sign, magnitude, and statistical significance of the key results to be robust to changes in the treated/control thresholds and the addition of monthly dummies.
+	
+![image](https://github.com/user-attachments/assets/123ac92e-cf33-4fb8-918f-9699a2c440ec)
 
 Results indicate that the REV broadly improved ridership at stations located nearest to its path. However, without ride-level user IDs it is impossible for me to infer whether increased usage is the result of new Bixi users being induced by the REV, or simply a spatial reallocation of existing users. That is, it is possible the treatment effect is being driven by existing Bixi users choosing to rent their bikes from a Bixi station closer to the REV path after its completion, rather than new users choosing to use the bikeshare program.
