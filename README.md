@@ -139,9 +139,11 @@ Where:
 
 Because I am concerned about heterogenous treatment effects - that is, ____ - I also choose to estimate a two-way fixed effects (TWFE) model. This model absorbs all time-invariant, station specific factors, as well as date-specific shocks. As such, it is better suited to absorb unoberved factors that may act to confound parameter estimates in the canonical difference-in-differences model.
 
-$Y_{it} = \theta_{i} + \mu_{t} + \delta(\text{Treated}\_{i} \times \text{Post}\_{t}) + \epsilon_{it}$
+$Y_{it} = \alpha + \theta_{i} + \mu_{t} + \delta(\text{Treated}\_{i} \times \text{Post}\_{t}) + \epsilon_{it}$
 
 Where: 
+- $( Y_{it} )$ is the seasonally adjusted outcome variable for Bixi station $i$ in week $t$.
+- $( \alpha )$ is the intercept.
 - $( \theta_{i} )$ are Bixi station fixed effects.
 - $( \mu_{i} )$ are weekly date fixed effects.
 - $( \text{Treated}\_{i} \times \text{Post}\_{t} )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
