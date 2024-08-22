@@ -153,12 +153,12 @@ Estimation results are exported as a LaTeX file, which is then interpreted in Ov
 
 ## Discussion of Results																											
 Here are the regression results from the standard difference-in-differences model. For each outcome, I estimate three models. Each successive specification includes additional covariates.
-
-![image](https://github.com/user-attachments/assets/c3be360a-e56c-4241-94b6-c616ad8d73ae)
+								
+![image](https://github.com/user-attachments/assets/b8a5e9fd-d30f-46ef-8b96-8c3aba4154d2)
 
 The difference-in-difference estimator captures the treatment effect. It is found to be positive, statistically significant, and economically meainngful for all three outcomes. In particular, results indicate that, holding all else equal, stations located in close proximity to the REV see around 54 more weekly trips than those located further away. Trips originating from treated stations end 43 meters farther and last around 32 seconds longer, on average. If the research design used is convincing, then improvements in Bixi usage are a direct result of the REV's completion, rather than some confounding factor.
 
-Distance to REV path is negatively and significantly related with number of trips taken. Parameter estimates suggest that, for every kilometer further a Bixi station is from the REV, the number of weekly trips taken falls by nearly 12, on average. Distance to the REV has a comparatively smaller effect on trip distance and trip duration. This may be explained by the fact that proximity to the REV impacts an individual's decision whether to use ridesharing, but does not necessarily affect how long they choose to rent a bike. 
+Distance to the REV path is negatively and significantly related with the number of trips taken. Parameter estimates suggest that, for every kilometer further a Bixi station is from the REV, the number of weekly trips taken falls by nearly 12, on average. Distance to the REV has a comparatively smaller effect on trip distance and trip duration. This may be explained by the fact that proximity to the REV impacts an individual's decision whether to use ridesharing, but does not necessarily affect how long they choose to rent a bike. 
 
 Distance to the CBD is always negative and statistically significant. This is consistent with the fact that the city center is denser with amenities, has more comprehensive bike coverage, and a denser network of Bixi docking stations.
 
