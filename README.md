@@ -115,7 +115,7 @@ It's also informative to animate the previous static image. In doing so, it's cl
 <img src="./figures/gif_map.gif" width="900" height="500">
 
 ### 7. Preparing Data for Econometric Analysis
-Before I can perform regressions, I make the following adjustments. First, I convert key variables for the difference-in-difference regressiont to binary type. Second, I seasonally adjust the outcome variables. Finally, I merge in additional covariates measuring daily mean temperature, precipitation, and amount of snow on ground in Montreal.
+Before I can perform regressions, I make the following adjustments. First, I convert key variables for the difference-in-difference regression to binary type. Second, I seasonally adjust the outcome variables. Third, I calcualte the distance between each Bixi station and the city's central business district. Finally, I merge in additional covariates measuring daily mean temperature, precipitation, and amount of snow on ground in Montreal.
 
 ### 8. Assessing Parallel Trends
 To ensure that outcomes evolved similarly prior to treatment for both treatment and control groups, and to verify that bikeshare activity at treated stations did not somehow frontrun the completion of the REV, I plot seasonally adjusted outcomes in event time. The event time variable measures time elapsed since the inauguration of the REV's Axis 1 on 11/07/2020. In an effort to better assess trends, I plot only a single month, November, for every year.
