@@ -106,7 +106,7 @@ Finally, I plot the number of active Bixi stations over time, only in months in 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/number_stations.png" width="425" height="250">
 
 ### 6. Mapping 
-Given that the data is spatial in nature, I generate some maps as well. First, I present a static map showing Bixi usage during the week ending 07-31-2024, the last week with available data. Each bubble represents a Bixi station. The bubble's color scales in accordance with the number of bikeshare trips originating from that station while the bubble's size scales with the total distance travelled by bikeshare users on trips originating from that station.
+Given that the data is spatial in nature, I choose to create maps as well. First, I present a static map showing Bixi usage during the week ending 07-31-2024, the last week with available data. Each bubble represents a Bixi station. The bubble's color scales in accordance with the number of bikeshare trips originating from that station while the bubble's size scales with the total distance travelled by bikeshare users on trips originating from that station.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/static_map.png" width="900" height="500">
 
