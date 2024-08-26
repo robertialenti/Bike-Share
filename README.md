@@ -101,7 +101,7 @@ Next, I plot average daily ridership by day of the week in July 2024. In line wi
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/average_daily_ridership_dayofweek.png" width="425" height="250">
 
-Finally, I plot the number of active Bixi stations over time, only in months in which the service is operating. Note that, in the winter of 2023, Bixi piloted a project whereby it operated around 150 stations in the city's core for the first. This explains the sharp and temporary decline in the number of active Bixi stations. In 2024, the rideshare service operated around 900 stations.
+Finally, I plot the number of active Bixi stations over time, only in months in which the service is operating. Note that, in the winter of 2023, Bixi piloted a project whereby it operated around 150 stations in the city's core for the first. This explains the sharp and temporary decline in the number of active Bixi stations. In 2024, the rideshare service operated around 850 stations.
 
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/number_stations.png" width="425" height="250">
 
