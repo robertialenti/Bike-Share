@@ -80,7 +80,7 @@ The City of Montreal maintains a database with information on all bike paths in 
 1. Select a Bixi station.
 2. For each Bixi station, iterate through every segment of the REV.
 3. For each REV segment, create a polygon using the coordinates bounding the segment.
-4. Calculate the distance between the Bixi station and each line segment formed from any pair of vertices aassociated with the REV segment.
+4. Calculate the distance between the Bixi station and each line segment formed from any pair of vertices associated with the REV segment.
 5. If the distance calculated is less than 100 meters, assign the Bixi station to treatment.
 6. If the distance calculated is beteween 100 meters and 300 meters, continue iterating through REV segments. If no other REV segment is found to be less than 100 meters from the Bixi station, assign the Bixi station to the control group.
 7. If the distance calculated between the Bixi station and the REV is never found to be less than 300 meters, assign the station to neither the treatment nor the control groups.
