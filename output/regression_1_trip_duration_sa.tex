@@ -1,0 +1,35 @@
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}    & trip\_duration\_sa & \textbf{  R-squared:         } &      0.019   \\
+\textbf{Model:}            &        OLS         & \textbf{  Adj. R-squared:    } &      0.019   \\
+\textbf{Method:}           &   Least Squares    & \textbf{  F-statistic:       } &      344.6   \\
+\textbf{Date:}             &  Wed, 21 Aug 2024  & \textbf{  Prob (F-statistic):} &  9.06e-222   \\
+\textbf{Time:}             &      18:45:15      & \textbf{  Log-Likelihood:    } & -1.6788e+05  \\
+\textbf{No. Observations:} &        55611       & \textbf{  AIC:               } &  3.358e+05   \\
+\textbf{Df Residuals:}     &        55607       & \textbf{  BIC:               } &  3.358e+05   \\
+\textbf{Df Model:}         &            3       & \textbf{                     } &              \\
+\textbf{Covariance Type:}  &        HC3         & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                     & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$> |$z$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{const}       &       3.7143  &        0.031     &   121.293  &         0.000        &        3.654    &        3.774     \\
+\textbf{post}        &       1.0131  &        0.056     &    17.945  &         0.000        &        0.902    &        1.124     \\
+\textbf{treated}     &       0.8639  &        0.053     &    16.318  &         0.000        &        0.760    &        0.968     \\
+\textbf{interaction} &       0.2094  &        0.096     &     2.187  &         0.029        &        0.022    &        0.397     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 4622.374 & \textbf{  Durbin-Watson:     } &    0.144  \\
+\textbf{Prob(Omnibus):} &   0.000  & \textbf{  Jarque-Bera (JB):  } & 9428.473  \\
+\textbf{Skew:}          &   0.557  & \textbf{  Prob(JB):          } &     0.00  \\
+\textbf{Kurtosis:}      &   4.681  & \textbf{  Cond. No.          } &     5.85  \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors are heteroscedasticity robust (HC3)
