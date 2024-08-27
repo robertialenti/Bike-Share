@@ -75,7 +75,7 @@ Rather than consider all axes of the REV, I focus exclusively on Axis 1 because 
 
 I define treated Bixi stations as those located within 100 meters of the REV path and control stations as those located between 100 and 300 meters from the REV. These thresholds are informed by the existing literature, which finds that up to 500 meters is a reasonable distance to walk to bikeshare stations. I select a lower threshold, in large part because of high Bixi station density in the neighborhood served by the REV's Axis 1.
 
-The City of Montreal maintains a database with information on all bike paths in the city. Each path is subdivided into segments, each of which is precisely geocoded. As such, I can simply assign stations to treatment by employing the following procedure:
+The City of Montreal maintains a database with information on all bike paths in the city. Each path is subdivided into segments and precisely geocoded. As such, I can simply assign stations to treatment by employing the following procedure:
 
 1. Select a Bixi station.
 2. For each Bixi station, iterate through every segment of the REV.
