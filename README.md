@@ -16,7 +16,7 @@ Projet Montreal put forward plans to build 5 such axes:
 While the REV has been touted as a success by bike enthusiasts, this is the first attempt - as far as I know - to causally evaluate the its effect on rideshare utilization.
 
 ## Data
-The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - July 2024. I also use data from the City of Montreal, which has geocoded all of the city's existing bike network, as well as daily weather data from Environment Canada.
+The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - July 2024. I also use data from the City of Montreal, who has geocoded all of the city's existing bike network, as well as daily weather data from Environment Canada.
 
 - Bixi, Rides: https://bixi.com/en/open-data/
 - City of Montreal, Bike Network: https://donnees.montreal.ca/dataset/pistes-cyclables
