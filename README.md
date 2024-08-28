@@ -16,11 +16,7 @@ Projet Montreal put forward plans to build 5 such axes:
 While the REV has been touted as a success by bike enthusiasts, this is the first attempt - as far as I know - to causally evaluate the its effect on rideshare utilization.
 
 ## Data
-The project primilarly relies on ride-level data made freely available by Bixi for the period April 2014 - July 2024. I also use data from the City of Montreal, who has geocoded all of the city's existing bike network, as well as daily weather data from Environment Canada.
-
-- Bixi, Rides: https://bixi.com/en/open-data/
-- City of Montreal, Bike Network: https://donnees.montreal.ca/dataset/pistes-cyclables
-- Environment Canada, Daily Weather in Montreal: https://climate.weather.gc.ca/climate_data/daily_data_e.html?StationID=51157
+The project primilarly relies on ride-level data made freely available by [Bixi](https://bixi.com/en/open-data/) for the period April 2014 - July 2024. I also use data from the [City of Montreal]((https://donnees.montreal.ca/dataset/pistes-cyclables)), who has geocoded all of the city's existing bike network, as well as daily weather data from [Environment Canada]((https://climate.weather.gc.ca/climate_data/daily_data_e.html?StationID=51157)).
 
 ## Code
 Code for the project is written entirely in Python and separated into 9 sections. I run the code primarily on a computing cluster, given that the complete raw dataset is too large to be saved in memory. To run the code without modification, begin by creating a project directory and specifying the filepath in the Preliminaries section of the script. Next, create a subdirectory called `data`. Store the Bixi ride-level data in year-specific folders in `data/ridership/`, geocoded bike network data from the City of Montreal in `data/bike_network/`, and weather data from Environment Canada in year-specific folders in `data/weather/`. In the same project directory, create empty folders called `figures` and `output` to collect results.
