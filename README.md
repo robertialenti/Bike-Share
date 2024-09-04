@@ -44,7 +44,7 @@ Here is an example with just six observations, which are sufficient for illustra
 | 2019 | 2019-06-10 17:49 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 6080 |
 | 2019 | 2019-06-10 17:50 | Métro Vendôme (de Marlowe / de Maisonneuve) | 45.4739 | -73.6047 | 6080 |
 
-After merging the ride-level data with the crosswalk file, these rides are assigned the same $\text{Station ID}$. In addition, I choose to replace the station's name with its mode and the station's coordinates with their year-specific mode. This ensures that I capture changes to the docking station's precise location, which may change somewhat from year to year.
+After merging the ride-level data with the crosswalk file, these rides are assigned the same station ID. In addition, I choose to replace the station's name with its mode and the station's coordinates with their year-specific mode. This ensures that I capture changes to the docking station's precise location if, for instance, Bixi decides to move a docking station across the street from one year to another.
 
 | Year | Date | Station Name | Latitude | Longitude | Station ID |
 | ---- | ---- | ------------ | -------- | --------- | ---------- |
