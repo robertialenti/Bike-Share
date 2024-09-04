@@ -104,7 +104,7 @@ Finally, I plot the number of active Bixi stations over time, only in months in 
 ### 6. Mapping 
 Given that the data is spatial in nature, I choose to create maps as well. Each bubble represents a Bixi station. The bubble's color scales in accordance with the number of bikeshare trips originating from that station while the bubble's size scales with the total distance travelled by bikeshare users on trips originating from that station. In animating the data, it's clear to see the gradual expansion of the network into neighborhoods further from the city center, as well as increased rideshare usage, both at the extensive and intensive margins.
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/figures/gif_map.png" width="425" height="250">
+<img src="https://github.com/robertialenti/Bixi/raw/main/figures/gif_map.gif" width="425" height="250">
 
 ### 7. Preparing Data for Econometric Analysis
 Before I can perform regressions, I make the following adjustments. First, I convert key variables for the difference-in-difference regression to binary type. Second, I seasonally adjust the outcome variables. Third, I calcualte the distance between each Bixi station and the city's central business district. Finally, I merge in additional covariates measuring daily mean temperature, precipitation, and amount of snow on ground in Montreal.
