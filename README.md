@@ -129,7 +129,7 @@ Where:
 - $\( \text{Treated}_i \times \text{Post}_t )$ is the difference-in-difference estimator, and is calculated as the interaction of the post-treatment period and the treatment group.
 - $\( \text{Distance to REV}\_{it} )$ is the distance, in hundreds of meters, between Bixi station $i$ and the nearest segment of the REV path in week $t$
 - $\( \text{Distance to CBD}_{it} )$ is the distance between Bixi station $i$ in week $t$ and the central business district of Montreal.
-- $\( X_t )$ is a vector of time-specific covariates, including mean temperature (degrees celcius), precipitation (mm), and snow on ground (cm).
+- $\( X_t )$ is a vector of time-specific covariates, including mean weekly temperature (degrees celcius), precipitation (mm), and snow on ground (cm).
 - $\( \epsilon_{it} )$ is the error term.
 
 Because I believe the REV may elicit heterogenous treatment effects - that is, the impact of the REV may vary across Bixi stations - I also choose to estimate a two-way fixed effects (TWFE) model. By absorbing all time-invariant, station specific factors, as well as date-specific shocks, this model is also better suited to absorb unsoberved factors that may act to confound parameter estimates in the standard difference-in-differences model. The TWFE model is shown below.
