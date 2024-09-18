@@ -84,7 +84,7 @@ The City of Montreal maintains a database with information on all bike paths in 
 
 Here is a plot showing the location of the REV Axis 1. Bixi stations are classified as either Treated, Control, or Other, depending on how far they are located from the path of the REV's Axis 1.
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/figures/treated_stations.png" width="900" height="500">
+<img src="https://github.com/robertialenti/Bixi/raw/main/figures/treated_stations.png" width="850" height="500">
 
 ### 5. Exploring Data
 At this point, I have all of the variables needed to generate descriptive statistics and perform the econometric analysis. Here is a description of the variables.
