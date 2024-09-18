@@ -91,7 +91,7 @@ At this point, I have all of the variables needed to generate descriptive statis
 
 I first plot average daily ridership by month, for every month between January 2014 and July 2024. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
 
-<img src="https://github.com/robertialenti/Bixi/raw/main/figures/average_daily_ridership.png" width="900" height="500">
+<img src="https://github.com/robertialenti/Bixi/raw/main/figures/average_daily_ridership.png" width="425" height="250">
 
 Next, I plot average daily ridership by day of the week in July 2024. In line with expectations, Saturday and Friday are the most popular days for bikesharing.
 
