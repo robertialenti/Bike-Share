@@ -87,7 +87,7 @@ Here is a plot showing the location of the REV Axis 1. Bixi stations are classif
 <img src="https://github.com/robertialenti/Bixi/raw/main/figures/treated_stations.png" width="850" height="500">
 
 ### 5. Exploring Data
-At this point, I have all of the variables needed to generate descriptive statistics and perform the econometric analysis. Here is a description of the variables.
+At this point, I have all of the variables needed to perform the econometric analysis. Before doing so, however, I produce descriptive statistics to verify that the data was correctly prepared.
 
 I first plot average daily ridership by month, for every month between January 2014 and July 2024. Clearly, there is strong seasonality in bike ridershp, with usage of Bixi peaking in summer months. I verify that daily ridership calculated from the microdata lines up with Bixi's self-reported ridership statistics.
 
